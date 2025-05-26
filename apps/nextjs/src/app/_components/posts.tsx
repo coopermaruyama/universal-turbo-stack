@@ -19,7 +19,7 @@ import {
   useForm,
 } from "@acme/ui/form";
 import { Input } from "@acme/ui/input";
-import { toast } from "@acme/ui/toast";
+import { toast } from "sonner";
 
 import { useTRPC } from "~/trpc/react";
 

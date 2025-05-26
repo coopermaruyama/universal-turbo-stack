@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "path": "../../apps/nextjs"
+    },
+    {
+      "path": "../../packages/auth"
+    },
+    {
+      "path": "../../packages/db"
+    },
+    {
+      "path": "../../packages/ui"
+    },
+    {
+      "path": "../../tooling/tailwind"
+    }
+  ],
+}

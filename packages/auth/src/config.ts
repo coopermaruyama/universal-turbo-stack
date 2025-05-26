@@ -8,9 +8,10 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import Discord from "next-auth/providers/discord";
 
 import { db } from "@acme/db/client";
-import { Account, Session, User } from "@acme/db/schema";
+import { Account, AuthVerificationToken, Session, User } from "@acme/db/schema";
 
 import { env } from "../env";
+import { emailProvider } from "./email";
 
 declare module "next-auth" {
   interface Session {
@@ -24,6 +25,7 @@ const adapter = DrizzleAdapter(db, {
   usersTable: User,
   accountsTable: Account,
   sessionsTable: Session,
+  verificationTokensTable: AuthVerificationToken,
 });
 
 export const isSecureContext = env.NODE_ENV !== "development";
@@ -38,7 +40,10 @@ export const authConfig = {
       }
     : {}),
   secret: env.AUTH_SECRET,
-  providers: [Discord],
+  providers: [
+    // Discord,
+    emailProvider
+  ],
   callbacks: {
     session: (opts) => {
       if (!("user" in opts))
@@ -54,6 +59,13 @@ export const authConfig = {
     },
   },
 } satisfies NextAuthConfig;
+
+export const providerMap = {
+  email: {
+    id: "email",
+    name: "Email",
+  }
+}
 
 export const validateToken = async (
   token: string,

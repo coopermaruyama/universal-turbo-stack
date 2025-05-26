@@ -12,4 +12,7 @@ export {
   invalidateSessionToken,
   validateToken,
   isSecureContext,
+  providerMap,
 } from "./config";
+
+export { AUTH_EMAIL_COOKIE_NAME } from "./email";

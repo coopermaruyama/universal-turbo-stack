@@ -51,7 +51,9 @@
     "AUTH_DISCORD_SECRET",
     "AUTH_REDIRECT_PROXY_URL",
     "AUTH_SECRET",
-    "PORT"
+    "PORT",
+    "SENDGRID_API_KEY",
+    "SENDGRID_FROM_EMAIL"
   ],
   "globalPassThroughEnv": [
     "NODE_ENV",

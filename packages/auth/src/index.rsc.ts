@@ -20,3 +20,5 @@ export {
   validateToken,
   isSecureContext,
 } from "./config";
+
+export { AUTH_EMAIL_COOKIE_NAME } from "./email";

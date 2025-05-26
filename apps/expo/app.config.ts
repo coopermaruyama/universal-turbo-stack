@@ -30,11 +30,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     edgeToEdgeEnabled: true,
   },
-  // extra: {
-  //   eas: {
-  //     projectId: "your-eas-project-id",
-  //   },
-  // },
+  extra: {
+    // eas: {
+    //   projectId: "your-eas-project-id",
+    // },
+    storybookEnabled: process.env.STORYBOOK_ENABLED,
+  },
   experiments: {
     tsconfigPaths: true,
     typedRoutes: true,

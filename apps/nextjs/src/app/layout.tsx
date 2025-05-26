@@ -4,7 +4,7 @@ import { GeistSans } from "geist/font/sans";
 
 import { cn } from "@acme/ui";
 import { ThemeProvider, ThemeToggle } from "@acme/ui/theme";
-import { Toaster } from "@acme/ui/toast";
+import { Toaster } from "@acme/ui/sonner";
 
 import { TRPCReactProvider } from "~/trpc/react";
 

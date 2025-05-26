@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    // {
+    //   "label": "Build Next.js",
+    //   "type": "shell",
+    //   "command": "pnpm build",
+    //   "options": {
+    //     "cwd": "${workspaceFolder}/apps/nextjs"
+    //   },
+    //   "group": "build"
+    // }
+  ]
+}

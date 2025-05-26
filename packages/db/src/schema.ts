@@ -78,3 +78,19 @@ export const Session = pgTable("session", (t) => ({
 export const SessionRelations = relations(Session, ({ one }) => ({
   user: one(User, { fields: [Session.userId], references: [User.id] }),
 }));
+
+export const AuthVerificationToken = pgTable(
+  "verificationToken",
+  t => ({
+    identifier: t.text("identifier").notNull(),
+    token: t.text("token").notNull(),
+    expires: t.timestamp("expires", { mode: "date" }).notNull(),
+  }),
+  (verificationToken) => [
+    {
+      compositePk: primaryKey({
+        columns: [verificationToken.identifier, verificationToken.token],
+      }),
+    },
+  ]
+)

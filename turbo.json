@@ -53,7 +53,8 @@
     "AUTH_SECRET",
     "PORT",
     "SENDGRID_API_KEY",
-    "SENDGRID_FROM_EMAIL"
+    "SENDGRID_FROM_EMAIL",
+    "STORYBOOK_ENABLED"
   ],
   "globalPassThroughEnv": [
     "NODE_ENV",

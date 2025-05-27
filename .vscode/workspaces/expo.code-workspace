@@ -1,9 +1,34 @@
 {
   "folders": [
     {
-      "path": "../../apps/expo"
+      "path": "../../apps/expo",
     },
     {
-      "path": "../../packages/api"
+      "path": "../../packages/ui",
     },
+    {
+      "path": "../../packages/api",
+    },
+    {
+      "path": "../../packages/db",
+    },
+    {
+      "path": "../../packages/auth",
+    },
+    {
+      "name": "root",
+      "path": "../../",
+    },
+  ],
+  "settings": {
+    "typescript.tsdk": "../../node_modules/typescript/lib",
+    "eslint.workingDirectories": [
+      { "mode": "auto" },
+      { "directory": "../../apps/expo", "changeProcessCWD": true },
+      { "directory": "../../packages/ui", "changeProcessCWD": true },
+      { "directory": "../../packages/api", "changeProcessCWD": true },
+      { "directory": "../../packages/db", "changeProcessCWD": true },
+      { "directory": "../../packages/auth", "changeProcessCWD": true },
+    ],
+  },
 }

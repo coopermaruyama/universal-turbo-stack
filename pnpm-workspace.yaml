@@ -28,8 +28,12 @@ catalogs:
   react19:
     react: 19.0.0
     react-dom: 19.0.0
+    react-native-renderer: 19.0.0
     "@types/react": ^19.0.12
     "@types/react-dom": ^19.0.4
+
+overrides:
+  react-native-renderer: 19.0.0
 
 onlyBuiltDependencies:
   - esbuild

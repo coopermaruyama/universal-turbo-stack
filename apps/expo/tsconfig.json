@@ -11,6 +11,7 @@
     "moduleSuffixes": [".ios", ".android", ".native", ""]
   },
   "include": [
+    ".storybook/**/*.ts",
     "src",
     "*.ts",
     "*.js",

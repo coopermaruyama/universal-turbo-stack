@@ -1,19 +1,23 @@
 {
   "folders": [
     {
-      "path": "../../apps/nextjs"
+      "path": "../../apps/nextjs",
     },
     {
-      "path": "../../packages/auth"
+      "path": "../../packages/api",
     },
     {
-      "path": "../../packages/db"
+      "path": "../../packages/auth",
     },
     {
-      "path": "../../packages/ui"
+      "path": "../../packages/db",
     },
     {
-      "path": "../../tooling/tailwind"
-    }
+      "name": "root",
+      "path": "../../",
+    },
   ],
+  "settings": {
+    "explorer.excludeGitIgnore": true,
+  },
 }

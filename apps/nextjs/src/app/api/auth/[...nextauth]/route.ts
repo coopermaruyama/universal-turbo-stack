@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import type { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-import { handlers, isSecureContext, AUTH_EMAIL_COOKIE_NAME } from "@acme/auth";
-import type { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
+import { AUTH_EMAIL_COOKIE_NAME, handlers, isSecureContext } from "@acme/auth";
 
 export const EXPO_COOKIE_NAME = "__acme-expo-redirect-state";
 export const AUTH_COOKIE_PATTERN = /authjs\.session-token=([^;]+)/;
@@ -23,7 +23,7 @@ function rewriteRequestUrlInDevelopment(req: NextRequest) {
   const newURL = new URL(req.url);
   newURL.host = host ?? req.nextUrl.host;
   return new NextRequest(newURL, req);
-} 
+}
 
 async function handleExpoSigninCallback(req: NextRequest, redirectURL: string) {
   (await cookies()).delete(EXPO_COOKIE_NAME);
@@ -59,7 +59,7 @@ export const POST = async (
   const nextauthAction = (await props.params).nextauth[0];
   const isExpoCallback = (await cookies()).get(EXPO_COOKIE_NAME);
 
-  await maybeSetAuthEmailCookie(req, nextauthAction );
+  await maybeSetAuthEmailCookie(req, nextauthAction);
 
   // callback handler required separately in the POST handler
   // since Apple sends a POST request instead of a GET
@@ -84,13 +84,13 @@ export const GET = async (
   // custom handler for totp email sign-in
   const returnValue = await handleTOTPEmailSignInCallback(
     req,
-    nextauthAction ?? '',
+    nextauthAction ?? "",
     isExpoCallback,
   );
   if (returnValue) {
     // If the callback was handled, return the response
     return returnValue;
-  } 
+  }
 
   if (nextauthAction === "signin" && !!isExpoSignIn) {
     // set a cookie we can read in the callback
@@ -117,7 +117,7 @@ async function handleTOTPEmailSignInCallback(
   isExpoCallback: RequestCookie | undefined,
 ): Promise<NextResponse | undefined> {
   const isEmailCallback = (await cookies()).get(AUTH_EMAIL_COOKIE_NAME);
-  if (nextauthAction === 'callback' && isEmailCallback) {
+  if (nextauthAction === "callback" && isEmailCallback) {
     // !!isAuthCallback && cookies().delete(AUTH_CALLBACK_COOKIE_NAME);
     (await cookies()).delete(AUTH_EMAIL_COOKIE_NAME);
 
@@ -131,31 +131,27 @@ async function handleTOTPEmailSignInCallback(
         .getSetCookie()
         .find((cookie) => AUTH_COOKIE_PATTERN.test(cookie));
       const match = setCookie?.match(AUTH_COOKIE_PATTERN)?.[1];
-  
+
       if (!match)
         throw new Error(
           "Unable to find session cookie: " +
             JSON.stringify(authResponse.headers.getSetCookie()),
         );
-  
+
       const url = new URL(isExpoCallback.value);
       url.searchParams.set("session_token", match);
       return NextResponse.redirect(url);
-    } 
+    }
   }
 }
 
-
-async function maybeSetAuthEmailCookie(
-  req: NextRequest,
-  authaction = ''
-) {
-  const r2 = req.clone()
+async function maybeSetAuthEmailCookie(req: NextRequest, authaction = "") {
+  const r2 = req.clone();
   let email: string | null = null;
-  if (r2.headers.get('content-type') === 'application/json') {
+  if (r2.headers.get("content-type") === "application/json") {
     try {
       const json = await r2.json();
-      if (json && typeof json === 'object' && 'email' in json) {
+      if (json && typeof json === "object" && "email" in json) {
         email = (json as { email?: string }).email ?? null;
       }
     } catch {
@@ -163,14 +159,14 @@ async function maybeSetAuthEmailCookie(
     }
   }
   if (!email) {
-    const formEmail = (await r2.formData()).get('email');
-    email = typeof formEmail === 'string' ? formEmail : null;
+    const formEmail = (await r2.formData()).get("email");
+    email = typeof formEmail === "string" ? formEmail : null;
   }
   if (authaction === "signin") {
     (await cookies()).set({
       name: AUTH_EMAIL_COOKIE_NAME,
       value: decodeURIComponent(email ?? ""),
       maxAge: 60 * 10, // 10 min
-    })
+    });
   }
 }

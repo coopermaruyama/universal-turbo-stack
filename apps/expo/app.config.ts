@@ -9,6 +9,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   orientation: "portrait",
   icon: "./assets/icon-light.png",
   userInterfaceStyle: "automatic",
+  splash: {
+    image: "./assets/icon.png",
+    resizeMode: "contain",
+    backgroundColor: "#1F104A",
+  },
   updates: {
     fallbackToCacheTimeout: 0,
   },
@@ -35,6 +40,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     //   projectId: "your-eas-project-id",
     // },
     storybookEnabled: process.env.STORYBOOK_ENABLED,
+    hostUri: process.env.EXPO_HOST_URI,
   },
   experiments: {
     tsconfigPaths: true,
@@ -47,10 +53,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       "expo-splash-screen",
       {
-        backgroundColor: "#E4E4E7",
+        backgroundColor: "#111111",
         image: "./assets/icon-light.png",
         dark: {
-          backgroundColor: "#18181B",
+          backgroundColor: "#eeeeee",
           image: "./assets/icon-dark.png",
         },
       },

@@ -1,10 +1,10 @@
 import type { Theme } from "@auth/core/types";
 import { cookies } from "next/headers";
 import { redirect, RedirectType } from "next/navigation";
+
 import { auth } from "@acme/auth";
-import {
-  EXPO_COOKIE_NAME,
-} from "../[...nextauth]/route";
+
+import { EXPO_COOKIE_NAME } from "../[...nextauth]/route";
 import VeryifyRequestForm from "./_components/form";
 
 const AUTH_EMAIL_COOKIE_NAME = "__auth-email";

@@ -5,9 +5,9 @@ import { Link, Stack } from "expo-router";
 import { FlashList } from "@shopify/flash-list";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import type { RouterOutputs } from "~/lib/utils/api";
-import { trpc } from "~/lib/utils/api";
-import { useSignIn, useSignOut, useUser } from "~/lib/utils/auth";
+import type { RouterOutputs } from "~/lib/api";
+import { trpc } from "~/lib/api";
+import { useSignIn, useSignOut, useUser } from "~/lib/auth";
 
 function PostCard(props: {
   post: RouterOutputs["post"]["all"][number];
@@ -130,12 +130,12 @@ export default function Index() {
   );
 
   return (
-    <SafeAreaView className="bg-background">
+    <SafeAreaView className="bg-background grow">
       {/* Changes page title visible on the header */}
       <Stack.Screen options={{ title: "Home Page" }} />
       <View className="h-full w-full bg-background p-4">
-        <Text className="pb-2 text-center text-5xl font-bold text-foreground">
-          Create <Text className="text-primary">T3</Text> Turbo
+        <Text className="pb-2 text-center text-2xl font-bold text-foreground">
+          Universal <Text className="text-primary">Turbo</Text>
         </Text>
 
         <MobileAuth />

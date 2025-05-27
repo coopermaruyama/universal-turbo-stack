@@ -5,8 +5,10 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
+      "@/ui/*": ["./src/components/ui/*"],
+      "@/*": ["./src/*"],
       "~/*": ["./src/*"],
-      "@acme/ui/*": ["../../packages/ui/src/*"],
+      "@acme/ui": ["../../packages/ui"]
     },
     "plugins": [{ "name": "next" }],
     "module": "esnext"

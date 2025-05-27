@@ -11,13 +11,15 @@ const config = {
     "@acme/api",
     "@acme/auth",
     "@acme/db",
-    "@acme/ui",
+    // "@acme/ui",
     "@acme/validators",
   ],
 
   /** We already do linting and typechecking as separate tasks in CI */
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
+
+  allowedDevOrigins: ["100.95.205.8"],
 };
 
 export default config;

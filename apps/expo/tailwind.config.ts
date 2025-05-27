@@ -5,6 +5,7 @@ import nativewind from "nativewind/preset";
 import baseConfig from "@acme/tailwind-config/native";
 
 export default {
-  content: ["./src/**/*.{ts,tsx}"],
+  darkMode: "class",
+  content: ["./src/**/*.{ts,tsx}", "../../packages/ui/src/*.{ts,tsx}"],
   presets: [baseConfig, nativewind],
 } satisfies Config;

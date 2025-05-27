@@ -9,6 +9,6 @@
       "@acme/ui/*": ["./src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "nativewind-env.d.ts"],
   "exclude": ["node_modules"]
 }

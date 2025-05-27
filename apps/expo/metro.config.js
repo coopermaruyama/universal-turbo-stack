@@ -2,16 +2,32 @@
 const { getDefaultConfig } = require("expo/metro-config");
 const { FileStore } = require("metro-cache");
 const { withNativeWind } = require("nativewind/metro");
+const withStorybook = require("@storybook/react-native/metro/withStorybook");
 
 const path = require("node:path");
 
-const config = withTurborepoManagedCache(
-  withNativeWind(getDefaultConfig(__dirname), {
-    input: "./src/styles.css",
-    configPath: "./tailwind.config.ts",
-  }),
-);
-module.exports = config;
+// First apply NativeWind
+const nativeWindConfig = withNativeWind(getDefaultConfig(__dirname), {
+  input: "./src/global.css",
+  configPath: "./tailwind.config.ts",
+});
+
+// Then apply Storybook
+/** @type {Parameters<typeof withStorybook>} */
+const storybookConfig = withStorybook(nativeWindConfig, {
+  // Set to false to remove storybook specific options
+  // you can also use a env variable to set this
+  enabled: true,
+  // Path to your storybook config
+  configPath: path.resolve(__dirname, "./.storybook"),
+  // Optional websockets configuration
+  // Starts a websocket server on the specified port and host on metro start
+  // websockets: {
+  //   port: 7007,
+  //   host: 'localhost',
+  // },
+});
+module.exports = withTurborepoManagedCache(storybookConfig);
 
 /**
  * Move the Metro cache to the `.cache/metro` folder.

@@ -30,5 +30,11 @@
     "turbo": "^2.5.1",
     "typescript": "catalog:"
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@acme/prettier-config",
+  "pnpm": {
+    "overrides": {
+      "react-dom": "19.0.0",
+      "react-native-renderer": "19.0.0"
+    }
+  }
 }

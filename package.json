@@ -34,7 +34,8 @@
   "pnpm": {
     "overrides": {
       "react-dom": "19.0.0",
-      "react-native-renderer": "19.0.0"
+      "react-native-renderer": "19.0.0",
+      "@expo/config-plugins": "~10.0.2"
     }
   }
 }

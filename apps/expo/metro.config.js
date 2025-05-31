@@ -3,18 +3,20 @@ const { getDefaultConfig } = require("expo/metro-config");
 const { FileStore } = require("metro-cache");
 const { withNativeWind } = require("nativewind/metro");
 const withStorybook = require("@storybook/react-native/metro/withStorybook");
-
+const {
+  wrapWithReanimatedMetroConfig,
+} = require('react-native-reanimated/metro-config');
 const path = require("node:path");
 
 // First apply NativeWind
-const nativeWindConfig = withNativeWind(getDefaultConfig(__dirname), {
-  input: "./src/global.css",
+let config = withNativeWind(getDefaultConfig(__dirname), {
+  input: "../../packages/ui/src/styles/globals.css",
   configPath: "./tailwind.config.ts",
 });
 
 // Then apply Storybook
 /** @type {Parameters<typeof withStorybook>} */
-const storybookConfig = withStorybook(nativeWindConfig, {
+config = withStorybook(config, {
   // Set to false to remove storybook specific options
   // you can also use a env variable to set this
   enabled: true,
@@ -27,7 +29,19 @@ const storybookConfig = withStorybook(nativeWindConfig, {
   //   host: 'localhost',
   // },
 });
-module.exports = withTurborepoManagedCache(storybookConfig);
+
+config = withTurborepoManagedCache(config);
+/**
+ * @see https://www.better-auth.com/docs/integrations/expo#configure-metro-bundler
+ */
+config.resolver.unstable_enablePackageExports = true;
+
+/**
+ * @see https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation#metro-config
+ */
+config = wrapWithReanimatedMetroConfig(config);
+
+module.exports = config;
 
 /**
  * Move the Metro cache to the `.cache/metro` folder.

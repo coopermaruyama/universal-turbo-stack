@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import { Button, Pressable, Text, TextInput, View } from "react-native";
+import { Pressable, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, Stack } from "expo-router";
+import { push } from "expo-router/build/global-state/routing";
 import { FlashList } from "@shopify/flash-list";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+import { Button } from "@acme/ui/button";
+import { Input } from "@acme/ui/input";
+import { Text } from "@acme/ui/text";
+
 import type { RouterOutputs } from "~/lib/api";
 import { trpc } from "~/lib/api";
-import { useSignIn, useSignOut, useUser } from "~/lib/auth";
+import { authClient, signIn, signOut } from "~/lib/auth-client";
 
 function PostCard(props: {
   post: RouterOutputs["post"]["all"][number];
@@ -55,19 +60,17 @@ function CreatePost() {
   );
 
   return (
-    <View className="mt-4 flex gap-2">
-      <TextInput
-        className="items-center rounded-md border border-input bg-background px-3 text-lg leading-[1.25] text-foreground"
-        value={title}
-        onChangeText={setTitle}
-        placeholder="Title"
-      />
+    <View className="mb-4 mt-4 flex flex-col gap-4 rounded-lg border border-muted p-4">
+      <Text className="mb-2 text-center text-xl font-bold text-foreground">
+        Create Post
+      </Text>
+      <Input value={title} onChangeText={setTitle} placeholder="Title" />
       {error?.data?.zodError?.fieldErrors.title && (
         <Text className="mb-2 text-destructive">
           {error.data.zodError.fieldErrors.title}
         </Text>
       )}
-      <TextInput
+      <Input
         className="items-center rounded-md border border-input bg-background px-3 text-lg leading-[1.25] text-foreground"
         value={content}
         onChangeText={setContent}
@@ -78,8 +81,8 @@ function CreatePost() {
           {error.data.zodError.fieldErrors.content}
         </Text>
       )}
-      <Pressable
-        className="flex items-center rounded bg-primary p-2"
+      <Button
+        className="w-full"
         onPress={() => {
           mutate({
             title,
@@ -87,8 +90,8 @@ function CreatePost() {
           });
         }}
       >
-        <Text className="text-foreground">Create</Text>
-      </Pressable>
+        <Text>Create</Text>
+      </Button>
       {error?.data?.code === "UNAUTHORIZED" && (
         <Text className="mt-2 text-destructive">
           You need to be logged in to create a post
@@ -99,20 +102,20 @@ function CreatePost() {
 }
 
 function MobileAuth() {
-  const user = useUser();
-  const signIn = useSignIn();
-  const signOut = useSignOut();
-
+  const { data: session } = authClient.useSession();
   return (
     <>
-      <Text className="pb-2 text-center text-xl font-semibold text-white">
-        {user?.name ?? "Not logged in"}
+      <Text className="text-center">
+        {session?.user
+          ? `Signed in as ${session.user.name || "user"}`
+          : "Not logged in"}
       </Text>
       <Button
-        onPress={() => (user ? signOut() : signIn())}
-        title={user ? "Sign Out" : "Sign In With Discord"}
-        color={"#5B65E9"}
-      />
+        className="mt-2"
+        onPress={async () => (session ? await signOut() : push("/login"))}
+      >
+        <Text>{session ? "Sign Out" : "Sign In"}</Text>
+      </Button>
     </>
   );
 }
@@ -130,12 +133,12 @@ export default function Index() {
   );
 
   return (
-    <SafeAreaView className="bg-background grow">
+    <SafeAreaView className="grow bg-background">
       {/* Changes page title visible on the header */}
       <Stack.Screen options={{ title: "Home Page" }} />
       <View className="h-full w-full bg-background p-4">
         <Text className="pb-2 text-center text-2xl font-bold text-foreground">
-          Universal <Text className="text-primary">Turbo</Text>
+          Universal <Text className="text-xl text-secondary">Turbo</Text>
         </Text>
 
         <MobileAuth />
@@ -146,8 +149,13 @@ export default function Index() {
           </Text>
         </View>
 
+        {!!postQuery.error && (
+          <Text className="pb-2 text-center text-red-500">
+            Error loading posts: {postQuery.error.message}
+          </Text>
+        )}
         <FlashList
-          data={postQuery.data}
+          data={postQuery.data ?? []}
           estimatedItemSize={20}
           ItemSeparatorComponent={() => <View className="h-2" />}
           renderItem={(p) => (

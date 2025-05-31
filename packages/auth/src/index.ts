@@ -1,18 +1,10 @@
-import NextAuth from "next-auth";
+import { headers } from "next/headers";
 
-import { authConfig } from "./config";
+import { auth } from "./auth";
 
-export type { Session } from "next-auth";
+export const getSession = async () =>
+  auth.api.getSession({
+    headers: await headers(),
+  });
 
-const { handlers, auth, signIn, signOut } = NextAuth(authConfig);
-
-export { handlers, auth, signIn, signOut };
-
-export {
-  invalidateSessionToken,
-  validateToken,
-  isSecureContext,
-  providerMap,
-} from "./config";
-
-export { AUTH_EMAIL_COOKIE_NAME } from "./email";
+export * from "./auth";

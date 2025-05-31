@@ -15,13 +15,9 @@ export const getBaseUrl = () => {
    */
   const debuggerHost = Constants.expoConfig?.hostUri;
   const localhost = debuggerHost?.split(":")[0];
-  const extra = Constants.expoConfig?.extra;
-  if (extra?.hostUri) {
-    return extra.hostUri;
-  }
 
   if (!localhost) {
-    return "http://100.95.205.8:3000";
+    return "http://localhost:3000";
     throw new Error(
       "Failed to get localhost. Please point to your production server.",
     );

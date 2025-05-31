@@ -12,7 +12,7 @@
     "start": "pnpm with-env next start",
     "typecheck": "tsc --noEmit",
     "with-env": "dotenv -e ../../.env --",
-    "ui-add": "pnpm dlx shadcn@2.5.0 add --overwrite && prettier src --write --list-different"
+    "ui-add": "pnpm dlx shadcn@latest add --overwrite && prettier src --write --list-different"
   },
   "dependencies": {
     "@acme/api": "workspace:*",

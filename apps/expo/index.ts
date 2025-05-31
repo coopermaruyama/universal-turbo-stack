@@ -1,4 +1,5 @@
 import "expo-router/entry";
+
 import { checkStorybookEnabled } from "~/lib/storybook";
 
 let Default = () => null;

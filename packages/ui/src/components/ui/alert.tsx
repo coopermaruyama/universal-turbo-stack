@@ -1,24 +1,27 @@
-import { useTheme } from '@react-navigation/native';
-import { cva, type VariantProps } from 'class-variance-authority';
-import type { LucideIcon } from 'lucide-react-native';
-import * as React from 'react';
-import { View, type ViewProps } from 'react-native';
-import { cn } from '@acme/ui/lib/utils';
-import { Text } from '@acme/ui/components/ui/text';
+import type { VariantProps } from "class-variance-authority";
+import type { LucideIcon } from "lucide-react-native";
+import type { ViewProps } from "react-native";
+import * as React from "react";
+import { View } from "react-native";
+import { useTheme } from "@react-navigation/native";
+import { cva } from "class-variance-authority";
+
+import { Text } from "@acme/ui/components/ui/text";
+import { cn } from "@acme/ui/lib/utils";
 
 const alertVariants = cva(
-  'relative bg-background w-full rounded-lg border border-border p-4 shadow shadow-foreground/10',
+  "relative w-full rounded-lg border border-border bg-background p-4 shadow shadow-foreground/10",
   {
     variants: {
       variant: {
-        default: '',
-        destructive: 'border-destructive',
+        default: "",
+        destructive: "border-destructive",
       },
     },
     defaultVariants: {
-      variant: 'default',
+      variant: "default",
     },
-  }
+  },
 );
 
 function Alert({
@@ -38,11 +41,16 @@ function Alert({
   }) {
   const { colors } = useTheme();
   return (
-    <View role='alert' className={alertVariants({ variant, className })} {...props}>
-      <View className='absolute left-3.5 top-4 -translate-y-0.5'>
+    <View
+      role="alert"
+      className={alertVariants({ variant, className })}
+      {...props}
+    >
+      <View className="absolute left-3.5 top-4 -translate-y-0.5">
         <Icon
           size={iconSize}
-          color={variant === 'destructive' ? colors.notification : colors.text}
+          color={variant === "destructive" ? colors.notification : colors.text}
+          className={iconClassName}
         />
       </View>
       {children}
@@ -50,21 +58,30 @@ function Alert({
   );
 }
 
-function AlertTitle({ className, ...props }: React.ComponentProps<typeof Text>) {
+function AlertTitle({
+  className,
+  ...props
+}: React.ComponentProps<typeof Text>) {
   return (
     <Text
       className={cn(
-        'pl-7 mb-1 font-medium text-base leading-none tracking-tight text-foreground',
-        className
+        "mb-1 pl-7 text-base font-medium leading-none tracking-tight text-foreground",
+        className,
       )}
       {...props}
     />
   );
 }
 
-function AlertDescription({ className, ...props }: React.ComponentProps<typeof Text>) {
+function AlertDescription({
+  className,
+  ...props
+}: React.ComponentProps<typeof Text>) {
   return (
-    <Text className={cn('pl-7 text-sm leading-relaxed text-foreground', className)} {...props} />
+    <Text
+      className={cn("pl-7 text-sm leading-relaxed text-foreground", className)}
+      {...props}
+    />
   );
 }
 

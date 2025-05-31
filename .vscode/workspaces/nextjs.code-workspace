@@ -1,23 +1,44 @@
 {
   "folders": [
     {
-      "path": "../../apps/nextjs",
+      "path": "../../apps/nextjs"
     },
     {
-      "path": "../../packages/api",
+      "path": "../../packages/api"
     },
     {
-      "path": "../../packages/auth",
+      "path": "../../packages/auth"
     },
     {
-      "path": "../../packages/db",
+      "path": "../../packages/db"
     },
     {
-      "name": "root",
-      "path": "../../",
+      "path": "../../.vscode"
     },
+    {
+      "path": "../../packages/ui"
+    }
   ],
   "settings": {
-    "explorer.excludeGitIgnore": true,
+    "typescript.tsdk": "../../node_modules/typescript/lib",
+    "files.exclude": {
+      "**/.git": true,
+      "**/.cache": true,
+      "**/.expo": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "**/node_modules": true,
+      ".cache": true,
+      ".expo": true,
+      ".next": true,
+    },
+    "eslint.workingDirectories": [
+      { "mode": "auto" },
+      { "directory": "../../apps/nextjs", "changeProcessCWD": true },
+      { "directory": "../../packages/ui", "changeProcessCWD": true },
+      { "directory": "../../packages/api", "changeProcessCWD": true },
+      { "directory": "../../packages/db", "changeProcessCWD": true },
+      { "directory": "../../packages/auth", "changeProcessCWD": true },
+    ],
   },
 }

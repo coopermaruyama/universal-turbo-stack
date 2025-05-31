@@ -35,6 +35,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     edgeToEdgeEnabled: true,
   },
+  web: {
+    // output: 'server'
+    bundler: "metro",
+  },
   extra: {
     // eas: {
     //   projectId: "your-eas-project-id",
@@ -53,10 +57,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       "expo-splash-screen",
       {
-        backgroundColor: "#111111",
+        backgroundColor: "#eeeeee",
         image: "./assets/icon-light.png",
         dark: {
-          backgroundColor: "#eeeeee",
+          backgroundColor: "#111111",
           image: "./assets/icon-dark.png",
         },
       },

@@ -6,9 +6,9 @@ import { cn } from "@/lib/utils";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 
-import "@/lib/globals.css";
+import "../../../../packages/ui/src/styles/globals.css";
 
-import { env } from "@/env";
+import { env } from "@/lib/env";
 
 export const metadata: Metadata = {
   metadataBase: new URL(

@@ -2,7 +2,7 @@
 
 import type { QueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { env } from "@/env";
+import { env } from "@/lib/env";
 import { QueryClientProvider } from "@tanstack/react-query";
 import {
   createTRPCClient,

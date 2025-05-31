@@ -1,20 +1,14 @@
-import * as DropdownMenuPrimitive from '@rn-primitives/dropdown-menu';
-import * as React from 'react';
-import {
-  Platform,
-  type StyleProp,
-  StyleSheet,
-  Text,
-  type TextProps,
-  View,
-  type ViewStyle,
-} from 'react-native';
-import { Check } from '@acme/ui/lib/icons/Check';
-import { ChevronDown } from '@acme/ui/lib/icons/ChevronDown';
-import { ChevronRight } from '@acme/ui/lib/icons/ChevronRight';
-import { ChevronUp } from '@acme/ui/lib/icons/ChevronUp';
-import { cn } from '@acme/ui/lib/utils';
-import { TextClassContext } from '@acme/ui/components/ui/text';
+import type { StyleProp, TextProps, ViewStyle } from "react-native";
+import * as React from "react";
+import { Platform, StyleSheet, Text, View } from "react-native";
+import * as DropdownMenuPrimitive from "@rn-primitives/dropdown-menu";
+
+import { TextClassContext } from "@acme/ui/components/ui/text";
+import { Check } from "@acme/ui/lib/icons/Check";
+import { ChevronDown } from "@acme/ui/lib/icons/ChevronDown";
+import { ChevronRight } from "@acme/ui/lib/icons/ChevronRight";
+import { ChevronUp } from "@acme/ui/lib/icons/ChevronUp";
+import { cn } from "@acme/ui/lib/utils";
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 
@@ -40,25 +34,26 @@ function DropdownMenuSubTrigger({
   children?: React.ReactNode;
 }) {
   const { open } = DropdownMenuPrimitive.useSubContext();
-  const Icon = Platform.OS === 'web' ? ChevronRight : open ? ChevronUp : ChevronDown;
+  const Icon =
+    Platform.OS === "web" ? ChevronRight : open ? ChevronUp : ChevronDown;
   return (
     <TextClassContext.Provider
       value={cn(
-        'select-none text-sm native:text-lg text-primary',
-        open && 'native:text-accent-foreground'
+        "native:text-lg select-none text-sm text-primary",
+        open && "native:text-accent-foreground",
       )}
     >
       <DropdownMenuPrimitive.SubTrigger
         className={cn(
-          'flex flex-row web:cursor-default web:select-none gap-2 items-center web:focus:bg-accent web:hover:bg-accent active:bg-accent rounded-sm px-2 py-1.5 native:py-2 web:outline-none',
-          open && 'bg-accent',
-          inset && 'pl-8',
-          className
+          "web:cursor-default web:select-none web:focus:bg-accent web:hover:bg-accent native:py-2 web:outline-none flex flex-row items-center gap-2 rounded-sm px-2 py-1.5 active:bg-accent",
+          open && "bg-accent",
+          inset && "pl-8",
+          className,
         )}
         {...props}
       >
         {children}
-        <Icon size={18} className='ml-auto text-foreground' />
+        <Icon size={18} className="ml-auto text-foreground" />
       </DropdownMenuPrimitive.SubTrigger>
     </TextClassContext.Provider>
   );
@@ -74,11 +69,11 @@ function DropdownMenuSubContent({
   return (
     <DropdownMenuPrimitive.SubContent
       className={cn(
-        'z-50 min-w-[8rem] overflow-hidden rounded-md border border-border mt-1 bg-popover p-1 shadow-md shadow-foreground/5 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+        "z-50 mt-1 min-w-[8rem] overflow-hidden rounded-md border border-border bg-popover p-1 shadow-md shadow-foreground/5 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
         open
-          ? 'web:animate-in web:fade-in-0 web:zoom-in-95'
-          : 'web:animate-out web:fade-out-0 web:zoom-out',
-        className
+          ? "web:animate-in web:fade-in-0 web:zoom-in-95"
+          : "web:animate-out web:fade-out-0 web:zoom-out",
+        className,
       )}
       {...props}
     />
@@ -104,22 +99,22 @@ function DropdownMenuContent({
         style={
           overlayStyle
             ? StyleSheet.flatten([
-                Platform.OS !== 'web' ? StyleSheet.absoluteFill : undefined,
+                Platform.OS !== "web" ? StyleSheet.absoluteFill : undefined,
                 overlayStyle as typeof StyleSheet.absoluteFill,
               ])
-            : Platform.OS !== 'web'
-            ? StyleSheet.absoluteFill
-            : undefined
+            : Platform.OS !== "web"
+              ? StyleSheet.absoluteFill
+              : undefined
         }
         className={overlayClassName}
       >
         <DropdownMenuPrimitive.Content
           className={cn(
-            'z-50 min-w-[8rem] overflow-hidden rounded-md border border-border bg-popover p-1 shadow-md shadow-foreground/5 web:data-[side=bottom]:slide-in-from-top-2 web:data-[side=left]:slide-in-from-right-2 web:data-[side=right]:slide-in-from-left-2 web:data-[side=top]:slide-in-from-bottom-2',
+            "web:data-[side=bottom]:slide-in-from-top-2 web:data-[side=left]:slide-in-from-right-2 web:data-[side=right]:slide-in-from-left-2 web:data-[side=top]:slide-in-from-bottom-2 z-50 min-w-[8rem] overflow-hidden rounded-md border border-border bg-popover p-1 shadow-md shadow-foreground/5",
             open
-              ? 'web:animate-in web:fade-in-0 web:zoom-in-95'
-              : 'web:animate-out web:fade-out-0 web:zoom-out-95',
-            className
+              ? "web:animate-in web:fade-in-0 web:zoom-in-95"
+              : "web:animate-out web:fade-out-0 web:zoom-out-95",
+            className,
           )}
           {...props}
         />
@@ -138,13 +133,13 @@ function DropdownMenuItem({
   inset?: boolean;
 }) {
   return (
-    <TextClassContext.Provider value='select-none text-sm native:text-lg text-popover-foreground web:group-focus:text-accent-foreground'>
+    <TextClassContext.Provider value="select-none text-sm native:text-lg text-popover-foreground web:group-focus:text-accent-foreground">
       <DropdownMenuPrimitive.Item
         className={cn(
-          'relative flex flex-row web:cursor-default gap-2 items-center rounded-sm px-2 py-1.5 native:py-2 web:outline-none web:focus:bg-accent active:bg-accent web:hover:bg-accent group',
-          inset && 'pl-8',
-          props.disabled && 'opacity-50 web:pointer-events-none',
-          className
+          "web:cursor-default native:py-2 web:outline-none web:focus:bg-accent web:hover:bg-accent group relative flex flex-row items-center gap-2 rounded-sm px-2 py-1.5 active:bg-accent",
+          inset && "pl-8",
+          props.disabled && "web:pointer-events-none opacity-50",
+          className,
         )}
         {...props}
       />
@@ -164,16 +159,16 @@ function DropdownMenuCheckboxItem({
   return (
     <DropdownMenuPrimitive.CheckboxItem
       className={cn(
-        'relative flex flex-row web:cursor-default items-center web:group rounded-sm py-1.5 native:py-2 pl-8 pr-2 web:outline-none web:focus:bg-accent active:bg-accent',
-        props.disabled && 'web:pointer-events-none opacity-50',
-        className
+        "web:cursor-default web:group native:py-2 web:outline-none web:focus:bg-accent relative flex flex-row items-center rounded-sm py-1.5 pl-8 pr-2 active:bg-accent",
+        props.disabled && "web:pointer-events-none opacity-50",
+        className,
       )}
       checked={checked}
       {...props}
     >
-      <View className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
+      <View className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
         <DropdownMenuPrimitive.ItemIndicator>
-          <Check size={14} strokeWidth={3} className='text-foreground' />
+          <Check size={14} strokeWidth={3} className="text-foreground" />
         </DropdownMenuPrimitive.ItemIndicator>
       </View>
       {children}
@@ -192,15 +187,15 @@ function DropdownMenuRadioItem({
   return (
     <DropdownMenuPrimitive.RadioItem
       className={cn(
-        'relative flex flex-row web:cursor-default web:group items-center rounded-sm py-1.5 native:py-2 pl-8 pr-2 web:outline-none web:focus:bg-accent active:bg-accent',
-        props.disabled && 'web:pointer-events-none opacity-50',
-        className
+        "web:cursor-default web:group native:py-2 web:outline-none web:focus:bg-accent relative flex flex-row items-center rounded-sm py-1.5 pl-8 pr-2 active:bg-accent",
+        props.disabled && "web:pointer-events-none opacity-50",
+        className,
       )}
       {...props}
     >
-      <View className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
+      <View className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
         <DropdownMenuPrimitive.ItemIndicator>
-          <View className='bg-foreground h-2 w-2 rounded-full' />
+          <View className="h-2 w-2 rounded-full bg-foreground" />
         </DropdownMenuPrimitive.ItemIndicator>
       </View>
       {children}
@@ -220,9 +215,9 @@ function DropdownMenuLabel({
   return (
     <DropdownMenuPrimitive.Label
       className={cn(
-        'px-2 py-1.5 text-sm native:text-base font-semibold text-foreground web:cursor-default',
-        inset && 'pl-8',
-        className
+        "native:text-base web:cursor-default px-2 py-1.5 text-sm font-semibold text-foreground",
+        inset && "pl-8",
+        className,
       )}
       {...props}
     />
@@ -237,7 +232,7 @@ function DropdownMenuSeparator({
 }) {
   return (
     <DropdownMenuPrimitive.Separator
-      className={cn('-mx-1 my-1 h-px bg-border', className)}
+      className={cn("-mx-1 my-1 h-px bg-border", className)}
       {...props}
     />
   );
@@ -247,8 +242,8 @@ function DropdownMenuShortcut({ className, ...props }: TextProps) {
   return (
     <Text
       className={cn(
-        'ml-auto text-xs native:text-sm tracking-widest text-muted-foreground',
-        className
+        "native:text-sm ml-auto text-xs tracking-widest text-muted-foreground",
+        className,
       )}
       {...props}
     />

@@ -8,11 +8,11 @@
       "@/ui/*": ["./src/components/ui/*"],
       "@/*": ["./src/*"],
       "~/*": ["./src/*"],
-      "@acme/ui": ["../../packages/ui"]
+      "@acme/ui/*": ["../../packages/ui/src/*"]
     },
     "plugins": [{ "name": "next" }],
     "module": "esnext"
   },
-  "include": [".", ".next/types/**/*.ts"],
+  "include": [".", ".next/types/**/*.ts", "../../packages/ui/src/**/*"],
   "exclude": ["node_modules"]
 }

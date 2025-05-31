@@ -25,5 +25,12 @@
     "next/router.d.ts",
     "next/dist/client/router.d.ts"
   ],
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "files.exclude": {
+    "**/.cache": true,
+    "**/.expo": true,
+    "**/node_modules": true,
+    ".cache": true,
+    ".expo": true
+  }
 }

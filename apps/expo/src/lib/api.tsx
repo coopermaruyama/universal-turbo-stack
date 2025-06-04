@@ -5,7 +5,7 @@ import superjson from "superjson";
 
 import type { AppRouter } from "@acme/api";
 
-import { authClient } from "./auth-client";
+import { authClient } from "../utils/auth";
 import { getBaseUrl } from "./base-url";
 
 export const queryClient = new QueryClient({
@@ -37,11 +37,9 @@ export const trpc = createTRPCOptionsProxy<AppRouter>({
           headers.set("x-trpc-source", "expo-react");
 
           const cookies = authClient.getCookie();
-          console.log("authClient cookies", cookies);
           if (cookies) {
             headers.set("Cookie", cookies);
           }
-
           return Object.fromEntries(headers);
         },
       }),

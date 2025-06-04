@@ -171,7 +171,7 @@ export default function AuthForm() {
         router.replace("/");
       }
     } catch (err: any) {
-      setError(err.message || "Authentication failed");
+      setError(err.message ?? "Authentication failed");
     } finally {
       setIsLoading(false);
     }
@@ -185,6 +185,7 @@ export default function AuthForm() {
       const { data, error } = await authClient.signIn.social(
         {
           provider,
+          callbackURL: "/",
         },
         {
           onSuccess: (response) => {

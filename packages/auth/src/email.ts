@@ -1,46 +1,57 @@
 import { emailOTP } from "better-auth/plugins";
 
-import { env } from "@acme/auth/env";
-
 export const AUTH_EMAIL_COOKIE_NAME = "__auth-email";
 
 // Email OTP provider
-export const emailProvider = emailOTP({
-  async sendVerificationOTP(data, request) {
-    return await sendEmail({
-      type: "otp",
-      data,
-      request,
-    });
-  },
-});
+// export const initEmailOTProvider = (options: Parameters<typeof sendEmail>[0]) =>
+export function initEmailOTProvider(options: {
+  sendgridApiKey: string;
+  emailFrom: string;
+  baseUrl: string;
+  debug?: boolean;
+}) {
+  return emailOTP({
+    async sendVerificationOTP(data, request) {
+      return await sendEmail({
+        type: "otp",
+        data,
+        request,
+        sendgridApiKey: options.sendgridApiKey,
+        emailFrom: options.emailFrom,
+        baseUrl: options.baseUrl,
+        debug: options.debug,
+      });
+    },
+  });
+}
 
 export async function sendEmail(opts: {
   type: "otp" | "link";
   data: { email: string; otp?: string; link?: string };
+  baseUrl?: string;
   request?: Request;
+  sendgridApiKey: string;
+  emailFrom: string;
+  debug?: boolean;
 }) {
   const { data, request } = opts;
-  if (!env.SENDGRID_API_KEY) {
+  if (!opts.sendgridApiKey) {
     throw new Error("SENDGRID_API_KEY is not set");
   }
-  if (!env.EMAIL_FROM) {
-    throw new Error("EMAIL_FROM is not set");
-  }
-  if (!env.NEXT_PUBLIC_WEB_URL) {
+  if (!opts.baseUrl) {
     throw new Error("NEXT_PUBLIC_WEB_URL is not set");
   }
-  const { host } = new URL(env.NEXT_PUBLIC_WEB_URL || "http://localhost:3000");
+  const { host } = new URL(opts.baseUrl || "http://localhost:3000");
   console.debug(`sendVerificationRequest`, data, request);
   const res = await fetch("https://api.sendgrid.com/v3/mail/send", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${env.SENDGRID_API_KEY}`,
+      Authorization: `Bearer ${opts.sendgridApiKey}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
       personalizations: [{ to: [{ email: data.email }] }],
-      from: { email: env.EMAIL_FROM },
+      from: { email: opts.emailFrom },
       subject: `Sign in to ${host}`,
       content: [
         { type: "text/plain", value: text({ host, token: data.otp }) },
@@ -52,7 +63,7 @@ export async function sendEmail(opts: {
   if (!res.ok) {
     throw new Error("Sendgrid error: " + (await res.text()));
   }
-  if (env.NODE_ENV === "development") {
+  if (opts.debug) {
     console.log(`
         Email sent to:
         ${data.email}

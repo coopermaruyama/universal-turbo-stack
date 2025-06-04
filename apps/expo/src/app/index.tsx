@@ -3,7 +3,7 @@ import { Pressable, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, Stack } from "expo-router";
 import { push } from "expo-router/build/global-state/routing";
-import { FlashList } from "@shopify/flash-list";
+import { LegendList } from "@legendapp/list";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { Button } from "@acme/ui/button";
@@ -12,7 +12,7 @@ import { Text } from "@acme/ui/text";
 
 import type { RouterOutputs } from "~/lib/api";
 import { trpc } from "~/lib/api";
-import { authClient, signIn, signOut } from "~/lib/auth-client";
+import { authClient } from "~/utils/auth";
 
 function PostCard(props: {
   post: RouterOutputs["post"]["all"][number];
@@ -105,14 +105,16 @@ function MobileAuth() {
   const { data: session } = authClient.useSession();
   return (
     <>
-      <Text className="text-center">
+      <Text className="my-2 text-center text-base font-semibold">
         {session?.user
-          ? `Signed in as ${session.user.name || "user"}`
+          ? `Signed in as ${session.user.email || "user"}`
           : "Not logged in"}
       </Text>
       <Button
         className="mt-2"
-        onPress={async () => (session ? await signOut() : push("/login"))}
+        onPress={async () =>
+          session ? await authClient.signOut() : push("/login")
+        }
       >
         <Text>{session ? "Sign Out" : "Sign In"}</Text>
       </Button>
@@ -148,15 +150,15 @@ export default function Index() {
             Press on a post
           </Text>
         </View>
-
         {!!postQuery.error && (
           <Text className="pb-2 text-center text-red-500">
             Error loading posts: {postQuery.error.message}
           </Text>
         )}
-        <FlashList
+        <LegendList
           data={postQuery.data ?? []}
           estimatedItemSize={20}
+          keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => <View className="h-2" />}
           renderItem={(p) => (
             <PostCard

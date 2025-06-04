@@ -3,11 +3,9 @@ import "server-only";
 
 import { cache } from "react";
 import { headers } from "next/headers";
-import { nextCookies } from "better-auth/next-js";
+import { env } from "@/env";
 
 import { initAuth } from "@acme/auth";
-
-import { env } from "~/env";
 
 const baseUrl =
   env.VERCEL_ENV === "production"
@@ -17,24 +15,15 @@ const baseUrl =
       : "http://localhost:3000";
 
 export const auth = initAuth({
-  baseUrl: baseUrl,
+  baseUrl,
   productionUrl: "http://localhost:8080",
-  secret: env.AUTH_SECRET,
+  secret: env.AUTH_SECRET ?? "super-secret",
   googleClientId: env.AUTH_GOOGLE_ID,
   googleClientSecret: env.AUTH_GOOGLE_SECRET,
   discordClientId: env.AUTH_DISCORD_ID,
   discordClientSecret: env.AUTH_DISCORD_SECRET,
-  githubClientId: env.AUTH_GITHUB_ID,
-  githubClientSecret: env.AUTH_GITHUB_SECRET,
-  sendgridApiKey: env.SENDGRID_API_KEY,
-  emailFrom: env.EMAIL_FROM,
 });
 
 export const getSession = cache(async () =>
   auth.api.getSession({ headers: await headers() }),
 );
-export const signOut = async () => {
-  return auth.api.signOut({
-    headers: await headers(),
-  });
-};

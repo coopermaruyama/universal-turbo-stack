@@ -1,13 +1,13 @@
 import { expoClient } from "@better-auth/expo/client";
-import { passkeyClient } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 
+import { getBaseUrl } from "./base-url";
 import { getItem, setItem } from "./storage";
 
 export const authClient = createAuthClient({
-  baseURL: "http://localhost:3000",
+  // baseURL: getBaseUrl(),
+  baseURL: "http://localhost:3000", // For Expo, you might need to set this to your local dev server URL
   plugins: [
-    passkeyClient(),
     expoClient({
       scheme: "expo",
       storagePrefix: "expo",
@@ -19,5 +19,3 @@ export const authClient = createAuthClient({
   ],
   override: {},
 });
-
-export const { signIn, signOut } = authClient;

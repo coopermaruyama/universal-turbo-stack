@@ -19,7 +19,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@acme/ui/tabs";
 import { Text } from "@acme/ui/text";
 import { H1, H2, H3, H4 } from "@acme/ui/typography";
 
-import { authClient } from "~/lib/auth-client";
 import { Apple } from "~/lib/icons/Apple";
 import { AppleLogo } from "~/lib/icons/AppleLogo";
 import { CheckCircle } from "~/lib/icons/CheckCircle";
@@ -32,6 +31,7 @@ import { Google } from "~/lib/icons/Google";
 import { Mail } from "~/lib/icons/Mail";
 import { MessageCircle } from "~/lib/icons/MessageCircle";
 import { Wallet } from "~/lib/icons/Wallet";
+import { authClient } from "~/utils/auth";
 import { ThemeToggle } from "./theme-toggle";
 
 // SIWE imports
@@ -268,6 +268,7 @@ export default function AuthForm() {
       const { data, error } = await authClient.signIn.social(
         {
           provider,
+          callbackURL: "expo://",
         },
         {
           onSuccess: (response) => {
@@ -364,10 +365,10 @@ export default function AuthForm() {
   };
 
   const handlePasskeyAuth = async () => {
-    const result = await authClient.signIn.passkey({
-      autoFill: true,
-      email,
-    });
+    // const result = await authClient.signIn.passkey({
+    //   autoFill: true,
+    //   email,
+    // });
     // setIsLoading(true);
     // setError("");
     // try {
@@ -533,7 +534,7 @@ export default function AuthForm() {
             <Button
               className="w-full"
               disabled={isLoading}
-              onPress={(e) => handleEmailPasswordAuth(e as any)}
+              onPress={(e: any) => handleEmailPasswordAuth(e)}
             >
               <Text>
                 {isLoading

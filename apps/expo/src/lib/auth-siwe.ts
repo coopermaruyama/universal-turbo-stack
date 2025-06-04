@@ -5,15 +5,23 @@ export const siwe = {
       // This is a placeholder function; actual implementation will depend on your backend
       console.log("Signing in with SIWE:", { email, password });
       // You would typically call your backend API here
-    }
+    },
   },
   signUp: {
-    email: async ({ email, password, name }: { email: string; password: string; name: string }) => {   
+    email: async ({
+      email,
+      password,
+      name,
+    }: {
+      email: string;
+      password: string;
+      name: string;
+    }) => {
       // Implement the logic to sign up using SIWE with email, password, and name
       // This is a placeholder function; actual implementation will depend on your backend
       console.log("Signing up with SIWE:", { email, password, name });
       // You would typically call your backend API here
-    }
+    },
   },
   useSession: () => {
     // Implement the logic to retrieve the current session
@@ -23,7 +31,7 @@ export const siwe = {
       data: null, // Replace with actual session data
       error: null, // Replace with actual error if any
     };
-  }
+  },
 };
 // This is a placeholder for the SIWE authentication client.
 // Actual implementation will depend on your backend and how you handle SIWE authentication.

@@ -4,10 +4,8 @@
   "private": true,
   "type": "module",
   "exports": {
-   ".": {
-      "react-server": "./src/index.rsc.ts",
-      "default": "./src/index.ts"
-    },
+    ".": "./src/index.ts",
+    "./middleware": "./src/middleware.ts",
     "./client": "./src/client.ts",
     "./env": "./env.ts"
   },
@@ -22,9 +20,9 @@
   "dependencies": {
     "@acme/db": "workspace:*",
     "@better-auth/expo": "catalog:",
-    "@t3-oss/env-nextjs": "^0.13.4",
+    "@t3-oss/env-nextjs": "^0.13.6",
     "better-auth": "catalog:",
-    "next": "^15.3.1",
+    "next": "^15.3.3",
     "react": "catalog:react19",
     "react-dom": "catalog:react19",
     "zod": "catalog:"

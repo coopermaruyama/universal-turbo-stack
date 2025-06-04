@@ -10,8 +10,13 @@
       "skipFiles": ["<node_internals>/**"],
       "sourceMaps": true,
       "sourceMapPathOverrides": {
-        "/turbopack/[project]/*": "${webRoot}/*" //https://github.com/vercel/next.js/issues/62008
+        "/turbopack/[project]/*": "${webRoot}/*"
       }
+    },
+    {
+      "type": "radon-ide",
+      "request": "launch",
+      "name": "Radon IDE panel"
     }
   ]
 }

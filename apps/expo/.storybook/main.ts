@@ -10,9 +10,9 @@ const main: StorybookConfig = {
     "@storybook/addon-ondevice-backgrounds",
   ],
 
-  docs: {
-    autodocs: true
-  }
+  // docs: {
+  //   autodocs: true
+  // }
 };
 
 export default main;

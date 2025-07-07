@@ -4,8 +4,10 @@ packages:
   - tooling/*
 catalog:
   # Auth
-  "@better-auth/expo": ^1.2.8
-  "better-auth": ^1.2.8
+  "@better-auth/expo": ^1.2.9
+  "better-auth": ^1.2.9
+
+  "tamagui": "^1.128.1"
 
   # Dev tooling
   eslint: ^9.28.0

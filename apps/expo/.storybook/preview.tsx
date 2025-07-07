@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react";
-import React from "react";
+import * as React from "react";
 import { View } from "react-native";
 import { withBackgrounds } from "@storybook/addon-ondevice-backgrounds";
 

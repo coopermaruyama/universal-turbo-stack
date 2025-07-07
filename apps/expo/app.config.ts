@@ -43,7 +43,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     // eas: {
     //   projectId: "your-eas-project-id",
     // },
-    storybookEnabled: process.env.STORYBOOK_ENABLED,
+    // storybookEnabled: process.env.STORYBOOK_ENABLED,
+    storybookEnabled: true,
     hostUri: process.env.EXPO_HOST_URI,
   },
   experiments: {

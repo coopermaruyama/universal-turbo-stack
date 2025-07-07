@@ -13,10 +13,14 @@
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path .prettierignore",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "ui-add": "pnpm dlx @react-native-reusables/cli@latest add --overwrite && prettier src --write --list-different"
+    "ui-add": "pnpm dlx @react-native-reusables/cli@latest add --overwrite && prettier src --write --list-different",
+    "storybook": "STORYBOOK_ENABLED=1 EXPO_USE_METRO_STORYBOOK=1 expo start",
+    "storybook:ios": "STORYBOOK_ENABLED=1 EXPO_USE_METRO_STORYBOOK=1 expo start --ios",
+    "storybook:android": "STORYBOOK_ENABLED=1 EXPO_USE_METRO_STORYBOOK=1 expo start --android"
   },
   "dependencies": {
     "@acme/auth": "workspace:^",
+    "@acme/tamagui": "workspace:^",
     "@better-auth/expo": "catalog:",
     "@expo/config-plugins": "~10.0.2",
     "@expo/metro-config": "^0.20.14",
@@ -30,6 +34,7 @@
     "@storybook/addon-ondevice-controls": "^8.6.4",
     "@storybook/addon-react-native-web": "^0.0.29",
     "@storybook/react-native": "^8.6.4",
+    "@tamagui/babel-plugin": "^1.130.8",
     "@tanstack/react-query": "catalog:",
     "@trpc/client": "catalog:",
     "@trpc/server": "catalog:",

@@ -10,7 +10,6 @@ export default {
   content: ["./src/**/*.{ts,tsx}", "../../packages/ui/src/**/*.{ts,tsx}"],
   presets: [baseConfig, nativewind],
   theme: {
-    ...baseConfig.theme,
     extend: {
       borderWidth: {
         hairline: hairlineWidth(),

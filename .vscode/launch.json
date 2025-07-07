@@ -14,6 +14,18 @@
       }
     },
     {
+      "name": "Storybook",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "pnpm storybook",
+      "cwd": "${workspaceFolder}/apps/nextjs",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "/turbopack/[project]/*": "${webRoot}/*"
+      }
+    },
+    {
       "type": "radon-ide",
       "request": "launch",
       "name": "Radon IDE panel"

@@ -3,16 +3,28 @@
   "compilerOptions": {
     "lib": ["ES2022", "dom", "dom.iterable"],
     "jsx": "preserve",
+    "esModuleInterop": true,
+    "composite": true,
     "baseUrl": ".",
     "paths": {
       "@/ui/*": ["./src/components/ui/*"],
       "@/*": ["./src/*"],
       "~/*": ["./src/*"],
-      "@acme/ui/*": ["../../packages/ui/src/*"]
+      "@acme/ui/*": ["../../packages/ui/src/*"],
+      // "@acme/tamagui/*": ["../../packages/tamagui/src/*"],
+      "react-native": ["react-native-web"]
     },
     "plugins": [{ "name": "next" }],
     "module": "esnext"
   },
-  "include": [".", ".next/types/**/*.ts", "../../packages/ui/src/**/*"],
+  "include": [
+    "./src/**/*",
+    ".",
+    ".next/types/**/*.ts",
+    "tamagui.config.ts",
+    "../../packages/ui/src/**/*",
+    "../../packages/tamagui/src/**/*",
+    "../../packages/tamagui/tamagui.config.ts"
+  ],
   "exclude": ["node_modules"]
 }

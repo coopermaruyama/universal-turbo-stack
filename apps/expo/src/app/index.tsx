@@ -6,11 +6,13 @@ import { push } from "expo-router/build/global-state/routing";
 import { LegendList } from "@legendapp/list";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+import { TestShadcnComponents } from "@acme/tamagui";
 import { Button } from "@acme/ui/button";
 import { Input } from "@acme/ui/input";
 import { Text } from "@acme/ui/text";
 
 import type { RouterOutputs } from "~/lib/api";
+import { ThemeToggle } from "~/components/theme-toggle";
 import { trpc } from "~/lib/api";
 import { authClient } from "~/utils/auth";
 
@@ -92,6 +94,7 @@ function CreatePost() {
       >
         <Text>Create</Text>
       </Button>
+
       {error?.data?.code === "UNAUTHORIZED" && (
         <Text className="mt-2 text-destructive">
           You need to be logged in to create a post
@@ -155,6 +158,7 @@ export default function Index() {
             Error loading posts: {postQuery.error.message}
           </Text>
         )}
+        <Link href={{ pathname: "/storybook" }}>Storybook</Link>
         <LegendList
           data={postQuery.data ?? []}
           estimatedItemSize={20}

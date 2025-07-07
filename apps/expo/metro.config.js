@@ -5,11 +5,15 @@ const { withNativeWind } = require("nativewind/metro");
 const withStorybook = require("@storybook/react-native/metro/withStorybook");
 const {
   wrapWithReanimatedMetroConfig,
-} = require('react-native-reanimated/metro-config');
+} = require("react-native-reanimated/metro-config");
 const path = require("node:path");
 
+let config = getDefaultConfig(__dirname, {
+  isCSSEnabled: true, // Enable CSS support
+});
+
 // First apply NativeWind
-let config = withNativeWind(getDefaultConfig(__dirname), {
+config = withNativeWind(config, {
   input: "../../packages/ui/src/styles/globals.css",
   configPath: "./tailwind.config.ts",
 });

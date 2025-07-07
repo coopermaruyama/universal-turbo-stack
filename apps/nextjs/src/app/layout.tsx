@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 
 import "../../../../packages/ui/src/styles/globals.css";
 
+import { NextTamaguiProvider } from "@/components/NextTamaguiProvider";
 import { env } from "@/env";
 
 export const metadata: Metadata = {
@@ -56,13 +57,13 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           geistMono.variable,
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <NextTamaguiProvider>
           <TRPCReactProvider>{props.children}</TRPCReactProvider>
           <div className="absolute bottom-4 right-4">
             <ThemeToggle />
           </div>
           <Toaster />
-        </ThemeProvider>
+        </NextTamaguiProvider>
       </body>
     </html>
   );

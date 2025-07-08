@@ -18,13 +18,13 @@
     "module": "esnext"
   },
   "include": [
+    ".storybook/**/*",
+    "*.ts",
+    "*.js",
     "./src/**/*",
-    ".",
     ".next/types/**/*.ts",
     "tamagui.config.ts",
-    "../../packages/ui/src/**/*",
-    "../../packages/tamagui/src/**/*",
-    "../../packages/tamagui/tamagui.config.ts"
+    "../../packages/ui/src/**/*"
   ],
   "exclude": ["node_modules"]
 }

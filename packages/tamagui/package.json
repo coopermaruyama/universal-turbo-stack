@@ -5,12 +5,12 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./config": "./tamagui.config.ts",
-    "./*": "./src/*"
+    "./config": "./src/config.ts",
+    "./*": "./src/*.ts"
   },
   "license": "MIT",
   "scripts": {
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "clean": "git clean -xdf .cache .turbo dist node_modules .tamagui",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
@@ -19,17 +19,21 @@
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
+    "@storybook/react": "^9.0.15",
+    "@tamagui/web": "^1.130.8",
     "eslint": "catalog:",
     "prettier": "catalog:",
+    "tamagui": "catalog:",
     "typescript": "catalog:"
   },
   "prettier": "@acme/prettier-config",
   "dependencies": {
     "@fontsource/montserrat": "^5.2.6",
-    "@tamagui/colors": "^1.128.1",
-    "@tamagui/core": "^1.128.1",
-    "@tamagui/font-inter": "^1.128.1",
-    "@tamagui/theme-builder": "^1.128.1",
-    "tamagui": "^1.128.1"
+    "@tamagui/colors": "^1.130.8",
+    "@tamagui/config": "^1.130.8",
+    "@tamagui/font-inter": "^1.130.8"
+  },
+  "peerDependencies": {
+    "tamagui": "catalog:"
   }
 }

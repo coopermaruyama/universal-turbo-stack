@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { GetProps, styled } from "@tamagui/core";
-import { Stack, Text } from "tamagui";
+import { GetProps, getTokens, Stack, styled, Text } from "tamagui";
 
 // Define the variant types
 type ButtonVariant =
@@ -170,6 +169,7 @@ const ButtonText = styled(Text, {
       },
       outline: {
         color: "$foreground",
+        borderColor: "$border",
       },
       secondary: {
         color: "$secondaryForeground",
@@ -181,7 +181,7 @@ const ButtonText = styled(Text, {
         color: "$primary",
         textDecorationLine: "underline",
         textDecorationStyle: "solid",
-        textUnderlineOffset: "$1", // underline-offset-4 equivalent
+        // textUnderlineOffset: "$1", // underline-offset-4 equivalent
       },
     },
     size: {
@@ -215,37 +215,15 @@ interface ShadcnButtonProps extends GetProps<typeof ButtonBase> {
   onPress?: () => void;
 }
 
-export const Button = React.forwardRef<
-  React.ElementRef<typeof ButtonBase>,
-  ShadcnButtonProps
->(
-  (
-    {
-      variant = "default",
-      size = "default",
-      children,
-      disabled,
-      onPress,
-      ...props
-    },
-    ref,
-  ) => {
-    return (
-      <ButtonBase
-        ref={ref}
-        variant={variant}
-        size={size}
-        disabled={disabled}
-        onPress={disabled ? undefined : onPress}
-        {...props}
-      >
-        <ButtonText variant={variant} size={size}>
-          {children}
-        </ButtonText>
-      </ButtonBase>
-    );
-  },
-);
+export const Button = ButtonBase.styleable(({ children, ...props }, ref) => {
+  return (
+    <ButtonBase ref={ref} {...props}>
+      <ButtonText variant={props.variant} size={props.size}>
+        {children}
+      </ButtonText>
+    </ButtonBase>
+  );
+});
 
 Button.displayName = "Button";
 

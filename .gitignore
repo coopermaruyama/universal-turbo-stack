@@ -50,3 +50,6 @@ dist/
 
 # turbo
 .turbo
+
+# tamagui cache
+.tamagui/

@@ -298,7 +298,7 @@ This ensures that designs created with shadcn/ui will look identical when using 
 You can extend the components using Tamagui's styling system:
 
 ```tsx
-import { styled } from "@tamagui/core";
+import { styled } from "tamagui";
 
 import { Button as BaseButton } from "@acme/tamagui";
 

@@ -27,18 +27,20 @@ export const NextTamaguiProvider = ({ children }: { children: ReactNode }) => {
           html {
             font-family: "Inter";
           }
+          body {
+            background-color: var(--background);
+            color: var(--color);
+          }
         `}</style>
         {/* Link your CSS output for optimized themes */}
-        {process.env.NODE_ENV === "production" && (
-          <link rel="stylesheet" href="/tamagui.css" />
-        )}
+        <link rel="stylesheet" href="/tamagui.css" />
         <style
           dangerouslySetInnerHTML={{ __html: rnwStyle.textContent }}
           id={rnwStyle.id}
         />
         <style
           dangerouslySetInnerHTML={{
-            __html: tamaguiConfig.getCSS({
+            __html: tamaguiConfig.getNewCSS({
               // if you are using "outputCSS" option, you should use this "exclude"
               // if not, then you can leave the option out
               exclude:
@@ -53,18 +55,15 @@ export const NextTamaguiProvider = ({ children }: { children: ReactNode }) => {
   return (
     <NextThemeProvider
       attribute="class"
-      defaultTheme="system"
+      defaultTheme="dark"
       enableSystem
       skipNextHead
       onChangeTheme={(next) => {
+        console.log("NextTamaguiProvider onChangeTheme", next);
         setTheme(next as any);
       }}
     >
-      <TamaguiProvider
-        config={tamaguiConfig}
-        themeClassNameOnRoot
-        defaultTheme={theme}
-      >
+      <TamaguiProvider config={tamaguiConfig} defaultTheme={theme}>
         {children}
       </TamaguiProvider>
     </NextThemeProvider>

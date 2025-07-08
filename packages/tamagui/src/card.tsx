@@ -1,8 +1,14 @@
 "use client";
 
 import React from "react";
-import { GetProps, styled } from "@tamagui/core";
-import { Text, XStack, YStack } from "tamagui";
+import { GetProps, Stack, styled, Text } from "tamagui";
+
+const YStack = styled(Stack, {
+  flexDirection: "column",
+});
+const XStack = styled(Stack, {
+  flexDirection: "row",
+});
 
 // Base Card container
 export const Card = styled(YStack, {

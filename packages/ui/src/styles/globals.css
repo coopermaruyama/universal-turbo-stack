@@ -1,8 +1,7 @@
+/* @import "@fontsource/montserrat/400.css"; */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import "@fontsource/montserrat/400.css";
 
 @layer base {
   :root {
@@ -25,7 +24,7 @@
     --tw-border: 240 5.9% 90%;
     --tw-input: 240 5.9% 90%;
     --tw-ring: 240 5.9% 10%;
-    --tw-radius: 0.5rem;
+    --radius: 0.5rem;
     --tw-chart-1: 12 76% 61%;
     --tw-chart-2: 173 58% 39%;
     --tw-chart-3: 197 37% 24%;
@@ -33,7 +32,9 @@
     --tw-chart-5: 27 87% 67%;
   }
 
-  .dark:root {
+  .dark:root,
+  .t_dark:root,
+  .dark {
     --tw-background: 240 10% 3.9%;
     --tw-foreground: 0 0% 98%;
     --tw-card: 240 10% 3.9%;
@@ -61,10 +62,10 @@
   }
 }
 
-body {
-  background: var(--tw-background);
-}
-/* .dark {
+/* body {
+  background: hsl(var(--tw-background));
+} */
+.dark {
   --sidebar: hsl(240 5.9% 10%);
   --sidebar-foreground: hsl(240 4.8% 95.9%);
   --sidebar-primary: hsl(224.3 76.3% 48%);
@@ -93,4 +94,4 @@ body {
   body {
     @apply bg-background text-foreground;
   }
-} */
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { XStack, YStack } from "tamagui";
+import { Button as TBUtton, XStack, YStack } from "tamagui";
 
 import { Button } from "./button";
 import {
@@ -19,7 +19,6 @@ import { Label } from "./label";
 export function TestShadcnComponents() {
   return (
     <YStack space="$4" padding="$4" maxWidth={600}>
-      {/* Button variants test */}
       <Card>
         <CardHeader>
           <CardTitle>Button Variants</CardTitle>
@@ -63,9 +62,7 @@ export function TestShadcnComponents() {
               <Input id="email" placeholder="Enter your email" />
             </YStack>
             <YStack space="$2">
-              <Label htmlFor="password">
-                Password
-              </Label>
+              <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
                 placeholder="Enter your password"
@@ -73,9 +70,7 @@ export function TestShadcnComponents() {
               />
             </YStack>
             <YStack space="$2">
-              <Label htmlFor="message">
-                Message
-              </Label>
+              <Label htmlFor="message">Message</Label>
               <Input
                 id="message"
                 placeholder="Enter your message"
@@ -167,6 +162,7 @@ export function ButtonDemo() {
       <XStack space="$2" flexWrap="wrap">
         <Button>Primary</Button>
         <Button variant="secondary">Secondary</Button>
+        <Button variant="destructive">Destructive</Button>
         <Button variant="destructive">Destructive</Button>
         <Button variant="outline">Outline</Button>
         <Button variant="ghost">Ghost</Button>

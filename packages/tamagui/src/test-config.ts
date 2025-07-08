@@ -1,6 +1,3 @@
-import { createTamagui } from "@tamagui/core";
-import { createInterFont } from "@tamagui/font-inter";
-
 import { config } from "../tamagui.config";
 
 // Test that our config exports properly

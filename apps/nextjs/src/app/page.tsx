@@ -5,10 +5,8 @@ import { redirect } from "next/navigation";
 import { CreatePostForm, PostCardSkeleton, PostList } from "@/components/posts";
 import { HydrateClient, prefetch, trpc } from "@/lib/trpc/server";
 
-import { Button as CoolButton } from "@acme/tamagui/button";
-
+import { Button } from "~/components/ui/button";
 import { auth, getSession, signOut } from "~/lib/auth/server";
-import { AuthShowcase } from "../components/auth-showcase";
 
 async function serverAction() {
   "use server";
@@ -36,14 +34,14 @@ export default async function HomePage() {
             Create <span className="text-primary">T3</span> Turbo
           </h1>
           <form method="POST" action={serverAction}>
-            <CoolButton
+            <Button
               role="button"
               size="default"
-              theme="dark_slate"
-              tag="button"
+              // theme="dark_slate"
+              // tag="button"
             >
               {session?.user ? "Sign Out" : "Sign In"}
-            </CoolButton>
+            </Button>
           </form>
 
           <CreatePostForm />

@@ -1,8 +1,12 @@
-import type { Preview } from "@storybook/react";
-
-import { TamaguiDecorator } from "./TamaguiDecorator";
+import type { Preview } from "@storybook/nextjs";
+import { themes } from "storybook/theming";
+import { TamaguiProvider, Theme } from "tamagui";
 
 import "../../../packages/ui/src/styles/globals.css";
+
+// import "../public/tamagui.css";
+
+import { TamaguiDecorator } from "./TamaguiDecorator";
 
 const preview: Preview = {
   decorators: [TamaguiDecorator],
@@ -13,20 +17,17 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+
     darkMode: {
-      dark: {
-        appBg: "#0f0f0f",
-        appContentBg: "#0f0f0f",
-        barBg: "#0f0f0f",
-      },
-      light: {
-        appBg: "#ffffff",
-        appContentBg: "#ffffff",
-        barBg: "#ffffff",
-      },
+      dark: { ...themes.dark, appBg: "#0a0a0a" },
+      light: { ...themes.light, appBg: "#ffffff" },
       current: "light",
       stylePreview: true,
+      darkClass: ["dark", "t_dark"],
+      lightClass: ["light", "t_light"],
+      classTarget: "html",
     },
+
     backgrounds: {
       default: "light",
       values: [
@@ -36,12 +37,41 @@ const preview: Preview = {
         },
         {
           name: "dark",
-          value: "#0f0f0f",
+          value: "#0a0a0a",
         },
       ],
     },
+
+    viewport: {
+      viewports: {
+        mobile: {
+          name: "Mobile",
+          styles: {
+            width: "375px",
+            height: "812px",
+          },
+        },
+        tablet: {
+          name: "Tablet",
+          styles: {
+            width: "768px",
+            height: "1024px",
+          },
+        },
+        desktop: {
+          name: "Desktop",
+          styles: {
+            width: "1024px",
+            height: "768px",
+          },
+        },
+      },
+    },
+
+    docs: {
+      codePanel: true,
+    },
   },
-  tags: ["autodocs"],
 };
 
 export default preview;

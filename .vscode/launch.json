@@ -14,10 +14,10 @@
       }
     },
     {
-      "name": "Storybook",
+      "name": "Storybook - Next.js",
       "type": "node-terminal",
       "request": "launch",
-      "command": "pnpm storybook",
+      "command": "pnpm with-env pnpm storybook",
       "cwd": "${workspaceFolder}/apps/nextjs",
       "skipFiles": ["<node_internals>/**"],
       "sourceMaps": true,

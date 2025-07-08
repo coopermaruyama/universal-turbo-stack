@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { GetProps, styled } from "@tamagui/core";
-import { Text } from "tamagui";
+import { GetProps, styled, Text } from "tamagui";
 
 // Base Label styled component (removing size variants to match shadcn)
 const LabelBase = styled(Text, {

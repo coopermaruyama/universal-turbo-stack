@@ -40,6 +40,7 @@ const config = function (name, { defaultConfig }) {
       "@acme/ui",
       "@acme/validators",
       "@acme/tamagui",
+      "tamagui",
     ],
 
     /** We already do linting and typechecking as separate tasks in CI */
@@ -53,7 +54,7 @@ const config = function (name, { defaultConfig }) {
     },
   };
   const tamaguiPlugin = withTamagui({
-    config: "../../packages/tamagui/tamagui.config.ts",
+    config: "./tamagui.config.ts",
     components: ["tamagui"],
     appDir: true,
     outputCSS:

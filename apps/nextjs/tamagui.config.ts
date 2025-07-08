@@ -1,9 +1,9 @@
-import { createTamagui } from "@tamagui/core";
+import { createTamagui } from "tamagui";
 
-import { config as baseConfig } from "@acme/tamagui/config";
+import { createTamaguiOptions } from "@acme/tamagui/config";
 
 export const config = createTamagui({
-  ...baseConfig,
+  ...createTamaguiOptions,
 });
 
 type OurConfig = typeof config;

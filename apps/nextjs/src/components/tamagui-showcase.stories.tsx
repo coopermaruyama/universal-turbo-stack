@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import React from "react";
 
 import { Button, Card, H2, Text, XStack, YStack } from "@acme/tamagui";

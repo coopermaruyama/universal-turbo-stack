@@ -7,7 +7,7 @@ catalog:
   "@better-auth/expo": ^1.2.9
   "better-auth": ^1.2.9
 
-  "tamagui": "^1.128.1"
+  "tamagui": ^1.130.8
 
   # Dev tooling
   eslint: ^9.28.0

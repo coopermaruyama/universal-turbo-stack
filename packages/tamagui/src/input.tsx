@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { GetProps, styled } from "@tamagui/core";
-import { Input as TamaguiInput } from "tamagui";
+import { GetProps, styled, Input as TamaguiInput } from "tamagui";
 
 // Base Input styled component (removing size variants to match shadcn)
 const InputBase = styled(TamaguiInput, {

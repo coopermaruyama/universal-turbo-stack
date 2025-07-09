@@ -163,3 +163,8 @@ Configure the dev script in `apps/expo/package.json` for your preferred platform
 
 - **Web Interface Changes**: 
   - If a change was made to a web interface, use the playwright mcp to check your work, or ask me to give you a screenshot as a fallback
+
+## Playwright Best Practices
+
+- When using Playwright:
+  - Check `browser_tab_list` and `browser_tab_select` to reuse existing tabs when available

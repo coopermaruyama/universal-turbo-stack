@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Montserrat, Source_Code_Pro } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider, ThemeToggle } from "@/components/ui/theme";
 import { TRPCReactProvider } from "@/lib/trpc/react";
@@ -38,13 +38,13 @@ export const viewport: Viewport = {
   ],
 };
 
-const geistSans = Geist({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  variable: "--font-montserrat",
 });
-const geistMono = Geist_Mono({
+const sourceCodePro = Source_Code_Pro({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-source-code-pro",
 });
 
 export default function RootLayout(props: { children: React.ReactNode }) {
@@ -53,8 +53,8 @@ export default function RootLayout(props: { children: React.ReactNode }) {
       <body
         className={cn(
           "min-h-screen bg-background font-sans text-foreground antialiased",
-          geistSans.variable,
-          geistMono.variable,
+          montserrat.variable,
+          sourceCodePro.variable,
         )}
       >
         <NextTamaguiProvider>

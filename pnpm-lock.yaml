@@ -97,6 +97,15 @@ importers:
       '@better-auth/expo':
         specifier: 'catalog:'
         version: 1.2.12(better-auth@1.2.12(patch_hash=1e85f800eff0ad4dfb5da7aa92b459b31884e4eb0fb7de9c1b3dc4afd9662d61))
+      '@expo-google-fonts/bebas-neue':
+        specifier: ^0.4.0
+        version: 0.4.0
+      '@expo-google-fonts/montserrat':
+        specifier: ^0.4.1
+        version: 0.4.1
+      '@expo-google-fonts/source-code-pro':
+        specifier: ^0.4.0
+        version: 0.4.0
       '@expo/config-plugins':
         specifier: ~10.0.2
         version: 10.0.2
@@ -666,6 +675,9 @@ importers:
 
   packages/tamagui:
     dependencies:
+      '@expo-google-fonts/montserrat':
+        specifier: ^0.4.1
+        version: 0.4.1
       '@fontsource/montserrat':
         specifier: ^5.2.6
         version: 5.2.6
@@ -2093,6 +2105,15 @@ packages:
   '@eslint/plugin-kit@0.3.1':
     resolution: {integrity: sha512-0J+zgWxHN+xXONWIyPWKFMgVuJoZuGiIFu8yxk7RJjxkzpGmyja5wRFqZIVtjDVOQpV+Rw0iOAjYPE2eQyjr0w==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@expo-google-fonts/bebas-neue@0.4.0':
+    resolution: {integrity: sha512-bvnEfW5Yaf6iTAVdDgLg5pTwCW8+eb4dk88FI9PDceOdbnUrymc1CGUCxTS1Suz+JMClrUS8aSaqaaHnXjyuqw==}
+
+  '@expo-google-fonts/montserrat@0.4.1':
+    resolution: {integrity: sha512-jc1d17tadLK3Nc/qIKYyOM2pnxmdZrlPFOJtmNT0qzFdUe4Pzq1Y1eQwvCMSProRbQqsosASRZ/N3mzl6pmC+g==}
+
+  '@expo-google-fonts/source-code-pro@0.4.0':
+    resolution: {integrity: sha512-tINM0AKS3PF3Z6LUa+/kNb899euBAuQ9TuHy/M7phb1sPMZU434iZ2Y+nAEfT9ylq7zeLFEw5gl2EBMRI4UfcA==}
 
   '@expo/cli@0.24.13':
     resolution: {integrity: sha512-2LSdbvYs+WmUljnplQXMCUyNzyX4H+F4l8uExfA1hud25Bl5kyaGrx1jjtgNxMTXmfmMjvgBdK798R50imEhkA==}
@@ -12042,6 +12063,12 @@ snapshots:
     dependencies:
       '@eslint/core': 0.14.0
       levn: 0.4.1
+
+  '@expo-google-fonts/bebas-neue@0.4.0': {}
+
+  '@expo-google-fonts/montserrat@0.4.1': {}
+
+  '@expo-google-fonts/source-code-pro@0.4.0': {}
 
   '@expo/cli@0.24.13(bufferutil@4.0.8)(graphql@15.8.0)':
     dependencies:

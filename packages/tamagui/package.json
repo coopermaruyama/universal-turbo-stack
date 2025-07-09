@@ -28,6 +28,7 @@
   },
   "prettier": "@acme/prettier-config",
   "dependencies": {
+    "@expo-google-fonts/montserrat": "^0.4.1",
     "@fontsource/montserrat": "^5.2.6",
     "@tamagui/colors": "^1.130.8",
     "@tamagui/config": "^1.130.8",

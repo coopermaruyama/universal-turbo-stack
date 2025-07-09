@@ -6,17 +6,7 @@ import { Button } from "./button";
 
 const meta: Meta<typeof Button> = {
   title: "UI/Button",
-  component: (props) => (
-    <>
-      <Button {...props} />
-      <Theme>
-        <TButton my="$4" background="$destructive">
-          Other
-        </TButton>
-        <Button variant="destructive">asad</Button>
-      </Theme>
-    </>
-  ),
+  component: (props) => <Button {...props} />,
   parameters: {
     layout: "centered",
   },

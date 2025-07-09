@@ -54,13 +54,13 @@ const config: StorybookConfig = {
 
     config.resolve = config.resolve || {};
     config.esbuild = config.esbuild || {};
-    config.esbuild.include = [
-      // Include .mjs files in the build process
-      /\.m?js$/,
-      // Include .ts and .tsx files for TypeScript support
-      /\.ts$/,
-      /\.tsx$/,
-    ];
+    // config.esbuild.include = [
+    //   // Include .mjs files in the build process
+    //   /\.m?js$/,
+    //   // Include .ts and .tsx files for TypeScript support
+    //   /\.ts$/,
+    //   /\.tsx$/,
+    // ];
     config.optimizeDeps = {
       esbuildOptions: {
         loader: {

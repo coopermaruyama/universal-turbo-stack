@@ -1,5 +1,10 @@
 // import { CreateTamaguiProps } from "@tamagui/web";
 import type { CreateTamaguiProps } from "tamagui";
+import {
+  Montserrat_300Light,
+  Montserrat_400Regular,
+  Montserrat_700Bold,
+} from "@expo-google-fonts/montserrat";
 import { defaultConfig } from "@tamagui/config/v4";
 import { createInterFont } from "@tamagui/font-inter";
 
@@ -71,11 +76,7 @@ const montserratFont = {
     3: "300",
     4: "400",
     true: "400",
-    5: "500",
-    6: "600",
     7: "700",
-    8: "800",
-    9: "900",
   },
   letterSpacing: {
     1: -0.5,
@@ -91,9 +92,9 @@ const montserratFont = {
   // for native only, alternate family based on weight/style
   face: {
     // pass in weights as keys
-    700: { normal: "InterBold", italic: "InterBold-Italic" },
-    800: { normal: "InterBold", italic: "InterBold-Italic" },
-    900: { normal: "InterBold", italic: "InterBold-Italic" },
+    300: { normal: "Montserrat", italic: "Montserrat-Italic" },
+    400: { normal: "Montserrat", italic: "Montserrat-Italic" },
+    700: { normal: "Montserrat", italic: "Montserrat-Italic" },
   },
 };
 const SPACING = 4;
@@ -199,6 +200,10 @@ const tokens = {
 const interFont = createInterFont();
 export const createTamaguiOptions = {
   ...defaultConfig,
+  fonts: {
+    heading: montserratFont,
+    body: interFont,
+  },
   // Tokens - design system values
   tokens: {
     // size = n * spacing
@@ -303,11 +308,11 @@ export const createTamaguiOptions = {
   themes,
 
   // Fonts
-  fonts: {
-    inter: interFont,
-    // body: montserratFont,
-    heading: interFont,
-  },
+  // fonts: {
+  //   inter: interFont,
+  //   // body: montserratFont,
+  //   heading: interFont,
+  // },
 
   // Media queries
   media: {

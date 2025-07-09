@@ -5,7 +5,9 @@
       "WebFetch(domain:ui.shadcn.com)",
       "Bash(pnpm typecheck:*)",
       "Bash(find:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "WebFetch(domain:tamagui.dev)",
+      "mcp__playwright__browser_close"
     ],
     "deny": []
   }

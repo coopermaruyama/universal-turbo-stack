@@ -6,6 +6,12 @@ import { Platform } from "react-native";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import {
+  Montserrat_300Light,
+  Montserrat_400Regular,
+  Montserrat_700Bold,
+  useFonts,
+} from "@expo-google-fonts/montserrat";
+import {
   DarkTheme,
   DefaultTheme,
   ThemeProvider,
@@ -39,6 +45,11 @@ export default function RootLayout() {
   const isDarkColorScheme = colorScheme !== "light";
   const theme = NAV_THEME[colorScheme ?? "dark"];
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
+  const fontsLoaded = useFonts({
+    Montserrat_400Regular,
+    Montserrat_300Light,
+    Montserrat_700Bold,
+  });
 
   useIsomorphicLayoutEffect(() => {
     if (hasMounted.current) {

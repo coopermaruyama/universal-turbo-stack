@@ -12,10 +12,10 @@ export default {
   important: "html",
   theme: {
     extend: {
-      // fontFamily: {
-      //   sans: ["var(--font-geist-sans)", ...fontFamily.sans],
-      //   mono: ["var(--font-geist-mono)", ...fontFamily.mono],
-      // },
+      fontFamily: {
+        sans: ["var(--font-montserrat)", ...fontFamily.sans],
+        mono: ["var(--font-source-code-pro)", ...fontFamily.mono],
+      },
     },
   },
 } satisfies Config;

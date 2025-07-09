@@ -33,7 +33,9 @@ export const NextTamaguiProvider = ({ children }: { children: ReactNode }) => {
           }
         `}</style>
         {/* Link your CSS output for optimized themes */}
-        <link rel="stylesheet" href="/tamagui.css" />
+        {process.env.NODE_ENV === "production" && (
+          <link rel="stylesheet" href="/tamagui.css" />
+        )}
         <style
           dangerouslySetInnerHTML={{ __html: rnwStyle.textContent }}
           id={rnwStyle.id}

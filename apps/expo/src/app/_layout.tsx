@@ -60,7 +60,10 @@ export default function RootLayout() {
   return (
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
-        <TamaguiProvider config={config} defaultTheme={colorScheme!}>
+        <TamaguiProvider
+          config={config}
+          defaultTheme={isDarkColorScheme ? "dark" : "light"}
+        >
           <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
             {/*
               The Stack component displays the current page.
@@ -71,6 +74,11 @@ export default function RootLayout() {
                 headerShown: false,
                 statusBarBackgroundColor: theme.background,
                 animation: "none",
+                contentStyle: {
+                  backgroundColor: isDarkColorScheme
+                    ? "hsl(240, 10%, 3.9%)" // dark background
+                    : "hsl(240, 0%, 98%)", // light
+                },
               }}
             />
             {/* Default Portal Host (one per app) */}

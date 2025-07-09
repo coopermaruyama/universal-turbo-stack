@@ -29,7 +29,7 @@ export function TestShadcnComponents() {
         <CardContent>
           <YStack space="$3">
             <XStack space="$2" flexWrap="wrap">
-              <Button>Default</Button>
+              <Button variant="default">Default</Button>
               <Button variant="secondary">Secondary</Button>
               <Button variant="destructive">Destructive</Button>
             </XStack>

@@ -40,6 +40,10 @@ config = withTurborepoManagedCache(config);
  */
 config.resolver.unstable_enablePackageExports = true;
 
+// Expo 49 issue: default metro config needs to include "mjs"
+// https://github.com/expo/expo/issues/23180
+config.resolver.sourceExts.push("mjs");
+
 /**
  * @see https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation#metro-config
  */

@@ -1,7 +1,8 @@
 export const name = "tamagui";
 
-// Export themes
+// Export themes and config
 export { themes } from "./themes";
+export { createTamaguiOptions } from "./config";
 
 // Export shadcn components
 export * from "./button";

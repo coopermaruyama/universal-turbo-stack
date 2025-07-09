@@ -66,7 +66,8 @@
     "react-native-web": "^0.20.0",
     "superjson": "2.2.2",
     "tailwind-merge": "catalog:",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "tamagui": "catalog:"
   },
   "devDependencies": {
     "@acme/api": "workspace:*",

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GetProps, getTokens, Stack, styled, Text } from "tamagui";
+import { GetProps, Stack, styled, Text } from "tamagui";
 
 // Define the variant types
 type ButtonVariant =
@@ -17,9 +17,7 @@ type ButtonSize = "default" | "sm" | "lg" | "icon";
 const ButtonBase = styled(Stack, {
   name: "ShadcnButton",
 
-  // Default styling - matches shadcn exactly
-  backgroundColor: "$background",
-  borderColor: "$input",
+  // Default styling - no base colors, let variants handle them
   borderWidth: 1,
   borderRadius: "$2", // rounded-md
 
@@ -55,7 +53,8 @@ const ButtonBase = styled(Stack, {
     variant: {
       default: {
         backgroundColor: "$primary",
-        borderColor: "$primary",
+        borderColor: "$primary", 
+        color: "$primaryForeground",
         hoverStyle: {
           backgroundColor: "$primaryHover", // primary/90 equivalent
         },
@@ -149,41 +148,16 @@ const ButtonBase = styled(Stack, {
   },
 });
 
-// Button text component
+// Button text component  
 const ButtonText = styled(Text, {
   name: "ButtonText",
   fontWeight: "500", // font-medium
-  textAlign: "center",
+  textAlign: "center", 
   fontSize: "$3", // text-sm base
-  color: "$color",
   userSelect: "none",
   whiteSpace: "nowrap",
-
+  
   variants: {
-    variant: {
-      default: {
-        color: "$primaryForeground",
-      },
-      destructive: {
-        color: "$destructiveForeground",
-      },
-      outline: {
-        color: "$foreground",
-        borderColor: "$border",
-      },
-      secondary: {
-        color: "$secondaryForeground",
-      },
-      ghost: {
-        color: "$foreground",
-      },
-      link: {
-        color: "$primary",
-        textDecorationLine: "underline",
-        textDecorationStyle: "solid",
-        // textUnderlineOffset: "$1", // underline-offset-4 equivalent
-      },
-    },
     size: {
       default: {
         fontSize: "$3", // text-sm
@@ -201,7 +175,6 @@ const ButtonText = styled(Text, {
   } as const,
 
   defaultVariants: {
-    variant: "default",
     size: "default",
   },
 });
@@ -215,15 +188,48 @@ interface ShadcnButtonProps extends GetProps<typeof ButtonBase> {
   onPress?: () => void;
 }
 
-export const Button = ButtonBase.styleable(({ children, ...props }, ref) => {
-  return (
-    <ButtonBase ref={ref} {...props}>
-      <ButtonText variant={props.variant} size={props.size}>
-        {children}
-      </ButtonText>
-    </ButtonBase>
-  );
-});
+export const Button = React.forwardRef<
+  any,
+  ShadcnButtonProps
+>(
+  (
+    {
+      variant = "default",
+      size = "default",
+      children,
+      disabled,
+      onPress,
+      ...props
+    },
+    ref,
+  ) => {
+    return (
+      <ButtonBase
+        ref={ref}
+        variant={variant}
+        size={size}
+        disabled={disabled}
+        onPress={disabled ? undefined : onPress}
+        {...props}
+      >
+        <ButtonText 
+          size={size}
+          color={
+            variant === "default" ? "$primaryForeground" :
+            variant === "destructive" ? "$destructiveForeground" :
+            variant === "outline" ? "$foreground" :
+            variant === "secondary" ? "$secondaryForeground" :
+            variant === "ghost" ? "$foreground" :
+            variant === "link" ? "$primary" :
+            "$foreground"
+          }
+        >
+          {children}
+        </ButtonText>
+      </ButtonBase>
+    );
+  },
+);
 
 Button.displayName = "Button";
 

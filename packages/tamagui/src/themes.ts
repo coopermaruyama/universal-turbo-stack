@@ -77,56 +77,56 @@ const createBaseTheme = (
   destructiveHover: destructive, // Will be calculated as destructive with 90% opacity
 
   // Chart colors (vibrant defaults that work with any theme)
-  chart1: "oklch(0.646 0.222 41.116)",
-  chart2: "oklch(0.6 0.118 184.704)",
-  chart3: "oklch(0.398 0.07 227.392)",
-  chart4: "oklch(0.828 0.189 84.429)",
-  chart5: "oklch(0.769 0.188 70.08)",
+  chart1: "hsl(12, 76%, 61%)",
+  chart2: "hsl(173, 58%, 39%)",
+  chart3: "hsl(197, 37%, 24%)",
+  chart4: "hsl(43, 74%, 66%)",
+  chart5: "hsl(27, 87%, 67%)",
 });
 
 // Neutral/Default themes
 const lightNeutral = createBaseTheme(
-  "oklch(1 0 0)", // background
-  "oklch(0.145 0 0)", // foreground
-  "oklch(1 0 0)", // card
-  "oklch(0.145 0 0)", // cardForeground
-  "oklch(1 0 0)", // popover
-  "oklch(0.145 0 0)", // popoverForeground
-  "oklch(0.205 0 0)", // primary
-  "oklch(0.985 0 0)", // primaryForeground
-  "oklch(0.97 0 0)", // secondary
-  "oklch(0.205 0 0)", // secondaryForeground
-  "oklch(0.97 0 0)", // muted
-  "oklch(0.556 0 0)", // mutedForeground
-  "oklch(0.97 0 0)", // accent
-  "oklch(0.205 0 0)", // accentForeground
-  "oklch(0.577 0.245 27.325)", // destructive
-  "oklch(0.985 0 0)", // destructiveForeground
-  "oklch(0.922 0 0)", // border
-  "oklch(0.922 0 0)", // input
-  "oklch(0.708 0 0)", // ring
+  "hsl(0, 0%, 100%)", // background
+  "hsl(240, 10%, 3.9%)", // foreground
+  "hsl(0, 0%, 100%)", // card
+  "hsl(240, 10%, 3.9%)", // cardForeground
+  "hsl(0, 0%, 100%)", // popover
+  "hsl(240, 10%, 3.9%)", // popoverForeground
+  "hsl(240, 5.9%, 10%)", // primary
+  "hsl(0, 0%, 98%)", // primaryForeground
+  "hsl(240, 4.8%, 95.9%)", // secondary
+  "hsl(240, 5.9%, 10%)", // secondaryForeground
+  "hsl(240, 4.8%, 95.9%)", // muted
+  "hsl(240, 3.8%, 46.1%)", // mutedForeground
+  "hsl(240, 4.8%, 95.9%)", // accent
+  "hsl(240, 5.9%, 10%)", // accentForeground
+  "hsl(0, 84.2%, 60.2%)", // destructive
+  "hsl(0, 0%, 98%)", // destructiveForeground
+  "hsl(240, 5.9%, 90%)", // border
+  "hsl(240, 5.9%, 90%)", // input
+  "hsl(240, 5.9%, 10%)", // ring
 );
 
 const darkNeutral = createBaseTheme(
-  "oklch(0.145 0 0)", // background
-  "oklch(0.985 0 0)", // foreground
-  "oklch(0.205 0 0)", // card
-  "oklch(0.985 0 0)", // cardForeground
-  "oklch(0.205 0 0)", // popover
-  "oklch(0.985 0 0)", // popoverForeground
-  "oklch(0.922 0 0)", // primary
-  "oklch(0.205 0 0)", // primaryForeground
-  "oklch(0.269 0 0)", // secondary
-  "oklch(0.985 0 0)", // secondaryForeground
-  "oklch(0.269 0 0)", // muted
-  "oklch(0.708 0 0)", // mutedForeground
-  "oklch(0.269 0 0)", // accent
-  "oklch(0.985 0 0)", // accentForeground
-  "oklch(0.704 0.191 22.216)", // destructive
-  "oklch(0.985 0 0)", // destructiveForeground
-  "oklch(1 0 0 / 10%)", // border (with alpha)
-  "oklch(1 0 0 / 15%)", // input (with alpha)
-  "oklch(0.556 0 0)", // ring
+  "hsl(240, 10%, 3.9%)", // background
+  "hsl(0, 0%, 98%)", // foreground
+  "hsl(240, 10%, 3.9%)", // card
+  "hsl(0, 0%, 98%)", // cardForeground
+  "hsl(240, 10%, 3.9%)", // popover
+  "hsl(0, 0%, 98%)", // popoverForeground
+  "hsl(0, 0%, 98%)", // primary
+  "hsl(240, 5.9%, 10%)", // primaryForeground
+  "hsl(240, 3.7%, 15.9%)", // secondary
+  "hsl(0, 0%, 98%)", // secondaryForeground
+  "hsl(240, 3.7%, 15.9%)", // muted
+  "hsl(240, 5%, 64.9%)", // mutedForeground
+  "hsl(240, 3.7%, 15.9%)", // accent
+  "hsl(0, 0%, 98%)", // accentForeground
+  "hsl(0, 62.8%, 30.6%)", // destructive
+  "hsl(0, 0%, 98%)", // destructiveForeground
+  "hsl(240, 3.7%, 15.9%)", // border
+  "hsl(240, 3.7%, 15.9%)", // input
+  "hsl(240, 4.9%, 83.9%)", // ring
 );
 
 // Stone themes

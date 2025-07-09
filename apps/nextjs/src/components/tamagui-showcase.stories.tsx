@@ -17,8 +17,8 @@ const TamaguiShowcase = () => {
 
           <XStack space="$3" flexWrap="wrap">
             <Button>Default Button</Button>
-            <Button theme="active">Active Button</Button>
-            <Button variant="outlined">Outlined</Button>
+            <Button theme="slate">Active Button</Button>
+            <Button variant="outline">Outlined</Button>
           </XStack>
 
           <XStack space="$3" flexWrap="wrap">

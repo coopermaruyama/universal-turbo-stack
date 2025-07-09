@@ -159,6 +159,7 @@ export default function Index() {
           </Text>
         )}
         <Link href={{ pathname: "/storybook" }}>Storybook</Link>
+        <Link href={{ pathname: "/tamagui-test" }}>Tamagui Test</Link>
         <LegendList
           data={postQuery.data ?? []}
           estimatedItemSize={20}

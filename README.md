@@ -1,9 +1,5 @@
 # create-t3-turbo
 
-> [!NOTE]
->
-> create-t3-turbo now uses better-auth for authentication!
-
 ## Installation
 
 > [!NOTE]

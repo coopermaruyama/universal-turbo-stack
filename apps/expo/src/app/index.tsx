@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Pressable, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Link, Stack } from "expo-router";
+import { Link, Stack, useRouter } from "expo-router";
 import { push } from "expo-router/build/global-state/routing";
 import { LegendList } from "@legendapp/list";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -127,7 +127,7 @@ function MobileAuth() {
 
 export default function Index() {
   const queryClient = useQueryClient();
-
+  const router = useRouter();
   const postQuery = useQuery(trpc.post.all.queryOptions());
 
   const deletePostMutation = useMutation(
@@ -158,8 +158,17 @@ export default function Index() {
             Error loading posts: {postQuery.error.message}
           </Text>
         )}
-        <Link href={{ pathname: "/storybook" }}>Storybook</Link>
-        <Link href={{ pathname: "/tamagui-test" }}>Tamagui Test</Link>
+        <View className="gap-2 px-2">
+          <Button onPress={() => router.navigate("/storybook")}>
+            <Text>Storybook</Text>
+          </Button>
+          <Button onPress={() => router.navigate("/tamagui-test")}>
+            <Text>Tamagui Test</Text>
+          </Button>
+          <Button onPress={() => router.navigate("/ui-test")}>
+            <Text>UI Test</Text>
+          </Button>
+        </View>
         <LegendList
           data={postQuery.data ?? []}
           estimatedItemSize={20}

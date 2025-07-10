@@ -7,7 +7,22 @@
       "Bash(find:*)",
       "Bash(ls:*)",
       "WebFetch(domain:tamagui.dev)",
-      "mcp__playwright__browser_close"
+      "mcp__playwright__browser_close",
+      "mcp__codex__codex",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_wait_for",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_take_screenshot",
+      "Bash(pnpm install:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "mcp__playwright__browser_tab_new",
+      "mcp__playwright__browser_tab_select",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_tab_list",
+      "mcp__playwright__browser_hover",
+      "mcp__playwright__browser_press_key",
+      "Bash(sed:*)"
     ],
     "deny": []
   }

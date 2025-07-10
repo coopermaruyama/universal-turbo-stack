@@ -21,10 +21,10 @@ const ButtonBase = styled(Stack, {
   borderWidth: 1,
   borderRadius: "$2", // rounded-md
 
-  paddingHorizontal: "$4",
-  paddingVertical: "$2",
+  paddingHorizontal: "$4", // px-4
+  paddingVertical: "$2", // py-2
   height: "$10", // h-10
-  minWidth: "$10",
+  minWidth: "$10", // min-w-10
 
   alignItems: "center",
   justifyContent: "center",

@@ -32,7 +32,8 @@
     "@fontsource/montserrat": "^5.2.6",
     "@tamagui/colors": "^1.130.8",
     "@tamagui/config": "^1.130.8",
-    "@tamagui/font-inter": "^1.130.8"
+    "@tamagui/font-inter": "^1.130.8",
+    "@tamagui/lucide-icons": "^1.130.8"
   },
   "peerDependencies": {
     "tamagui": "catalog:"

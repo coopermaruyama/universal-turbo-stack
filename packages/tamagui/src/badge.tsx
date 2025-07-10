@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { GetProps, styled } from "@tamagui/core";
-import { Text } from "tamagui";
+import { GetProps, styled, Text } from "tamagui";
 
 // Define variant types
 type BadgeVariant = "default" | "secondary" | "destructive" | "outline";
@@ -18,12 +17,12 @@ export const Badge = styled(Text, {
   borderWidth: 1,
   paddingHorizontal: "$2.5", // px-2.5 (10px)
   paddingVertical: "$0.5", // py-0.5 (2px)
-  
+
   // Typography matching shadcn: text-xs font-semibold
   fontSize: "$2", // text-xs (12px)
   fontWeight: "600", // font-semibold
   lineHeight: 1,
-  
+
   // Transitions and interactions
   cursor: "default",
   userSelect: "none",
@@ -54,7 +53,7 @@ export const Badge = styled(Text, {
       },
       secondary: {
         backgroundColor: "$secondary",
-        borderColor: "transparent", 
+        borderColor: "transparent",
         color: "$secondaryForeground",
         // Hover effect: 80% opacity (secondary/80)
         hoverStyle: {
@@ -67,7 +66,7 @@ export const Badge = styled(Text, {
       destructive: {
         backgroundColor: "$destructive",
         borderColor: "transparent",
-        color: "$destructiveForeground", 
+        color: "$destructiveForeground",
         // Hover effect: 80% opacity (destructive/80)
         hoverStyle: {
           opacity: 0.8,
@@ -97,21 +96,15 @@ interface ShadcnBadgeProps extends GetProps<typeof Badge> {
   onPress?: () => void;
 }
 
-export const ShadcnBadge = React.forwardRef<
-  any,
-  ShadcnBadgeProps
->(({ variant = "default", children, onPress, ...props }, ref) => {
-  return (
-    <Badge 
-      ref={ref} 
-      variant={variant} 
-      onPress={onPress}
-      {...props}
-    >
-      {children}
-    </Badge>
-  );
-});
+export const ShadcnBadge = React.forwardRef<any, ShadcnBadgeProps>(
+  ({ variant = "default", children, onPress, ...props }, ref) => {
+    return (
+      <Badge ref={ref} variant={variant} onPress={onPress} {...props}>
+        {children}
+      </Badge>
+    );
+  },
+);
 
 // Set display name
 ShadcnBadge.displayName = "Badge";

@@ -3,12 +3,12 @@ import * as React from "react";
 import { Platform, Text, View } from "react-native";
 import * as MenubarPrimitive from "@rn-primitives/menubar";
 
-import { TextClassContext } from "@acme/ui/components/ui/text";
 import { Check } from "@acme/ui/lib/icons/Check";
 import { ChevronDown } from "@acme/ui/lib/icons/ChevronDown";
 import { ChevronRight } from "@acme/ui/lib/icons/ChevronRight";
 import { ChevronUp } from "@acme/ui/lib/icons/ChevronUp";
 import { cn } from "@acme/ui/lib/utils";
+import { TextClassContext } from "@acme/ui/text";
 
 const MenubarMenu = MenubarPrimitive.Menu;
 

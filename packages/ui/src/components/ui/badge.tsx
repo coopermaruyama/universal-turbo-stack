@@ -3,8 +3,8 @@ import { View, ViewProps } from "react-native";
 import * as Slot from "@rn-primitives/slot";
 import { cva } from "class-variance-authority";
 
-import { TextClassContext } from "@acme/ui/components/ui/text";
 import { cn } from "@acme/ui/lib/utils";
+import { TextClassContext } from "@acme/ui/text";
 
 const badgeVariants = cva(
   "web:inline-flex web:transition-colors web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2 items-center rounded-full border border-border px-2.5 py-0.5",

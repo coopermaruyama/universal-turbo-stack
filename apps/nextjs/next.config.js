@@ -14,6 +14,7 @@ const config = function (name, { defaultConfig }) {
     turbopack: {
       resolveAlias: {
         "react-native": "react-native-web",
+        "react-native-svg": "react-native-svg-web",
       },
       resolveExtensions: [
         ".web.js",
@@ -33,6 +34,10 @@ const config = function (name, { defaultConfig }) {
     transpilePackages: [
       "react-native",
       "react-native-web",
+      "react-native-safe-area-context",
+      "nativewind",
+      "react-native-css-interop",
+      "@rn-primitives/slot",
       "expo",
       "@acme/api",
       "@acme/auth",

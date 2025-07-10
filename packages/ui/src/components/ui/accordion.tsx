@@ -13,9 +13,10 @@ import Animated, {
 } from "react-native-reanimated";
 import * as AccordionPrimitive from "@rn-primitives/accordion";
 
-import { TextClassContext } from "@acme/ui/components/ui/text";
-import { ChevronDown } from "@acme/ui/lib/icons/ChevronDown";
 import { cn } from "@acme/ui/lib/utils";
+import { TextClassContext } from "@acme/ui/text";
+
+import { ChevronDown } from "../../lib/icons/ChevronDown";
 
 function Accordion({
   children,

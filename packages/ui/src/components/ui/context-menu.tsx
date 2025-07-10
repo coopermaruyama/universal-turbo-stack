@@ -3,12 +3,12 @@ import * as React from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
 import * as ContextMenuPrimitive from "@rn-primitives/context-menu";
 
-import { TextClassContext } from "@acme/ui/components/ui/text";
 import { Check } from "@acme/ui/lib/icons/Check";
 import { ChevronDown } from "@acme/ui/lib/icons/ChevronDown";
 import { ChevronRight } from "@acme/ui/lib/icons/ChevronRight";
 import { ChevronUp } from "@acme/ui/lib/icons/ChevronUp";
 import { cn } from "@acme/ui/lib/utils";
+import { TextClassContext } from "@acme/ui/text";
 
 const ContextMenu = ContextMenuPrimitive.Root;
 const ContextMenuTrigger = ContextMenuPrimitive.Trigger;

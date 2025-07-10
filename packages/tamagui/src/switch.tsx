@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { GetProps, SizeTokens, styled } from "@tamagui/core";
-import { Switch } from "tamagui";
+import { styled, Switch } from "tamagui";
 
 // Define size types using Tamagui size tokens
 type SwitchSize = "sm" | "default" | "lg";

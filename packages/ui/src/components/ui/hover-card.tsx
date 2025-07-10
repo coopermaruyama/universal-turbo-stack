@@ -3,8 +3,8 @@ import { Platform, StyleSheet } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
 import * as HoverCardPrimitive from "@rn-primitives/hover-card";
 
-import { TextClassContext } from "@acme/ui/components/ui/text";
 import { cn } from "@acme/ui/lib/utils";
+import { TextClassContext } from "@acme/ui/text";
 
 const HoverCard = HoverCardPrimitive.Root;
 

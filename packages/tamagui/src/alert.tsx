@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { GetProps, styled } from "@tamagui/core";
-import { Text, YStack } from "tamagui";
+import { GetProps, styled, Text, YStack } from "tamagui";
 
 // Define variant types
 type AlertVariant = "default" | "destructive";
@@ -38,8 +37,8 @@ export const Alert = styled(YStack, {
         borderOpacity: 0.5,
         color: "$destructive",
         // In dark mode, use full destructive color for border
-        '$platform-web': {
-          '@media (prefers-color-scheme: dark)': {
+        "$platform-web": {
+          "@media (prefers-color-scheme: dark)": {
             borderColor: "$destructive",
             borderOpacity: 1,
           },
@@ -68,7 +67,7 @@ export const AlertTitle = styled(Text, {
   color: "inherit",
 });
 
-// Alert Description component  
+// Alert Description component
 export const AlertDescription = styled(Text, {
   name: "AlertDescription",
 
@@ -86,31 +85,30 @@ interface ShadcnAlertProps extends GetProps<typeof Alert> {
   children?: React.ReactNode;
 }
 
-export const ShadcnAlert = React.forwardRef<
-  any,
-  ShadcnAlertProps
->(({ variant = "default", children, ...props }, ref) => {
-  return (
-    <Alert ref={ref} variant={variant} {...props}>
-      {children}
-    </Alert>
-  );
-});
+export const ShadcnAlert = React.forwardRef<any, ShadcnAlertProps>(
+  ({ variant = "default", children, ...props }, ref) => {
+    return (
+      <Alert ref={ref} variant={variant} {...props}>
+        {children}
+      </Alert>
+    );
+  },
+);
 
 // Title component with proper types
 interface ShadcnAlertTitleProps extends GetProps<typeof AlertTitle> {
   children?: React.ReactNode;
 }
 
-export const ShadcnAlertTitle = React.forwardRef<
-  any,
-  ShadcnAlertTitleProps
->((props, ref) => {
-  return <AlertTitle ref={ref} {...props} />;
-});
+export const ShadcnAlertTitle = React.forwardRef<any, ShadcnAlertTitleProps>(
+  (props, ref) => {
+    return <AlertTitle ref={ref} {...props} />;
+  },
+);
 
 // Description component with proper types
-interface ShadcnAlertDescriptionProps extends GetProps<typeof AlertDescription> {
+interface ShadcnAlertDescriptionProps
+  extends GetProps<typeof AlertDescription> {
   children?: React.ReactNode;
 }
 

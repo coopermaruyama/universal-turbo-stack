@@ -4,8 +4,8 @@ import * as React from "react";
 import * as TogglePrimitive from "@rn-primitives/toggle";
 import { cva } from "class-variance-authority";
 
-import { TextClassContext } from "@acme/ui/components/ui/text";
 import { cn } from "@acme/ui/lib/utils";
+import { TextClassContext } from "@acme/ui/text";
 
 const toggleVariants = cva(
   "web:group web:inline-flex web:ring-offset-background web:transition-colors web:hover:bg-muted web:focus-visible:outline-none web:focus-visible:ring-2 web:focus-visible:ring-ring web:focus-visible:ring-offset-2 items-center justify-center rounded-md active:bg-muted",

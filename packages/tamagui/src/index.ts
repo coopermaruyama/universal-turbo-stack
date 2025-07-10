@@ -5,13 +5,19 @@ export { themes } from "./themes";
 export { createTamaguiOptions } from "./config";
 
 // Export shadcn components
+export * from "./accordion";
 export * from "./alert";
 export * from "./badge";
 export * from "./button";
 export * from "./card";
+export * from "./checkbox";
+export * from "./dialog";
 export * from "./input";
 export * from "./label";
+export * from "./select";
 export * from "./switch";
+export * from "./tabs";
+export * from "./tooltip";
 
 // Export test components (for development/demo purposes)
 export * from "./test-components";

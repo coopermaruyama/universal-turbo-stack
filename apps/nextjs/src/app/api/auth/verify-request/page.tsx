@@ -2,8 +2,7 @@ import { cookies, headers } from "next/headers";
 import { redirect, RedirectType } from "next/navigation";
 import { useSession } from "@/lib/auth/client";
 
-import { auth } from "@acme/auth";
-
+import { auth } from "~/auth/server";
 import VeryifyRequestForm from "./_components/form";
 
 const AUTH_EMAIL_COOKIE_NAME = "__auth-email";

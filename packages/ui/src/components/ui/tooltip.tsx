@@ -3,8 +3,8 @@ import { Platform, StyleSheet } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import * as TooltipPrimitive from "@rn-primitives/tooltip";
 
-import { TextClassContext } from "@acme/ui/components/ui/text";
 import { cn } from "@acme/ui/lib/utils";
+import { TextClassContext } from "@acme/ui/text";
 
 const Tooltip = TooltipPrimitive.Root;
 const TooltipTrigger = TooltipPrimitive.Trigger;

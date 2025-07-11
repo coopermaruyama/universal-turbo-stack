@@ -1,11 +1,13 @@
 import { Suspense } from "react";
-import { Pressable, Text } from "react-native";
+import { Pressable } from "react-native";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { CreatePostForm, PostCardSkeleton, PostList } from "@/components/posts";
 import { HydrateClient, prefetch, trpc } from "@/lib/trpc/server";
 
-import { Button } from "~/components/ui/button";
+import { Button } from "@acme/ui/button";
+import { Text } from "@acme/ui/text";
+
 import { auth, getSession, signOut } from "~/lib/auth/server";
 
 async function serverAction() {
@@ -30,8 +32,8 @@ export default async function HomePage() {
     <HydrateClient>
       <main className="container h-screen py-16">
         <div className="flex flex-col items-center justify-center gap-4">
-          <h1 className="text-3xl font-extrabold tracking-tight sm:text-[5rem]">
-            Create <span className="text-primary">T3</span> Turbo
+          <h1 className="text-2xl font-bold tracking-tight sm:text-[5rem]">
+            <span className="text-purple-700">Universal</span> Expo Next
           </h1>
           <form method="POST" action={serverAction}>
             <Button
@@ -40,24 +42,14 @@ export default async function HomePage() {
               // theme="dark_slate"
               // tag="button"
             >
-              {session?.user ? "Sign Out" : "Sign In"}
+              <Text>{session?.user ? "Sign Out" : "Sign In"}</Text>
             </Button>
           </form>
-
-          <CreatePostForm />
-          <div className="w-full max-w-2xl overflow-y-scroll">
-            <Suspense
-              fallback={
-                <div className="flex w-full flex-col gap-4">
-                  <PostCardSkeleton />
-                  <PostCardSkeleton />
-                  <PostCardSkeleton />
-                </div>
-              }
-            >
-              <PostList />
-            </Suspense>
-          </div>
+          <Link href="/ui-test">
+            <Button role="link" size="default">
+              <Text>Kitchen Sink</Text>
+            </Button>
+          </Link>
         </div>
       </main>
     </HydrateClient>

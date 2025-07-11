@@ -42,7 +42,7 @@ function Indicator({
   value: number | undefined | null;
   className?: string;
 }) {
-  const progress = useDerivedValue(() => value ?? 0);
+  const progress = useDerivedValue(() => value ?? 0, [value]);
 
   const indicator = useAnimatedStyle(() => {
     return {
@@ -51,7 +51,7 @@ function Indicator({
         { overshootClamping: true },
       ),
     };
-  });
+  }, [progress]);
 
   if (Platform.OS === "web") {
     return (

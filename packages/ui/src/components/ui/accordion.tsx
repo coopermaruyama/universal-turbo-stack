@@ -71,15 +71,25 @@ function AccordionTrigger({
 }) {
   const { isExpanded } = AccordionPrimitive.useItemContext();
 
-  const progress = useDerivedValue(() =>
-    isExpanded
-      ? withTiming(1, { duration: 250 })
-      : withTiming(0, { duration: 200 }),
+  const progress = useDerivedValue(
+    () =>
+      isExpanded
+        ? withTiming(1, { duration: 250 })
+        : withTiming(0, { duration: 200 }),
+    [isExpanded],
   );
-  const chevronStyle = useAnimatedStyle(() => ({
-    transform: [{ rotate: `${progress.value * 180}deg` }],
-    opacity: interpolate(progress.value, [0, 1], [1, 0.8], Extrapolation.CLAMP),
-  }));
+  const chevronStyle = useAnimatedStyle(
+    () => ({
+      transform: [{ rotate: `${progress.value * 180}deg` }],
+      opacity: interpolate(
+        progress.value,
+        [0, 1],
+        [1, 0.8],
+        Extrapolation.CLAMP,
+      ),
+    }),
+    [progress],
+  );
 
   return (
     <TextClassContext.Provider value="native:text-lg font-medium web:group-hover:underline">
@@ -93,7 +103,11 @@ function AccordionTrigger({
           >
             {children}
             <Animated.View style={chevronStyle}>
-              <ChevronDown size={18} className={"shrink-0 text-foreground"} />
+              <ChevronDown
+                size={18}
+                style={{ flexShrink: 0 }}
+                className={"text-foreground"}
+              />
             </Animated.View>
           </Trigger>
         </AccordionPrimitive.Trigger>

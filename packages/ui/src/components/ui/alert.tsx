@@ -1,11 +1,14 @@
+"use client";
+
 import type { VariantProps } from "class-variance-authority";
 import type { LucideIcon } from "lucide-react-native";
 import type { ViewProps } from "react-native";
 import * as React from "react";
 import { View } from "react-native";
-import { useTheme } from "@react-navigation/native";
 import { cva } from "class-variance-authority";
+import { colorScheme } from "nativewind";
 
+import { NAV_THEME } from "@acme/ui/lib/constants";
 import { cn } from "@acme/ui/lib/utils";
 import { Text } from "@acme/ui/text";
 
@@ -39,7 +42,7 @@ function Alert({
     iconSize?: number;
     iconClassName?: string;
   }) {
-  const { colors } = useTheme();
+  const colors = NAV_THEME[colorScheme.get() ?? "dark"];
   return (
     <View
       role="alert"

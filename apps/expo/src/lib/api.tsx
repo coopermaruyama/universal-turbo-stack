@@ -40,7 +40,7 @@ export const trpc = createTRPCOptionsProxy<AppRouter>({
           if (cookies) {
             headers.set("Cookie", cookies);
           }
-          return Object.fromEntries(headers);
+          return headers;
         },
       }),
     ],

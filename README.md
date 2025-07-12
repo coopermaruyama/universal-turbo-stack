@@ -1,4 +1,10 @@
-# create-t3-turbo
+# universal-turbo-stack
+
+This is a fork of [create-t3-turbo](https://github.com/t3-oss/create-t3-turbo) with the following changes:
+
+- The UI package uses [react-native-reusables](https://github.com/mrzachnugent/react-native-reusables) to enable
+  cross-platform UI components.
+- Storybook support on both Expo and NextJS. A story is created for each component in the UI package.
 
 ## Installation
 
@@ -13,7 +19,7 @@ There are two ways of initializing an app using the `create-t3-turbo` starter. Y
 or use Turbo's CLI to init your project (use PNPM as package manager):
 
 ```bash
-npx create-turbo@latest -e https://github.com/t3-oss/create-t3-turbo
+npx create-turbo@latest -e https://github.com/coopermaruyama/universal-turbo-stack
 ```
 
 ## About

@@ -10,6 +10,8 @@ import "../../../../packages/ui/src/styles/globals.css";
 import { NextTamaguiProvider } from "@/components/NextTamaguiProvider";
 import { env } from "@/env";
 
+import { PortalHost } from "@acme/ui/index";
+
 export const metadata: Metadata = {
   metadataBase: new URL(
     env.VERCEL_ENV === "production"
@@ -58,11 +60,22 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         )}
       >
         <NextTamaguiProvider>
-          <TRPCReactProvider>{props.children}</TRPCReactProvider>
-          <div className="absolute bottom-4 right-4">
-            <ThemeToggle />
-          </div>
-          <Toaster />
+          <TRPCReactProvider>
+            <div
+              id="root"
+              style={{
+                height: "100%",
+                flex: "1 1 0%",
+                overflowY: "auto",
+              }}
+            >
+              {props.children}
+            </div>
+            <div className="absolute bottom-4 right-4">
+              <ThemeToggle />
+            </div>
+            <Toaster />
+          </TRPCReactProvider>
         </NextTamaguiProvider>
       </body>
     </html>

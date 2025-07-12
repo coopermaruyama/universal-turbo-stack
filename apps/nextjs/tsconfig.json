@@ -1,21 +1,39 @@
 {
   "extends": "@acme/tsconfig/base.json",
   "compilerOptions": {
-    "lib": ["ES2022", "dom", "dom.iterable"],
+    "lib": [
+      "ES2022",
+      "dom",
+      "dom.iterable"
+    ],
     "jsx": "preserve",
     "jsxImportSource": "nativewind",
     "esModuleInterop": true,
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@/ui/*": ["./src/components/ui/*"],
-      "@/*": ["./src/*"],
-      "~/*": ["./src/*"],
-      "@acme/ui/*": ["../../packages/ui/src/*"],
+      "@/ui/*": [
+        "./src/components/ui/*"
+      ],
+      "@/*": [
+        "./src/*"
+      ],
+      "~/*": [
+        "./src/*"
+      ],
+      "@acme/ui/*": [
+        "../../packages/ui/src/*"
+      ],
       // "@acme/tamagui/*": ["../../packages/tamagui/src/*"],
-      "react-native": ["react-native-web"]
+      "react-native": [
+        "react-native-web"
+      ]
     },
-    "plugins": [{ "name": "next" }],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "module": "esnext"
   },
   "include": [
@@ -27,5 +45,7 @@
     "tamagui.config.ts",
     "../../packages/ui/src/**/*"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

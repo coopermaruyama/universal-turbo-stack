@@ -53,7 +53,7 @@ const ButtonBase = styled(Stack, {
     variant: {
       default: {
         backgroundColor: "$primary",
-        borderColor: "$primary", 
+        borderColor: "$primary",
         color: "$primaryForeground",
         hoverStyle: {
           backgroundColor: "$primaryHover", // primary/90 equivalent
@@ -73,7 +73,7 @@ const ButtonBase = styled(Stack, {
         },
       },
       outline: {
-        backgroundColor: "$background",
+        backgroundColor: "$input",
         borderColor: "$input",
         borderWidth: 1,
         hoverStyle: {
@@ -148,15 +148,15 @@ const ButtonBase = styled(Stack, {
   },
 });
 
-// Button text component  
+// Button text component
 const ButtonText = styled(Text, {
   name: "ButtonText",
   fontWeight: "500", // font-medium
-  textAlign: "center", 
+  textAlign: "center",
   fontSize: "$3", // text-sm base
   userSelect: "none",
   whiteSpace: "nowrap",
-  
+
   variants: {
     size: {
       default: {
@@ -188,10 +188,7 @@ interface ShadcnButtonProps extends GetProps<typeof ButtonBase> {
   onPress?: () => void;
 }
 
-export const Button = React.forwardRef<
-  any,
-  ShadcnButtonProps
->(
+export const Button = React.forwardRef<any, ShadcnButtonProps>(
   (
     {
       variant = "default",
@@ -212,16 +209,22 @@ export const Button = React.forwardRef<
         onPress={disabled ? undefined : onPress}
         {...props}
       >
-        <ButtonText 
+        <ButtonText
           size={size}
           color={
-            variant === "default" ? "$primaryForeground" :
-            variant === "destructive" ? "$destructiveForeground" :
-            variant === "outline" ? "$foreground" :
-            variant === "secondary" ? "$secondaryForeground" :
-            variant === "ghost" ? "$foreground" :
-            variant === "link" ? "$primary" :
-            "$foreground"
+            variant === "default"
+              ? "$primaryForeground"
+              : variant === "destructive"
+                ? "$destructiveForeground"
+                : variant === "outline"
+                  ? "$foreground"
+                  : variant === "secondary"
+                    ? "$secondaryForeground"
+                    : variant === "ghost"
+                      ? "$foreground"
+                      : variant === "link"
+                        ? "$primary"
+                        : "$foreground"
           }
         >
           {children}

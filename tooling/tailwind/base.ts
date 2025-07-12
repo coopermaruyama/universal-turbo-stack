@@ -28,8 +28,8 @@ export default {
           foreground: "hsl(var(--tw-muted-foreground))",
         },
         accent: {
-          DEFAULT: "var(--tw-accent)",
-          foreground: "var(--tw-accent-foreground)",
+          DEFAULT: "hsl(var(--tw-accent))",
+          foreground: "hsl(var(--tw-accent-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--tw-popover))",

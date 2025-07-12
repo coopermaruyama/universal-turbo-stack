@@ -15,7 +15,7 @@ const config = function (name, { defaultConfig }) {
       resolveAlias: {
         "react-native": "react-native-web",
         "react-native-svg": "react-native-svg-web",
-        "lucide-react-native": "lucide-react",
+        // "lucide-react-native": "lucide-react",
       },
       resolveExtensions: [
         ".web.js",
@@ -50,6 +50,7 @@ const config = function (name, { defaultConfig }) {
       "@rn-primitives/label",
       "@rn-primitives/menubar",
       "@rn-primitives/navigation-menu",
+      "@rn-primitives/portal",
       "@rn-primitives/popover",
       "@rn-primitives/progress",
       "@rn-primitives/radio-group",

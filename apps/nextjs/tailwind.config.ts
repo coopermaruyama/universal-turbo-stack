@@ -8,7 +8,7 @@ export default {
   // those classes are included correctly.
   content: [...baseConfig.content, "../../packages/ui/src/**/*.{ts,tsx}"],
   // content: [...baseConfig.content],
-  presets: [baseConfig],
+  presets: [require("nativewind/preset"), baseConfig],
   important: "html",
   theme: {
     extend: {

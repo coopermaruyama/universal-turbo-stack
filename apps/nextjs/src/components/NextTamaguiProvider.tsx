@@ -8,6 +8,8 @@ import { useServerInsertedHTML } from "next/navigation";
 import { NextThemeProvider, useRootTheme } from "@tamagui/next-theme";
 import { TamaguiProvider } from "tamagui";
 
+import { PortalHost } from "@acme/ui/index";
+
 import { config as tamaguiConfig } from "../../tamagui.config";
 
 export const NextTamaguiProvider = ({ children }: { children: ReactNode }) => {
@@ -22,7 +24,7 @@ export const NextTamaguiProvider = ({ children }: { children: ReactNode }) => {
       <>
         <style jsx global>{`
           html {
-            font-family: "Inter";
+            font-family: "Montserrat", sans-serif;
           }
           body {
             background-color: var(--background);
@@ -64,6 +66,7 @@ export const NextTamaguiProvider = ({ children }: { children: ReactNode }) => {
     >
       <TamaguiProvider config={tamaguiConfig} defaultTheme={theme}>
         {children}
+        <PortalHost />
       </TamaguiProvider>
     </NextThemeProvider>
   );

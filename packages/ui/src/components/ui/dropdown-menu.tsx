@@ -1,3 +1,5 @@
+"use client";
+
 import type { StyleProp, TextProps, ViewStyle } from "react-native";
 import * as React from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
@@ -136,7 +138,7 @@ function DropdownMenuItem({
     <TextClassContext.Provider value="select-none text-sm native:text-lg text-popover-foreground web:group-focus:text-accent-foreground">
       <DropdownMenuPrimitive.Item
         className={cn(
-          "web:cursor-default native:py-2 web:outline-none web:focus:bg-accent web:hover:bg-accent group relative flex flex-row items-center gap-2 rounded-sm px-2 py-1.5 active:bg-accent",
+          "web:cursor-pointer native:py-2 web:outline-none web:focus:bg-accent web:hover:bg-accent group relative flex flex-row items-center gap-2 rounded-sm px-2 py-1.5 active:bg-accent",
           inset && "pl-8",
           props.disabled && "web:pointer-events-none opacity-50",
           className,

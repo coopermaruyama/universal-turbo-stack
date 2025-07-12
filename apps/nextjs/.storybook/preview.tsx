@@ -3,9 +3,9 @@ import { themes, ThemeVars } from "storybook/theming";
 
 import "../../../packages/ui/src/styles/globals.css";
 
-import React from "react";
-import { DARK_MODE_EVENT_NAME } from "@vueless/storybook-dark-mode";
-import { DocsContextProps } from "storybook/internal/types";
+// import React from "react";
+// import { DARK_MODE_EVENT_NAME } from "@vueless/storybook-dark-mode";
+// import { DocsContextProps } from "storybook/internal/types";
 
 // import "../public/tamagui.css";
 

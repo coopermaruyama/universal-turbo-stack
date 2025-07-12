@@ -45,9 +45,9 @@ export const CardHeader = styled(YStack, {
 export const CardTitle = styled(Text, {
   name: "CardTitle",
 
-  fontSize: "$7", // text-2xl (24px)
+  fontSize: "$4", // text-2xl (24px)
   fontWeight: "600", // font-semibold
-  lineHeight: 1, // leading-none
+  lineHeight: 15,
   color: "$cardForeground",
   letterSpacing: -0.025, // tracking-tight
 });
@@ -58,7 +58,7 @@ export const CardDescription = styled(Text, {
 
   fontSize: "$3", // text-sm
   color: "$mutedForeground",
-  lineHeight: 1.5,
+  lineHeight: 14,
 });
 
 // Card Content

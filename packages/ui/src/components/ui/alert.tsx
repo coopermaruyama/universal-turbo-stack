@@ -42,7 +42,7 @@ function Alert({
     iconSize?: number;
     iconClassName?: string;
   }) {
-  const colors = NAV_THEME[colorScheme.get() ?? "dark"];
+  const colors = NAV_THEME["dark"];
   return (
     <View
       role="alert"

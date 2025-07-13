@@ -4,9 +4,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { CreatePostForm, PostCardSkeleton, PostList } from "@/components/posts";
 import { HydrateClient, prefetch, trpc } from "@/lib/trpc/server";
-import { Button } from "@/ui/button";
 
-import { Button as UIButton } from "@acme/ui/button";
+import { Button } from "@acme/ui/button";
 import { Text } from "@acme/ui/text";
 
 import { auth, getSession, signOut } from "~/lib/auth/server";
@@ -42,9 +41,9 @@ export default async function HomePage() {
             </Button>
           </form>
           <Link href="/ui-test">
-            <UIButton role="link" size="default">
+            <Button role="link" size="default">
               <Text>Kitchen Sink</Text>
-            </UIButton>
+            </Button>
           </Link>
         </div>
       </main>

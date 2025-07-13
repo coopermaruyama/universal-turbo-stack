@@ -45,7 +45,7 @@
     "./switch": "./src/components/ui/switch.tsx",
     "./table": "./src/components/ui/table.tsx",
     "./tabs": "./src/components/ui/tabs.tsx",
-    "./text": "./src/components/ui/text.tsx",
+    "./text": "./src/components/ui/text/index.ts",
     "./textarea": "./src/components/ui/textarea.tsx",
     "./toggle": "./src/components/ui/toggle.tsx",
     "./toggle-group": "./src/components/ui/toggle-group.tsx",

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { View } from "react-native";
 
-import { Text } from "./text";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,6 +10,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "./navigation-menu";
+import { Text } from "./text";
 
 const meta: Meta<typeof NavigationMenu> = {
   title: "UI/NavigationMenu",
@@ -64,9 +64,9 @@ const components = [
 
 export const Default: Story = {
   render: () => (
-    <NavigationMenu>
+    <NavigationMenu value="getting-started" onValueChange={() => {}}>
       <NavigationMenuList>
-        <NavigationMenuItem>
+        <NavigationMenuItem value="getting-started">
           <NavigationMenuTrigger>
             <Text>Getting started</Text>
           </NavigationMenuTrigger>
@@ -104,7 +104,7 @@ export const Default: Story = {
             </View>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        <NavigationMenuItem value="components">
           <NavigationMenuTrigger>
             <Text>Components</Text>
           </NavigationMenuTrigger>
@@ -123,7 +123,7 @@ export const Default: Story = {
             </View>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        <NavigationMenuItem value="resources">
           <NavigationMenuLink className={navigationMenuTriggerStyle()}>
             <Text>Documentation</Text>
           </NavigationMenuLink>
@@ -135,14 +135,14 @@ export const Default: Story = {
 
 export const Simple: Story = {
   render: () => (
-    <NavigationMenu>
+    <NavigationMenu value="products" onValueChange={() => {}}>
       <NavigationMenuList>
-        <NavigationMenuItem>
+        <NavigationMenuItem value="products">
           <NavigationMenuTrigger>
             <Text>Products</Text>
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <View className="grid gap-3 p-4 w-[400px]">
+            <View className="grid w-[400px] gap-3 p-4">
               <View className="grid gap-1">
                 <Text className="text-sm font-medium">Analytics</Text>
                 <Text className="text-sm text-muted-foreground">
@@ -164,12 +164,12 @@ export const Simple: Story = {
             </View>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        <NavigationMenuItem value="pricing">
           <NavigationMenuLink className={navigationMenuTriggerStyle()}>
             <Text>Pricing</Text>
           </NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        <NavigationMenuItem value="about">
           <NavigationMenuLink className={navigationMenuTriggerStyle()}>
             <Text>About</Text>
           </NavigationMenuLink>

@@ -173,16 +173,16 @@ export default function UITestScreen() {
       </Section>
 
       {/* aspect-ratio */}
-      <Section title="Aspect Ratio">
+      {/* <Section title="Aspect Ratio">
         <AspectRatio ratio={16 / 9}>
-          <View className="h-full w-full items-center justify-center rounded-lg">
+          <View className="items-center justify-center w-full h-full rounded-lg">
             <Image
               source={{ uri: "https://github.com/shadcn.png" }}
-              className="h-full w-full items-center justify-center rounded-lg bg-blue-500"
+              className="items-center justify-center w-full h-full bg-blue-500 rounded-lg"
             />
           </View>
         </AspectRatio>
-      </Section>
+      </Section> */}
 
       {/* avatar */}
       <Section title="Avatar">

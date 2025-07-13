@@ -12,7 +12,7 @@ This is a fork of [create-t3-turbo](https://github.com/t3-oss/create-t3-turbo) w
 >
 > Make sure to follow the system requirements specified in [`package.json#engines`](./package.json#L4) before proceeding.
 
-There are two ways of initializing an app using the `create-t3-turbo` starter. You can either use this repository as a template:
+There are two ways of initializing an app using the `universal-turbo-stack` starter. You can either use this repository as a template:
 
 ![use-as-template](https://github.com/t3-oss/create-t3-turbo/assets/51714798/bb6c2e5d-d8b6-416e-aeb3-b3e50e2ca994)
 
@@ -24,9 +24,7 @@ npx create-turbo@latest -e https://github.com/coopermaruyama/universal-turbo-sta
 
 ## About
 
-Ever wondered how to migrate your T3 application into a monorepo? Stop right here! This is the perfect starter repo to get you running with the perfect stack!
-
-It uses [Turborepo](https://turborepo.org) and contains:
+This repo uses [Turborepo](https://turborepo.org) and contains:
 
 ```text
 .github
@@ -74,7 +72,7 @@ tooling
 ## Quick Start
 
 > **Note**
-> The [db](./packages/db) package is preconfigured to use Supabase and is **edge-bound** with the [Vercel Postgres](https://github.com/vercel/storage/tree/main/packages/postgres) driver. If you're using something else, make the necessary modifications to the [schema](./packages/db/src/schema.ts) as well as the [client](./packages/db/src/index.ts) and the [drizzle config](./packages/db/drizzle.config.ts). If you want to switch to non-edge database driver, remove `export const runtime = "edge";` [from all pages and api routes](https://github.com/t3-oss/create-t3-turbo/issues/634#issuecomment-1730240214).
+> The [db](./packages/db) package is preconfigured to use serverless postgres and is **edge-bound** with the [Neon Serverless](https://github.com/neondatabase/serverless) driver. If you're using something else, make the necessary modifications to the [schema](./packages/db/src/schema.ts) as well as the [client](./packages/db/src/index.ts) and the [drizzle config](./packages/db/drizzle.config.ts). If you want to switch to non-edge database driver, remove `export const runtime = "edge";` [from all pages and api routes](https://github.com/t3-oss/create-t3-turbo/issues/634#issuecomment-1730240214).
 
 To get it running, follow the steps below:
 
@@ -104,8 +102,6 @@ pnpm db:push
    +  "dev": "expo start --ios",
    ```
 
-2. Run `pnpm dev` at the project root folder.
-
 #### Use Android Emulator
 
 1. Install Android Studio tools [as shown on expo docs](https://docs.expo.dev/workflow/android-studio-emulator).
@@ -117,6 +113,25 @@ pnpm db:push
    ```
 
 3. Run `pnpm dev` at the project root folder.
+
+### 3. Run the apps
+
+Run `pnpm dev` at the project root folder. This will start Next.js and Expo in development mode.
+
+#### Storybook
+
+Storybook is configured to run on both Expo and Next.js.
+
+For Expo, storybook is already configured to run on the iOS simulator. Use the dev menu
+to switch to the Storybook UI.
+
+For Next.js, you can run Storybook by running the following command:
+
+```bash
+cd apps/nextjs
+
+pnpm storybook
+```
 
 ### 3. Configuring Better-Auth to work with Expo
 
@@ -132,17 +147,7 @@ By using the proxy plugin, the Next.js apps will forward any auth requests to th
 
 You can alternatively add your local IP (e.g. `192.168.x.y:$PORT`) to your OAuth provider. This may not be as reliable as your local IP may change when you change networks. Some OAuth providers may also only support a single callback URL for each app making this approach unviable for some providers (e.g. GitHub).
 
-### 4a. When it's time to add a new UI component
-
-Run the `ui-add` script to add a new UI component using the interactive `shadcn/ui` CLI:
-
-```bash
-pnpm ui-add
-```
-
-When the component(s) has been installed, you should be good to go and start using it in your app.
-
-### 4b. When it's time to add a new package
+### 4. When it's time to add a new package
 
 To add a new package, simply run `pnpm turbo gen init` in the monorepo root. This will prompt you for a package name as well as if you want to install any dependencies to the new package (of course you can also do this yourself later).
 

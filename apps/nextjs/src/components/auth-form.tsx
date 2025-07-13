@@ -367,7 +367,7 @@ export default function AuthForm() {
   const isSignupMode = authMode === "signup";
   // Render Sign In Form (With Tabs)
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4 py-12 transition-colors sm:px-6 lg:px-8">
+    <div className="mx-auto flex min-h-screen items-center justify-center bg-background px-4 py-12 transition-colors sm:px-6 lg:px-8">
       <ThemeToggle />
       <Card className="w-full max-w-md border-muted bg-card px-6">
         <CardHeader>

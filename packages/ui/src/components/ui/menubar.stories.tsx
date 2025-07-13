@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Text } from "./text";
 import {
   Menubar,
   MenubarCheckboxItem,
@@ -17,6 +16,7 @@ import {
   MenubarSubTrigger,
   MenubarTrigger,
 } from "./menubar";
+import { Text } from "./text";
 
 const meta: Meta<typeof Menubar> = {
   title: "UI/Menubar",
@@ -32,7 +32,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <Menubar>
+    <Menubar value="default" onValueChange={(value) => console.log(value)}>
       <MenubarMenu value="file">
         <MenubarTrigger>
           <Text>File</Text>
@@ -124,10 +124,16 @@ export const Default: Story = {
           <Text>View</Text>
         </MenubarTrigger>
         <MenubarContent>
-          <MenubarCheckboxItem>
+          <MenubarCheckboxItem
+            checked
+            onCheckedChange={(checked) => console.log(checked)}
+          >
             <Text>Always Show Bookmarks Bar</Text>
           </MenubarCheckboxItem>
-          <MenubarCheckboxItem checked>
+          <MenubarCheckboxItem
+            checked
+            onCheckedChange={(checked) => console.log(checked)}
+          >
             <Text>Always Show Full URLs</Text>
           </MenubarCheckboxItem>
           <MenubarSeparator />
@@ -154,7 +160,10 @@ export const Default: Story = {
           <Text>Profiles</Text>
         </MenubarTrigger>
         <MenubarContent>
-          <MenubarRadioGroup value="benoit">
+          <MenubarRadioGroup
+            value="benoit"
+            onValueChange={(value) => console.log(value)}
+          >
             <MenubarRadioItem value="andy">
               <Text>Andy</Text>
             </MenubarRadioItem>
@@ -181,7 +190,7 @@ export const Default: Story = {
 
 export const Simple: Story = {
   render: () => (
-    <Menubar>
+    <Menubar value="simple" onValueChange={(value) => console.log(value)}>
       <MenubarMenu value="file">
         <MenubarTrigger>
           <Text>File</Text>

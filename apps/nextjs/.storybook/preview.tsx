@@ -9,10 +9,10 @@ import "../../../packages/ui/src/styles/globals.css";
 
 // import "../public/tamagui.css";
 
-import { TamaguiDecorator } from "./TamaguiDecorator";
+import { AppDecorator } from "./Decorator";
 
 const preview: Preview = {
-  decorators: [TamaguiDecorator],
+  decorators: [AppDecorator],
   parameters: {
     controls: {
       matchers: {

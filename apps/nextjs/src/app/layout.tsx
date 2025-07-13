@@ -1,13 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { Montserrat, Source_Code_Pro } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
-import { ThemeProvider, ThemeToggle } from "@/components/ui/theme";
 import { TRPCReactProvider } from "@/lib/trpc/react";
 import { cn } from "@/lib/utils";
 
 import "../../../../packages/ui/src/styles/globals.css";
 
-import { NextTamaguiProvider } from "@/components/NextTamaguiProvider";
+import { AppProviders } from "@/components/app-providers";
 import { env } from "@/env";
 
 import { PortalHost } from "@acme/ui/index";
@@ -18,18 +17,20 @@ export const metadata: Metadata = {
       ? "https://turbo.t3.gg"
       : "http://localhost:3000",
   ),
-  title: "Create T3 Turbo",
-  description: "Simple monorepo with shared backend for web & mobile apps",
+  title: "Universal Turbo Stack",
+  description:
+    "Simple monorepo with cross-platform capabilities for web & mobile apps",
   openGraph: {
-    title: "Create T3 Turbo",
-    description: "Simple monorepo with shared backend for web & mobile apps",
-    url: "https://create-t3-turbo.vercel.app",
-    siteName: "Create T3 Turbo",
+    title: "Universal Turbo Stack",
+    description:
+      "Simple monorepo with cross-platform capabilities for web & mobile apps",
+    url: "https://github.com/coopermaruyama/universal-turbo-stack",
+    siteName: "Universal Turbo Stack",
   },
   twitter: {
     card: "summary_large_image",
-    site: "@jullerino",
-    creator: "@jullerino",
+    site: "@_cooperton",
+    creator: "@_cooperton",
   },
 };
 
@@ -59,7 +60,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
           sourceCodePro.variable,
         )}
       >
-        <NextTamaguiProvider>
+        <AppProviders>
           <TRPCReactProvider>
             <div
               id="root"
@@ -71,12 +72,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
             >
               {props.children}
             </div>
-            <div className="absolute bottom-4 right-4">
-              <ThemeToggle />
-            </div>
             <Toaster />
           </TRPCReactProvider>
-        </NextTamaguiProvider>
+        </AppProviders>
       </body>
     </html>
   );

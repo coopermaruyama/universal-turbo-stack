@@ -19,14 +19,11 @@ import {
 import { PortalHost } from "@rn-primitives/portal";
 import { QueryClientProvider } from "@tanstack/react-query";
 
-import { TamaguiProvider } from "@acme/tamagui";
-
 import { ThemeToggle } from "~/components/theme-toggle";
 import { queryClient } from "~/lib/api";
 import { NAV_THEME } from "~/lib/constants";
 import { useIsomorphicLayoutEffect } from "~/lib/hooks/useIsomorphicLayoutEffect";
 import { useColorScheme } from "~/lib/useColorScheme";
-import { config } from "../../tamagui.config";
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -71,33 +68,28 @@ export default function RootLayout() {
   return (
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
-        <TamaguiProvider
-          config={config}
-          defaultTheme={isDarkColorScheme ? "dark" : "light"}
-        >
-          <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-            {/*
+        <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
+          {/*
               The Stack component displays the current page.
               It also allows you to configure your screens
             */}
-            <Stack
-              screenOptions={{
-                headerShown: false,
-                statusBarBackgroundColor: theme.background,
-                animation: "none",
-                contentStyle: {
-                  backgroundColor: isDarkColorScheme
-                    ? "hsl(240, 10%, 3.9%)" // dark background
-                    : "hsl(240, 0%, 98%)", // light
-                },
-              }}
-            />
-            {/* Default Portal Host (one per app) */}
-            <PortalHost />
-            <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-            <ThemeToggle />
-          </ThemeProvider>
-        </TamaguiProvider>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              statusBarBackgroundColor: theme.background,
+              animation: "none",
+              contentStyle: {
+                backgroundColor: isDarkColorScheme
+                  ? "hsl(240, 10%, 3.9%)" // dark background
+                  : "hsl(240, 0%, 98%)", // light
+              },
+            }}
+          />
+          {/* Default Portal Host (one per app) */}
+          <PortalHost />
+          <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
+          <ThemeToggle />
+        </ThemeProvider>
       </QueryClientProvider>
     </React.StrictMode>
   );

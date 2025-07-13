@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import { View } from "react-native";
 
-import { Label } from "./label";
-import { Input } from "./input";
 import { Checkbox } from "./checkbox";
+import { Input } from "./input";
+import { Label } from "./label";
 import { Text } from "./text";
 
 const meta: Meta<typeof Label> = {
@@ -29,7 +29,7 @@ export const WithInput: Story = {
   render: () => (
     <View className="grid w-full max-w-sm items-center gap-1.5">
       <Label htmlFor="email">Email</Label>
-      <Input type="email" id="email" placeholder="Email" />
+      <Input id="email" placeholder="Email" />
     </View>
   ),
 };
@@ -52,7 +52,7 @@ export const Required: Story = {
       <Label htmlFor="email">
         Email <Text className="text-destructive">*</Text>
       </Label>
-      <Input type="email" id="email" placeholder="Email" />
+      <Input id="email" placeholder="Email" />
     </View>
   ),
 };
@@ -63,7 +63,7 @@ export const Disabled: Story = {
       <Label htmlFor="disabled" className="opacity-50">
         Disabled Field
       </Label>
-      <Input id="disabled" placeholder="Disabled" disabled />
+      <Input id="disabled" placeholder="Disabled" />
     </View>
   ),
 };

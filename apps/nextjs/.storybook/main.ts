@@ -19,9 +19,7 @@ const config: StorybookConfig = {
   stories: [
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    // "../../../packages/tamagui/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../../../packages/ui/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    // "@acme/tamagui/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   addons: [
     getAbsolutePath("@vueless/storybook-dark-mode"),
@@ -34,7 +32,11 @@ const config: StorybookConfig = {
         jsxImportSource: "nativewind",
         jsxRuntime: "automatic",
         babel: {
-          plugins: [],
+          plugins: [
+            "@babel/plugin-proposal-export-namespace-from",
+            "@babel/plugin-proposal-class-properties",
+            "react-native-reanimated/plugin",
+          ],
         },
         // include: [/packages\/ui\/src/, /@rn-primitives/],
       },
@@ -53,7 +55,7 @@ const config: StorybookConfig = {
   },
   staticDirs: ["../public"],
   viteFinal: async (config, { configType }) => {
-    const { tamaguiPlugin } = await import("@tamagui/vite-plugin");
+    // const { tamaguiPlugin } = await import("@tamagui/vite-plugin");
     return mergeConfig(config, {
       resolve: {
         alias: {
@@ -109,9 +111,6 @@ const config: StorybookConfig = {
           "react-native-gesture-handler",
           "storybook/theming",
           "@vueless/storybook-dark-mode",
-          "tamagui",
-          "@tamagui/config/v4",
-          "@tamagui/font-inter",
         ],
         exclude: [
           "sb-original/default-loader",

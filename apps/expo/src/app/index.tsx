@@ -6,7 +6,6 @@ import { push } from "expo-router/build/global-state/routing";
 import { LegendList } from "@legendapp/list";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { TestShadcnComponents } from "@acme/tamagui";
 import { Button } from "@acme/ui/button";
 import { Input } from "@acme/ui/input";
 import { Text } from "@acme/ui/text";
@@ -161,9 +160,6 @@ export default function Index() {
         <View className="gap-2 px-2">
           <Button onPress={() => router.navigate("/storybook")}>
             <Text>Storybook</Text>
-          </Button>
-          <Button onPress={() => router.navigate("/tamagui-test")}>
-            <Text>Tamagui Test</Text>
           </Button>
           <Button onPress={() => router.navigate("/ui-test")}>
             <Text>UI Test</Text>

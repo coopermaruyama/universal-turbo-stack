@@ -121,19 +121,19 @@ importers:
         version: 1.7.6(@babel/runtime@7.27.4)(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
       '@storybook/addon-ondevice-actions':
         specifier: ^8.6.4
-        version: 8.6.4(bufferutil@4.0.8)(prettier@3.5.3)(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
+        version: 8.6.4(bufferutil@4.0.8)(prettier@3.5.3)(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
       '@storybook/addon-ondevice-backgrounds':
         specifier: ^8.6.4
-        version: 8.6.4(bufferutil@4.0.8)(prettier@3.5.3)(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
+        version: 8.6.4(bufferutil@4.0.8)(prettier@3.5.3)(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
       '@storybook/addon-ondevice-controls':
         specifier: ^8.6.4
-        version: 8.6.4(2870ce35889b60783f267396b922a1dc)
+        version: 8.6.4(90ea6ec9f559b4f600895c9db6c118db)
       '@storybook/addon-react-native-web':
         specifier: ^0.0.29
         version: 0.0.29(@babel/preset-react@7.26.3(@babel/core@7.27.4))(@react-native/babel-preset@0.79.2(@babel/core@7.27.4))(babel-plugin-react-native-web@0.19.13)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@storybook/react-native':
         specifier: ^8.6.4
-        version: 8.6.4(b4a3bca8c9d79a55c5a873b46d46d998)
+        version: 8.6.4(950de1f24541e37151f02d00b911b319)
       '@tanstack/react-query':
         specifier: 'catalog:'
         version: 5.80.7(react@19.0.0)
@@ -649,6 +649,27 @@ importers:
       drizzle-kit:
         specifier: ^0.31.1
         version: 0.31.1
+      eslint:
+        specifier: 'catalog:'
+        version: 9.28.0(jiti@2.4.2)
+      prettier:
+        specifier: 'catalog:'
+        version: 3.5.3
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
+
+  packages/scripts:
+    devDependencies:
+      '@acme/eslint-config':
+        specifier: workspace:*
+        version: link:../../tooling/eslint
+      '@acme/prettier-config':
+        specifier: workspace:*
+        version: link:../../tooling/prettier
+      '@acme/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
       eslint:
         specifier: 'catalog:'
         version: 9.28.0(jiti@2.4.2)
@@ -13635,20 +13656,20 @@ snapshots:
 
   '@standard-schema/utils@0.3.0': {}
 
-  '@storybook/addon-actions@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))':
+  '@storybook/addon-actions@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))':
     dependencies:
       '@storybook/global': 5.0.0
       '@types/uuid': 9.0.8
       dequal: 2.0.3
       polished: 4.3.1
-      storybook: 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)
+      storybook: 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)
       uuid: 9.0.1
 
-  '@storybook/addon-controls@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))':
+  '@storybook/addon-controls@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))':
     dependencies:
       '@storybook/global': 5.0.0
       dequal: 2.0.3
-      storybook: 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)
+      storybook: 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)
       ts-dedent: 2.2.0
 
   '@storybook/addon-docs@9.0.16(@types/react@19.1.6)(storybook@9.0.16(@testing-library/dom@10.4.0)(bufferutil@4.0.8)(prettier@3.5.3))':
@@ -13664,10 +13685,10 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@storybook/addon-ondevice-actions@8.6.4(bufferutil@4.0.8)(prettier@3.5.3)(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))':
+  '@storybook/addon-ondevice-actions@8.6.4(bufferutil@4.0.8)(prettier@3.5.3)(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))':
     dependencies:
-      '@storybook/addon-actions': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
-      '@storybook/core': 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
+      '@storybook/addon-actions': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
+      '@storybook/core': 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
       '@storybook/global': 5.0.0
       fast-deep-equal: 2.0.1
       react: 19.0.0
@@ -13679,9 +13700,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@storybook/addon-ondevice-backgrounds@8.6.4(bufferutil@4.0.8)(prettier@3.5.3)(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))':
+  '@storybook/addon-ondevice-backgrounds@8.6.4(bufferutil@4.0.8)(prettier@3.5.3)(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))':
     dependencies:
-      '@storybook/core': 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
+      '@storybook/core': 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
       '@storybook/react-native-theming': 8.6.4(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
       react: 19.0.0
       react-native: 0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0)
@@ -13692,15 +13713,15 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@storybook/addon-ondevice-controls@8.6.4(2870ce35889b60783f267396b922a1dc)':
+  '@storybook/addon-ondevice-controls@8.6.4(90ea6ec9f559b4f600895c9db6c118db)':
     dependencies:
       '@gorhom/bottom-sheet': 5.1.4(@types/react@19.1.6)(react-native-gesture-handler@2.25.0(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native-reanimated@3.18.0(@babel/core@7.27.4)(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
       '@react-native-community/datetimepicker': 8.4.1(expo@53.0.9(@babel/core@7.27.4)(@expo/metro-runtime@5.0.4(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
       '@react-native-community/slider': 4.5.7
-      '@storybook/addon-controls': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
-      '@storybook/core': 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
+      '@storybook/addon-controls': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
+      '@storybook/core': 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
       '@storybook/react-native-theming': 8.6.4(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
-      '@storybook/react-native-ui': 8.6.4(424edf7c12785de57379eab923f5ac5f)
+      '@storybook/react-native-ui': 8.6.4(039294d299d91e8915ab0b74f90431b8)
       deep-equal: 1.1.2
       prop-types: 15.8.1
       react: 19.0.0
@@ -13764,18 +13785,18 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@storybook/components@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))':
+  '@storybook/components@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))':
     dependencies:
-      storybook: 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)
+      storybook: 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)
 
   '@storybook/core-webpack@9.0.16(storybook@9.0.16(@testing-library/dom@10.4.0)(bufferutil@4.0.8)(prettier@3.5.3))':
     dependencies:
       storybook: 9.0.16(@testing-library/dom@10.4.0)(bufferutil@4.0.8)(prettier@3.5.3)
       ts-dedent: 2.2.0
 
-  '@storybook/core@8.6.14(bufferutil@4.0.8)(prettier@2.8.8)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))':
+  '@storybook/core@8.6.14(bufferutil@4.0.8)(prettier@2.8.8)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))':
     dependencies:
-      '@storybook/theming': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
+      '@storybook/theming': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
       better-opn: 3.0.2
       browser-assert: 1.2.1
       esbuild: 0.25.6
@@ -13794,9 +13815,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@storybook/core@8.6.14(bufferutil@4.0.8)(prettier@3.5.3)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))':
+  '@storybook/core@8.6.14(bufferutil@4.0.8)(prettier@3.5.3)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))':
     dependencies:
-      '@storybook/theming': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
+      '@storybook/theming': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
       better-opn: 3.0.2
       browser-assert: 1.2.1
       esbuild: 0.25.6
@@ -13831,16 +13852,16 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  '@storybook/instrumenter@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))':
+  '@storybook/instrumenter@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))':
     dependencies:
       '@storybook/global': 5.0.0
       '@vitest/utils': 2.1.9
-      storybook: 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)
+      storybook: 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)
     optional: true
 
-  '@storybook/manager-api@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))':
+  '@storybook/manager-api@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))':
     dependencies:
-      storybook: 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)
+      storybook: 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)
 
   '@storybook/nextjs@9.0.16(@swc/core@1.12.9)(esbuild@0.25.6)(next@15.3.5(@babel/core@7.27.4)(@opentelemetry/api@1.9.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@9.0.16(@testing-library/dom@10.4.0)(bufferutil@4.0.8)(prettier@3.5.3))(type-fest@4.41.0)(typescript@5.8.3)(webpack-hot-middleware@2.26.1)(webpack@5.99.9(@swc/core@1.12.9)(esbuild@0.25.6))':
     dependencies:
@@ -13926,9 +13947,9 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@storybook/preview-api@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))':
+  '@storybook/preview-api@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))':
     dependencies:
-      storybook: 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)
+      storybook: 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)
 
   '@storybook/react-docgen-typescript-plugin@1.0.6--canary.9.0c3f3b7.0(typescript@5.8.3)(webpack@5.99.9(@swc/core@1.12.9)(esbuild@0.25.6))':
     dependencies:
@@ -13944,11 +13965,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@storybook/react-dom-shim@8.6.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))':
+  '@storybook/react-dom-shim@8.6.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))':
     dependencies:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
-      storybook: 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)
+      storybook: 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)
 
   '@storybook/react-dom-shim@9.0.16(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@9.0.16(@testing-library/dom@10.4.0)(bufferutil@4.0.8)(prettier@3.5.3))':
     dependencies:
@@ -13962,11 +13983,11 @@ snapshots:
       react: 19.0.0
       react-native: 0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0)
 
-  '@storybook/react-native-ui@8.6.4(424edf7c12785de57379eab923f5ac5f)':
+  '@storybook/react-native-ui@8.6.4(039294d299d91e8915ab0b74f90431b8)':
     dependencies:
       '@gorhom/bottom-sheet': 5.1.4(@types/react@19.1.6)(react-native-gesture-handler@2.25.0(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native-reanimated@3.18.0(@babel/core@7.27.4)(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
-      '@storybook/core': 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
-      '@storybook/react': 8.6.14(@storybook/test@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))(typescript@5.8.3)
+      '@storybook/core': 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
+      '@storybook/react': 8.6.14(@storybook/test@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))(typescript@5.8.3)
       '@storybook/react-native-theming': 8.6.4(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
       fuse.js: 7.1.0
       lodash: 4.17.21
@@ -13989,11 +14010,11 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@storybook/react-native-ui@8.6.4(986990989dc7dca7928a2678354dd16f)':
+  '@storybook/react-native-ui@8.6.4(8dadf113b1fd1fb8e2a1b3d47f3639fe)':
     dependencies:
       '@gorhom/bottom-sheet': 5.1.4(@types/react@19.1.6)(react-native-gesture-handler@2.25.0(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native-reanimated@3.18.0(@babel/core@7.27.4)(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
-      '@storybook/core': 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
-      '@storybook/react': 8.6.14(@storybook/test@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))(typescript@5.8.3)
+      '@storybook/core': 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
+      '@storybook/react': 8.6.14(@storybook/test@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))(typescript@5.8.3)
       '@storybook/react-native-theming': 8.6.4(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
       fuse.js: 7.1.0
       lodash: 4.17.21
@@ -14038,15 +14059,15 @@ snapshots:
       - supports-color
       - typescript
 
-  '@storybook/react-native@8.6.4(b4a3bca8c9d79a55c5a873b46d46d998)':
+  '@storybook/react-native@8.6.4(950de1f24541e37151f02d00b911b319)':
     dependencies:
       '@gorhom/bottom-sheet': 5.1.4(@types/react@19.1.6)(react-native-gesture-handler@2.25.0(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native-reanimated@3.18.0(@babel/core@7.27.4)(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0))(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
-      '@storybook/core': 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
+      '@storybook/core': 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
       '@storybook/csf': 0.1.13
       '@storybook/global': 5.0.0
-      '@storybook/react': 8.6.14(@storybook/test@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))(typescript@5.8.3)
+      '@storybook/react': 8.6.14(@storybook/test@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))(typescript@5.8.3)
       '@storybook/react-native-theming': 8.6.4(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
-      '@storybook/react-native-ui': 8.6.4(986990989dc7dca7928a2678354dd16f)
+      '@storybook/react-native-ui': 8.6.4(8dadf113b1fd1fb8e2a1b3d47f3639fe)
       commander: 8.3.0
       dedent: 1.6.0
       deepmerge: 4.3.1
@@ -14057,7 +14078,7 @@ snapshots:
       react-native-safe-area-context: 5.4.1(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))(react@19.0.0)
       react-native-url-polyfill: 2.0.0(react-native@0.79.2(@babel/core@7.27.4)(@types/react@19.1.6)(bufferutil@4.0.8)(react@19.0.0))
       setimmediate: 1.0.5
-      storybook: 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)
+      storybook: 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)
       type-fest: 2.19.0
       util: 0.12.5
       ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
@@ -14092,19 +14113,19 @@ snapshots:
       - supports-color
       - typescript
 
-  '@storybook/react@8.6.14(@storybook/test@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))(typescript@5.8.3)':
+  '@storybook/react@8.6.14(@storybook/test@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))(typescript@5.8.3)':
     dependencies:
-      '@storybook/components': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
+      '@storybook/components': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
       '@storybook/global': 5.0.0
-      '@storybook/manager-api': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
-      '@storybook/preview-api': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
-      '@storybook/react-dom-shim': 8.6.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
-      '@storybook/theming': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
+      '@storybook/manager-api': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
+      '@storybook/preview-api': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
+      '@storybook/react-dom-shim': 8.6.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
+      '@storybook/theming': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
-      storybook: 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)
+      storybook: 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)
     optionalDependencies:
-      '@storybook/test': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
+      '@storybook/test': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
       typescript: 5.8.3
 
   '@storybook/react@9.0.16(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@9.0.16(@testing-library/dom@10.4.0)(bufferutil@4.0.8)(prettier@3.5.3))(typescript@5.8.3)':
@@ -14117,21 +14138,21 @@ snapshots:
     optionalDependencies:
       typescript: 5.8.3
 
-  '@storybook/test@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))':
+  '@storybook/test@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))':
     dependencies:
       '@storybook/global': 5.0.0
-      '@storybook/instrumenter': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
+      '@storybook/instrumenter': 8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
       '@testing-library/dom': 10.4.0
       '@testing-library/jest-dom': 6.5.0
       '@testing-library/user-event': 14.5.2(@testing-library/dom@10.4.0)
       '@vitest/expect': 2.0.5
       '@vitest/spy': 2.0.5
-      storybook: 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)
+      storybook: 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)
     optional: true
 
-  '@storybook/theming@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))':
+  '@storybook/theming@8.6.14(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))':
     dependencies:
-      storybook: 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)
+      storybook: 8.6.14(bufferutil@4.0.8)(prettier@3.5.3)
 
   '@swc/core-darwin-arm64@1.12.9':
     optional: true
@@ -19935,11 +19956,11 @@ snapshots:
 
   store2@2.14.4: {}
 
-  storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8):
+  storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3):
     dependencies:
-      '@storybook/core': 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)(storybook@8.6.14(bufferutil@4.0.8)(prettier@3.5.3))
+      '@storybook/core': 8.6.14(bufferutil@4.0.8)(prettier@2.8.8)(storybook@8.6.14(bufferutil@4.0.8)(prettier@2.8.8))
     optionalDependencies:
-      prettier: 2.8.8
+      prettier: 3.5.3
     transitivePeerDependencies:
       - bufferutil
       - supports-color

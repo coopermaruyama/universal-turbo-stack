@@ -21,6 +21,7 @@
   "dependencies": {
     "@acme/auth": "workspace:*",
     "@better-auth/expo": "catalog:",
+    "@dotenvx/dotenvx": "^1.48.3",
     "@expo-google-fonts/bebas-neue": "^0.4.0",
     "@expo-google-fonts/montserrat": "^0.4.1",
     "@expo-google-fonts/source-code-pro": "^0.4.0",

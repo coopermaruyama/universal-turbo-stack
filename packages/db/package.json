@@ -27,7 +27,8 @@
     "push": "pnpm with-env drizzle-kit push",
     "studio": "pnpm with-env drizzle-kit studio",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-    "with-env": "dotenv -e ../../.env --"
+    "genmigration": "pnpm with-env drizzle-kit generate",
+    "with-env": "../scripts/with-env.sh"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",

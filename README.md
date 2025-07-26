@@ -53,9 +53,9 @@ packages
   ├─ auth
   |   └─ Authentication using better-auth.
   ├─ db
-  |   └─ Typesafe db calls using Drizzle & Supabase
+  |   └─ Typesafe db calls using Drizzle & Postgres
   └─ ui
-      └─ Start of a UI package for the webapp using shadcn-ui
+      └─ Cross-platform UI components using React Native Reusables
 tooling
   ├─ eslint
   |   └─ shared, fine-grained, eslint presets
@@ -72,7 +72,7 @@ tooling
 ## Quick Start
 
 > **Note**
-> The [db](./packages/db) package is preconfigured to use serverless postgres and is **edge-bound** with the [Neon Serverless](https://github.com/neondatabase/serverless) driver. If you're using something else, make the necessary modifications to the [schema](./packages/db/src/schema.ts) as well as the [client](./packages/db/src/index.ts) and the [drizzle config](./packages/db/drizzle.config.ts). If you want to switch to non-edge database driver, remove `export const runtime = "edge";` [from all pages and api routes](https://github.com/t3-oss/create-t3-turbo/issues/634#issuecomment-1730240214).
+> The [db](./packages/db) package is preconfigured to use serverless postgres and is **edge-bound** with the [Neon Serverless](https://github.com/neondatabase/serverless) driver in production, and regular postgres in dev. If you're using something else, make the necessary modifications to the [schema](./packages/db/src/schema.ts) as well as the [client](./packages/db/src/index.ts) and the [drizzle config](./packages/db/drizzle.config.ts). If you want to switch to non-edge database driver, remove `export const runtime = "edge";` from all pages and api routes
 
 To get it running, follow the steps below:
 
@@ -83,8 +83,17 @@ To get it running, follow the steps below:
 pnpm i
 
 # Configure environment variables
-# There is an `.env.example` in the root directory you can use for reference
-cp .env.example .env
+# Environment variables are checked in but encrypted for security. The encryption
+# keys are store in .env.keys and should not be checked in.
+echo << EOF > .env.keys
+#/------------------!DOTENV_PRIVATE_KEYS!-------------------/
+#/ private decryption keys. DO NOT commit to source control /
+#/     [how it works](https://dotenvx.com/encryption)       /
+#/----------------------------------------------------------/
+# .env.development
+DOTENV_PRIVATE_KEY_DEVELOPMENT=32481a02ef873fd2386669251ef0d7d5083f76465f92e013cc9948c403fcc20b
+
+EOF
 
 # Push the Drizzle schema to the database
 pnpm db:push

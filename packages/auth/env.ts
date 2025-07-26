@@ -16,8 +16,8 @@ export function authEnv() {
       AUTH_GITHUB_ID: z.string().optional(),
       AUTH_GITHUB_SECRET: z.string().optional(),
       BETTER_AUTH_URL: z.string().url().optional(),
-      SENDGRID_API_KEY: z.string().min(1),
-      EMAIL_FROM: z.string().email(),
+      SENDGRID_API_KEY: z.string().optional(),
+      EMAIL_FROM: z.string().email().optional(),
       PORT: z.coerce.number().optional(),
     },
     client: {

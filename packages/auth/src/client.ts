@@ -1,5 +1,4 @@
-import { createAuthClient as createBetterAuthClient } from 'better-auth/react';
-import { env } from '@acme/auth/env';
+import { createAuthClient as createBetterAuthClient } from "better-auth/react";
 
 export interface AuthClientOptions {
   apiBaseUrl: string;

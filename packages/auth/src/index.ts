@@ -1,13 +1,10 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import type { SocialProviders } from "better-auth/social-providers";
+import { db } from "@acme/db/client";
 import { expo } from "@better-auth/expo";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
-import { oAuthProxy } from "better-auth/plugins";
 import { passkey } from "better-auth/plugins/passkey";
-
-import { db } from "@acme/db/client";
+import type { SocialProviders } from "better-auth/social-providers";
 
 import { initEmailOTProvider, sendEmail } from "./email";
 
@@ -44,11 +41,11 @@ export function initAuth(options: {
     secret: options.secret,
     plugins: [
       passkey({}),
-      ...(canSendEmail
+      ...(options.sendgridApiKey && options.emailFrom
         ? [
             initEmailOTProvider({
-              sendgridApiKey: options.sendgridApiKey!,
-              emailFrom: options.emailFrom!,
+              sendgridApiKey: options.sendgridApiKey,
+              emailFrom: options.emailFrom,
               baseUrl: options.baseUrl,
               debug: options.debug,
             }),
@@ -90,8 +87,8 @@ export function initAuth(options: {
               },
               request,
               baseUrl: options.baseUrl,
-              sendgridApiKey: options.sendgridApiKey!,
-              emailFrom: options.emailFrom!,
+              sendgridApiKey: options.sendgridApiKey || "",
+              emailFrom: options.emailFrom || "",
             })
         : undefined,
     },

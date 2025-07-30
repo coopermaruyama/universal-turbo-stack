@@ -1,12 +1,8 @@
 import type { Decorator } from "@storybook/nextjs";
-import { useEffect, useState } from "react";
+import { useDarkMode } from "@vueless/storybook-dark-mode";
 import { ThemeProvider } from "@/components/theme-provider";
-import {
-  DARK_MODE_EVENT_NAME,
-  useDarkMode,
-} from "@vueless/storybook-dark-mode";
 
-export const AppDecorator: Decorator = (Story, context) => {
+export const AppDecorator: Decorator = (Story, _context) => {
   return (
     <ThemeProvider>
       <div className={useDarkMode() ? "dark" : "light"}>

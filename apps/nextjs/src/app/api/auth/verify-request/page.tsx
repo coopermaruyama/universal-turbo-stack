@@ -1,6 +1,5 @@
 import { cookies, headers } from "next/headers";
-import { redirect, RedirectType } from "next/navigation";
-import { useSession } from "@/lib/auth/client";
+import { RedirectType, redirect } from "next/navigation";
 
 import { auth } from "~/auth/server";
 import VeryifyRequestForm from "./_components/form";

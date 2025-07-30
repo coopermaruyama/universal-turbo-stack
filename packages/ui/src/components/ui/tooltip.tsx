@@ -1,10 +1,9 @@
-import * as React from "react";
-import { Platform, StyleSheet } from "react-native";
-import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
-import * as TooltipPrimitive from "@rn-primitives/tooltip";
-
 import { cn } from "@acme/ui/lib/utils";
 import { TextClassContext } from "@acme/ui/text";
+import * as TooltipPrimitive from "@rn-primitives/tooltip";
+import type * as React from "react";
+import { Platform, StyleSheet } from "react-native";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 
 const Tooltip = TooltipPrimitive.Root;
 const TooltipTrigger = TooltipPrimitive.Trigger;

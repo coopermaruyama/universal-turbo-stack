@@ -5,6 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 
 This is a T3 Turbo monorepo combining Next.js 15 and Expo (React Native) apps with shared packages. The project uses:
+
 - **Turborepo** for monorepo management
 - **pnpm** as package manager (requires pnpm@>=9.6.0)
 - **React 19** across both apps
@@ -18,6 +19,7 @@ This is a T3 Turbo monorepo combining Next.js 15 and Expo (React Native) apps wi
 ## Development Commands
 
 ### Common Commands (run from root)
+
 ```bash
 # Install dependencies
 pnpm i
@@ -58,6 +60,7 @@ pnpm clean:workspaces
 ```
 
 ### Next.js App Commands (from apps/nextjs)
+
 ```bash
 # Development with Turbopack
 pnpm dev
@@ -76,6 +79,7 @@ pnpm ui-add
 ```
 
 ### Expo App Commands (from apps/expo)
+
 ```bash
 # Start development server
 pnpm dev
@@ -99,6 +103,7 @@ pnpm ui-add
 ## Architecture Overview
 
 ### Monorepo Structure
+
 ```
 apps/
 ├── expo/          # React Native app using Expo SDK 53
@@ -113,7 +118,6 @@ packages/
 └── validators/    # Shared Zod validation schemas
 
 tooling/
-├── eslint/        # Shared ESLint configurations
 ├── prettier/      # Shared Prettier configuration
 ├── tailwind/      # Shared Tailwind configurations
 └── typescript/    # Shared TypeScript configurations
@@ -131,6 +135,7 @@ tooling/
 ### Environment Setup
 
 1. Copy `.env.example` to `.env` and configure:
+
    - `POSTGRES_URL` - Supabase database connection
    - `AUTH_SECRET` - Generate with `openssl rand -base64 32`
    - OAuth credentials (Discord, Google)
@@ -153,6 +158,7 @@ The project doesn't have a specific test setup configured. Check individual pack
 ### Mobile Development
 
 For Expo development, you need either:
+
 - iOS: XCode and iOS Simulator
 - Android: Android Studio and emulator
 - Physical device with Expo Go app
@@ -161,7 +167,7 @@ Configure the dev script in `apps/expo/package.json` for your preferred platform
 
 ## Development Guidelines
 
-- **Web Interface Changes**: 
+- **Web Interface Changes**:
   - If a change was made to a web interface, use the playwright mcp to check your work, or ask me to give you a screenshot as a fallback
 
 ## Playwright Best Practices

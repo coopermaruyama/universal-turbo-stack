@@ -1,16 +1,15 @@
 "use client";
 
-import type { StyleProp, TextProps, ViewStyle } from "react-native";
-import * as React from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
-import * as DropdownMenuPrimitive from "@rn-primitives/dropdown-menu";
-
 import { Check } from "@acme/ui/lib/icons/Check";
 import { ChevronDown } from "@acme/ui/lib/icons/ChevronDown";
 import { ChevronRight } from "@acme/ui/lib/icons/ChevronRight";
 import { ChevronUp } from "@acme/ui/lib/icons/ChevronUp";
 import { cn } from "@acme/ui/lib/utils";
 import { TextClassContext } from "@acme/ui/text";
+import * as DropdownMenuPrimitive from "@rn-primitives/dropdown-menu";
+import type * as React from "react";
+import type { StyleProp, TextProps, ViewStyle } from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 

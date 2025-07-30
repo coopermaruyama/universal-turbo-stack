@@ -58,7 +58,7 @@ export const LongText: Story = {
       </TooltipTrigger>
       <TooltipContent className="max-w-xs">
         <Text>
-          This is a longer tooltip message that provides additional context and 
+          This is a longer tooltip message that provides additional context and
           information about the button or action.
         </Text>
       </TooltipContent>

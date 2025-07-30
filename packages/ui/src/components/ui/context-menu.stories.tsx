@@ -1,13 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
 import { View } from "react-native";
-
-import { Text } from "./text";
 import {
   ContextMenu,
   ContextMenuCheckboxItem,
   ContextMenuContent,
-  ContextMenuGroup,
   ContextMenuItem,
   ContextMenuLabel,
   ContextMenuRadioGroup,
@@ -19,6 +15,7 @@ import {
   ContextMenuSubTrigger,
   ContextMenuTrigger,
 } from "./context-menu";
+import { Text } from "./text";
 
 const meta: Meta<typeof ContextMenu> = {
   title: "UI/ContextMenu",

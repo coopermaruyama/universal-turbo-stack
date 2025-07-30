@@ -7,12 +7,12 @@
     "build": "pnpm with-env next build",
     "clean": "git clean -xdf .cache .next .turbo node_modules",
     "dev": "pnpm with-env next dev --turbopack",
-    "format": "prettier --check . --ignore-path ../../.gitignore",
-    "lint": "eslint",
+    "format": "biome format .",
+    "lint": "biome lint .",
     "start": "pnpm with-env next start",
     "typecheck": "tsc --noEmit",
     "with-env": "dotenvx run --convention=nextjs -fk ../../.env.keys --",
-    "ui-add": "pnpm dlx shadcn@latest add --overwrite && prettier src --write --list-different",
+    "ui-add": "pnpm dlx shadcn@latest add --overwrite && biome format src --write",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -76,8 +76,6 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
     "@acme/tailwind-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
@@ -90,19 +88,10 @@
     "@types/react-dom": "catalog:react19",
     "@vitejs/plugin-react": "^4.6.0",
     "@vueless/storybook-dark-mode": "^9.0.6",
-    "eslint": "catalog:",
-    "eslint-plugin-storybook": "^9.0.15",
     "jiti": "^2.4.2",
-    "prettier": "catalog:",
     "storybook": "^9.0.16",
     "tailwindcss": "catalog:",
     "typescript": "catalog:",
     "vite-plugin-react-native-web": "^2.1.1"
-  },
-  "prettier": "@acme/prettier-config",
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
   }
 }

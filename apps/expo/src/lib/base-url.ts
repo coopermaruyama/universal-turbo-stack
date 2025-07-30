@@ -18,9 +18,6 @@ export const getBaseUrl = () => {
 
   if (!localhost) {
     return "http://localhost:3000";
-    throw new Error(
-      "Failed to get localhost. Please point to your production server.",
-    );
   }
   return `http://${localhost}:3000`;
 };

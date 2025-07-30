@@ -1,7 +1,5 @@
-import { Suspense } from "react";
 import AuthForm from "@/components/auth-form";
-import { CreatePostForm, PostCardSkeleton, PostList } from "@/components/posts";
-import { HydrateClient, prefetch, trpc } from "@/lib/trpc/server";
+import { HydrateClient } from "@/lib/trpc/server";
 
 export default function LoginPage() {
   return (

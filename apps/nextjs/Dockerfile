@@ -1,63 +1,110 @@
-# syntax = docker/dockerfile:1
+# syntax=docker/dockerfile:1
 
-# Adjust NODE_VERSION as desired
-ARG NODE_VERSION=24.3.0
-FROM node:${NODE_VERSION}-slim as base
+# ========== Build Arguments ==========
+ARG NODE_VERSION=22.14.0
+ARG PNPM_VERSION=10.11.1
 
-LABEL fly_launch_runtime="NodeJS"
+# ========== Base Stage ==========
+FROM node:${NODE_VERSION}-alpine AS base
 
-# NodeJS app lives here
+# Install dependencies required for node-gyp
+RUN apk add --no-cache libc6-compat python3 make g++
+
+# Enable corepack for pnpm
+RUN corepack enable && corepack prepare pnpm@${PNPM_VERSION} --activate
+
 WORKDIR /app
 
-# Set production environment
-ENV NODE_ENV=production
+# ========== Dependencies Stage ==========
+FROM base AS deps
 
+# Copy workspace configuration
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml turbo.json ./
 
-# Throw-away build stage to reduce size of final image
-FROM base as build
+# Create directory structure and copy package.json files
+COPY apps/nextjs/package.json ./apps/nextjs/
+COPY apps/expo/package.json ./apps/expo/
 
-# Install packages needed to build node modules
-RUN apt-get update -qq && \
-    apt-get install -y python-is-python3 pkg-config build-essential
+# Copy packages
+COPY packages/api/package.json ./packages/api/
+COPY packages/auth/package.json ./packages/auth/
+COPY packages/db/package.json ./packages/db/
+COPY packages/liteapi/package.json ./packages/liteapi/
+COPY packages/ui/package.json ./packages/ui/
+COPY packages/validators/package.json ./packages/validators/
 
-# Install node modules
-RUN corepack enable
-RUN corepack prepare pnpm@latest --activate
-# COPY --link package.json pnpm-lock.yaml ./
+# Copy tooling
+COPY tooling/github/package.json ./tooling/github/
+COPY tooling/prettier/package.json ./tooling/prettier/
+COPY tooling/tailwind/package.json ./tooling/tailwind/
+COPY tooling/typescript/package.json ./tooling/typescript/
 
-# Copy application code
-COPY --link . .
-
-# Build application
+# Install dependencies
 RUN pnpm install --frozen-lockfile
+
+# ========== Builder Stage ==========
+FROM base AS builder
+
+# Copy all installed dependencies from deps stage
+COPY --from=deps /app ./
+
+# Copy source code (excluding env files that will be handled separately)
+COPY . .
+
+# Set build-time environment variables
 ARG DOTENV_PRIVATE_KEY_PRODUCTION
+ARG NODE_ENV="production"
 ENV DOTENV_PRIVATE_KEY_PRODUCTION=${DOTENV_PRIVATE_KEY_PRODUCTION}
-RUN pnpm run build
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=${NODE_ENV}
 
-# Remove development dependencies
-RUN pnpm prune --production
+# Build the application using dotenvx convention
+WORKDIR /app/apps/nextjs
+RUN npm install -g @dotenvx/dotenvx@latest
+RUN echo "DEBUG: DOTENV_PRIVATE_KEY_PRODUCTION (len)=${#DOTENV_PRIVATE_KEY_PRODUCTION}"
+RUN DOTENV_PRIVATE_KEY_PRODUCTION=$DOTENV_PRIVATE_KEY_PRODUCTION dotenvx run --convention=nextjs -- pnpm next build
 
+# ========== Runner Stage ==========
+FROM node:${NODE_VERSION}-alpine AS runner
 
-# Final stage for app image
-FROM base
+# Install runtime dependencies
+RUN apk add --no-cache libc6-compat curl bash
 
-# Copy built application
-# COPY --from=build /apps/nextjs /app
-COPY --from=build /app/apps/nextjs/.next/standalone /app
-COPY --from=build /app/apps/nextjs/.next/static /app/apps/nextjs/.next/static
-COPY --from=build /app/apps/nextjs/public /app/apps/nextjs/public
-COPY --from=build /app/packages/db /app/packages/db
-COPY --from=build /app/apps/nextjs/.env.production /app/.env.production
-COPY --from=build /app/apps/nextjs/start.sh /app/start.sh
+# Install dotenvx globally
+RUN npm install -g @dotenvx/dotenvx@latest
 
-RUN npm install -g @dotenvx/dotenvx
+# Create non-root user
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nextjs -u 1001
 
-RUN chmod +x /app/start.sh
+WORKDIR /app
 
-# listen on port 3000
+# Copy production files
+COPY --from=builder --chown=nextjs:nodejs /app/apps/nextjs/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/apps/nextjs/.next/static ./apps/nextjs/.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/apps/nextjs/public ./apps/nextjs/public
+
+# Copy database package for migrations with its node_modules
+COPY --from=builder --chown=nextjs:nodejs /app/packages/db ./packages/db
+
+# Copy environment files if they exist
+COPY --chown=nextjs:nodejs .env.production* ./
+
+# Copy start script and set permissions
+COPY apps/nextjs/start.sh ./start.sh
+RUN chmod +x ./start.sh && chown nextjs:nodejs ./start.sh
+
+# Set runtime environment
+ENV HOSTNAME="0.0.0.0"
+ENV PORT=3000
+ENV NEXT_TELEMETRY_DISABLED=1
+
+USER nextjs
+
 EXPOSE 3000
 
-WORKDIR /app
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
+  CMD curl -f http://localhost:3000/api/health || exit 1
 
-# Start the server by default, this can be overwritten at runtime
-CMD ["/app/start.sh"]
+CMD ["dotenvx", "run", "--convention=nextjs", "--", "./start.sh"]

@@ -1,6 +1,9 @@
 "use client";
 
-import * as React from "react";
+import { cn } from "@acme/ui/lib/utils";
+import { TextClassContext } from "@acme/ui/text";
+import * as AccordionPrimitive from "@rn-primitives/accordion";
+import type * as React from "react";
 import { Platform, Pressable, View } from "react-native";
 import Animated, {
   Extrapolation,
@@ -13,10 +16,6 @@ import Animated, {
   useDerivedValue,
   withTiming,
 } from "react-native-reanimated";
-import * as AccordionPrimitive from "@rn-primitives/accordion";
-
-import { cn } from "@acme/ui/lib/utils";
-import { TextClassContext } from "@acme/ui/text";
 
 import { ChevronDown } from "../../lib/icons/ChevronDown";
 

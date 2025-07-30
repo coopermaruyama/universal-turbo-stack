@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { View } from "react-native";
-
-import { Text } from "./text";
 import { Separator } from "./separator";
+import { Text } from "./text";
 
 const meta: Meta<typeof Separator> = {
   title: "UI/Separator",
@@ -29,7 +28,9 @@ export const Default: Story = {
   render: () => (
     <View className="w-80">
       <View className="space-y-1">
-        <Text className="text-sm font-medium leading-none">Radix Primitives</Text>
+        <Text className="text-sm font-medium leading-none">
+          Radix Primitives
+        </Text>
         <Text className="text-sm text-muted-foreground">
           An open-source UI component library.
         </Text>

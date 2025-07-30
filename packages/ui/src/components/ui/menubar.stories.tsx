@@ -5,7 +5,6 @@ import {
   MenubarCheckboxItem,
   MenubarContent,
   MenubarItem,
-  MenubarLabel,
   MenubarMenu,
   MenubarRadioGroup,
   MenubarRadioItem,

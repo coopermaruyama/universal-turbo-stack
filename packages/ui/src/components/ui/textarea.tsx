@@ -1,8 +1,7 @@
-import type { TextInputProps } from "react-native";
-import * as React from "react";
-import { TextInput } from "react-native";
-
 import { cn } from "@acme/ui/lib/utils";
+import type * as React from "react";
+import type { TextInputProps } from "react-native";
+import { TextInput } from "react-native";
 
 function Textarea({
   className,

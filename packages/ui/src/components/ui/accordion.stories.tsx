@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
-import { Text } from "./text";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "./accordion";
+import { Text } from "./text";
 
 const meta: Meta<typeof Accordion> = {
   title: "UI/Accordion",
@@ -37,7 +36,8 @@ export const Default: Story = {
         </AccordionTrigger>
         <AccordionContent>
           <Text>
-            Yes. It comes with default styles that matches the other components&apos; aesthetic.
+            Yes. It comes with default styles that matches the other
+            components&apos; aesthetic.
           </Text>
         </AccordionContent>
       </AccordionItem>
@@ -47,7 +47,8 @@ export const Default: Story = {
         </AccordionTrigger>
         <AccordionContent>
           <Text>
-            Yes. It&apos;s animated by default, but you can disable it if you prefer.
+            Yes. It&apos;s animated by default, but you can disable it if you
+            prefer.
           </Text>
         </AccordionContent>
       </AccordionItem>

@@ -1,16 +1,12 @@
 import "@acme/ui/globals.css";
 
-import type { Theme } from "@react-navigation/native";
-import * as React from "react";
-import { Platform } from "react-native";
-import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import {
   Montserrat_300Light,
   Montserrat_400Regular,
   Montserrat_700Bold,
   useFonts,
 } from "@expo-google-fonts/montserrat";
+import type { Theme } from "@react-navigation/native";
 import {
   DarkTheme,
   DefaultTheme,
@@ -18,6 +14,10 @@ import {
 } from "@react-navigation/native";
 import { PortalHost } from "@rn-primitives/portal";
 import { QueryClientProvider } from "@tanstack/react-query";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import * as React from "react";
+import { Platform } from "react-native";
 
 import { ThemeToggle } from "~/components/theme-toggle";
 import { queryClient } from "~/lib/api";
@@ -42,7 +42,7 @@ export default function RootLayout() {
   const isDarkColorScheme = colorScheme !== "light";
   const theme = NAV_THEME[colorScheme ?? "dark"];
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
-  const fontsLoaded = useFonts({
+  const _fontsLoaded = useFonts({
     Montserrat_400Regular,
     Montserrat_300Light,
     Montserrat_700Bold,

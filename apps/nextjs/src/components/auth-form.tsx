@@ -1,9 +1,17 @@
 "use client";
 
-import type React from "react";
-import { useEffect, useState } from "react";
+import {
+  CheckCircle,
+  CircleAlert,
+  Eye,
+  EyeOff,
+  Fingerprint,
+  MessageCircle,
+} from "lucide-react";
 // import { Platform } from "react-native";
 import { useRouter } from "next/navigation";
+import type React from "react";
+import { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth/client";
 import { Alert, AlertDescription, AlertTitle } from "@/ui/alert";
 import { Button } from "@/ui/button";
@@ -17,14 +25,6 @@ import {
 import { Input } from "@/ui/input";
 import { Label } from "@/ui/label";
 import { Separator } from "@/ui/separator";
-import {
-  CheckCircle,
-  CircleAlert,
-  Eye,
-  EyeOff,
-  Fingerprint,
-  MessageCircle,
-} from "lucide-react";
 
 import { ThemeToggle } from "./theme-toggle";
 
@@ -55,7 +55,9 @@ const Google = ({
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
+    aria-label="Google"
   >
+    <title>Google</title>
     <circle cx="12" cy="12" r="10"></circle>
     <path d="M12 8v8"></path>
     <path d="M8 12h8"></path>
@@ -112,11 +114,11 @@ export default function AuthForm() {
   // Email/Password form state
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [name, _setName] = useState("");
 
   // SIWE state
-  const [walletConnected, setWalletConnected] = useState(false);
-  const [walletAddress, setWalletAddress] = useState("");
+  const [_walletConnected, _setWalletConnected] = useState(false);
+  const [_walletAddress, _setWalletAddress] = useState("");
 
   // Check if wallet is already connected
   useEffect(() => {
@@ -147,7 +149,7 @@ export default function AuthForm() {
 
     try {
       if (authMode === "signup") {
-        const { data, error } = await authClient.signUp.email({
+        const { error } = await authClient.signUp.email({
           email,
           password,
           name,
@@ -160,7 +162,7 @@ export default function AuthForm() {
         );
         router.replace("/");
       } else {
-        const { data, error } = await authClient.signIn.email({
+        const { error } = await authClient.signIn.email({
           email,
           password,
         });
@@ -182,7 +184,7 @@ export default function AuthForm() {
     setError("");
 
     try {
-      const { data, error } = await authClient.signIn.social(
+      const { error } = await authClient.signIn.social(
         {
           provider,
           callbackURL: "/",
@@ -205,7 +207,7 @@ export default function AuthForm() {
   };
 
   // SIWE Functions
-  const connectWallet = async () => {
+  const _connectWallet = async () => {
     // if (!window.ethereum) {
     //   setError("Please install MetaMask or another Ethereum wallet");
     //   return;
@@ -227,7 +229,7 @@ export default function AuthForm() {
     // }
   };
 
-  const handleSIWE = async () => {
+  const _handleSIWE = async () => {
     //     if (!walletConnected) {
     //       await connectWallet();
     //       return;
@@ -285,7 +287,7 @@ export default function AuthForm() {
   };
 
   const handlePasskeyAuth = async () => {
-    const result = await authClient.signIn.passkey({
+    const _ = await authClient.signIn.passkey({
       autoFill: true,
       email,
     });

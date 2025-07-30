@@ -1,7 +1,6 @@
-import * as React from "react";
-import * as AvatarPrimitive from "@rn-primitives/avatar";
-
 import { cn } from "@acme/ui/lib/utils";
+import * as AvatarPrimitive from "@rn-primitives/avatar";
+import type * as React from "react";
 
 function Avatar({
   className,

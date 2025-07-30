@@ -1,12 +1,11 @@
-import * as React from "react";
-import { Platform, StyleSheet, View } from "react-native";
-import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
-import * as SelectPrimitive from "@rn-primitives/select";
-
 import { Check } from "@acme/ui/lib/icons/Check";
 import { ChevronDown } from "@acme/ui/lib/icons/ChevronDown";
 import { ChevronUp } from "@acme/ui/lib/icons/ChevronUp";
 import { cn } from "@acme/ui/lib/utils";
+import * as SelectPrimitive from "@rn-primitives/select";
+import type * as React from "react";
+import { Platform, StyleSheet, View } from "react-native";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 
 type Option = SelectPrimitive.Option;
 

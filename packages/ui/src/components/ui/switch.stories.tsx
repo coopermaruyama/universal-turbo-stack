@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import { View } from "react-native";
-
-import { Text } from "./text";
 import { Label } from "./label";
 import { Switch } from "./switch";
+import { Text } from "./text";
 
 const meta: Meta<typeof Switch> = {
   title: "UI/Switch",
@@ -59,7 +58,11 @@ export const WithLabel: Story = {
     const [checked, setChecked] = React.useState(false);
     return (
       <View className="flex flex-row items-center space-x-2">
-        <Switch id="airplane-mode" checked={checked} onCheckedChange={setChecked} />
+        <Switch
+          id="airplane-mode"
+          checked={checked}
+          onCheckedChange={setChecked}
+        />
         <Label htmlFor="airplane-mode">
           <Text>Airplane Mode</Text>
         </Label>
@@ -77,7 +80,11 @@ export const WithDescription: Story = {
           <Label htmlFor="notifications">
             <Text className="font-medium">Push Notifications</Text>
           </Label>
-          <Switch id="notifications" checked={checked} onCheckedChange={setChecked} />
+          <Switch
+            id="notifications"
+            checked={checked}
+            onCheckedChange={setChecked}
+          />
         </View>
         <Text className="text-sm text-muted-foreground">
           Receive notifications about new messages and updates.

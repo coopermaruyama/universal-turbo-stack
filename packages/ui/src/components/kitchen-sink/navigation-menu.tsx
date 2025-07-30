@@ -1,7 +1,4 @@
 // import { useNavigation } from 'expo-router';
-import * as React from "react";
-import { Platform, Pressable, StyleSheet, View } from "react-native";
-import { Sparkles } from "lucide-react-native";
 
 import { Icon } from "@acme/ui/icon";
 import { cn } from "@acme/ui/lib/utils";
@@ -16,6 +13,9 @@ import {
   navigationMenuTriggerStyle,
 } from "@acme/ui/navigation-menu";
 import { Text } from "@acme/ui/text";
+import { Sparkles } from "lucide-react-native";
+import * as React from "react";
+import { Platform, Pressable, StyleSheet, View } from "react-native";
 
 export default function NavigationMenuScreen() {
   //   const insets = useSafeAreaInsets();

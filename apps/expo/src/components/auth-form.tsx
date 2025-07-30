@@ -1,8 +1,3 @@
-import type React from "react";
-import { useEffect, useState } from "react";
-import { Platform, View } from "react-native";
-import { useRouter } from "expo-router";
-
 import { Alert, AlertDescription } from "@acme/ui/alert";
 import { Button } from "@acme/ui/button";
 import {
@@ -17,12 +12,13 @@ import { Label } from "@acme/ui/label";
 import { Separator } from "@acme/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@acme/ui/tabs";
 import { Text } from "@acme/ui/text";
-import { H1, H2, H3, H4 } from "@acme/ui/typography";
+import { H2 } from "@acme/ui/typography";
+import { useRouter } from "expo-router";
+import type React from "react";
+import { useEffect, useState } from "react";
+import { Platform, View } from "react-native";
 
-import { Apple } from "~/lib/icons/Apple";
-import { AppleLogo } from "~/lib/icons/AppleLogo";
 import { CheckCircle } from "~/lib/icons/CheckCircle";
-import { Chrome } from "~/lib/icons/Chrome";
 import { CircleAlert } from "~/lib/icons/CircleAlert";
 import { Eye } from "~/lib/icons/Eye";
 import { EyeOff } from "~/lib/icons/EyeOff";
@@ -30,7 +26,6 @@ import { Fingerprint } from "~/lib/icons/Fingerprint";
 import { Google } from "~/lib/icons/Google";
 import { Mail } from "~/lib/icons/Mail";
 import { MessageCircle } from "~/lib/icons/MessageCircle";
-import { Wallet } from "~/lib/icons/Wallet";
 import { authClient } from "~/utils/auth";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -71,7 +66,7 @@ function SocialButton({
 }
 
 // Email/Passkey Tabs component
-function EmailPasskeyTabs({
+function _EmailPasskeyTabs({
   email,
   setEmail,
   password,
@@ -195,11 +190,11 @@ export default function AuthForm() {
   // Email/Password form state
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [name, _setName] = useState("");
 
   // SIWE state
-  const [walletConnected, setWalletConnected] = useState(false);
-  const [walletAddress, setWalletAddress] = useState("");
+  const [_walletConnected, _setWalletConnected] = useState(false);
+  const [_walletAddress, _setWalletAddress] = useState("");
 
   // Check if wallet is already connected
   useEffect(() => {
@@ -230,7 +225,7 @@ export default function AuthForm() {
 
     try {
       if (authMode === "signup") {
-        const { data, error } = await authClient.signUp.email({
+        const { error } = await authClient.signUp.email({
           email,
           password,
           name,
@@ -243,7 +238,7 @@ export default function AuthForm() {
         );
         router.push("/");
       } else {
-        const { data, error } = await authClient.signIn.email({
+        const { error } = await authClient.signIn.email({
           email,
           password,
         });
@@ -265,7 +260,7 @@ export default function AuthForm() {
     setError("");
 
     try {
-      const { data, error } = await authClient.signIn.social(
+      const { error } = await authClient.signIn.social(
         {
           provider,
           callbackURL: "expo://",
@@ -277,6 +272,9 @@ export default function AuthForm() {
           },
         },
       );
+      if (error?.message) {
+        throw new Error(error.message);
+      }
     } catch (err: any) {
       setError(err.message || `${provider} authentication failed`);
     } finally {
@@ -285,7 +283,7 @@ export default function AuthForm() {
   };
 
   // SIWE Functions
-  const connectWallet = async () => {
+  const _connectWallet = async () => {
     // if (!window.ethereum) {
     //   setError("Please install MetaMask or another Ethereum wallet");
     //   return;
@@ -307,7 +305,7 @@ export default function AuthForm() {
     // }
   };
 
-  const handleSIWE = async () => {
+  const _handleSIWE = async () => {
     //     if (!walletConnected) {
     //       await connectWallet();
     //       return;

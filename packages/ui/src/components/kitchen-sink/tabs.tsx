@@ -1,6 +1,3 @@
-import * as React from "react";
-import { View } from "react-native";
-
 import { Button } from "@acme/ui/button";
 import {
   Card,
@@ -14,6 +11,8 @@ import { Input } from "@acme/ui/input";
 import { Label } from "@acme/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@acme/ui/tabs";
 import { Text } from "@acme/ui/text";
+import * as React from "react";
+import { View } from "react-native";
 
 export default function TabsScreen() {
   const [value, setValue] = React.useState("account");

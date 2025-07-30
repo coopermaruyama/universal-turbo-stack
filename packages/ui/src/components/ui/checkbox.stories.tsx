@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import { View } from "react-native";
-
-import { Text } from "./text";
 import { Checkbox } from "./checkbox";
+import { Text } from "./text";
 
 const meta: Meta<typeof Checkbox> = {
   title: "UI/Checkbox",

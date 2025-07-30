@@ -6,8 +6,8 @@ const jiti = createJiti(import.meta.url);
 await jiti.import("./src/env");
 
 /** @type {(n: string, o: any) => import("next").NextConfig} */
-const config = function (name, { defaultConfig }) {
-  let config = {
+const config = (_name, { defaultConfig }) => {
+  const config = {
     ...defaultConfig,
     reactStrictMode: true,
     turbopack: {

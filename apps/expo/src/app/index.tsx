@@ -1,17 +1,14 @@
-import React, { useState } from "react";
-import { Pressable, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Link, Stack, useRouter } from "expo-router";
-import { push } from "expo-router/build/global-state/routing";
-import { LegendList } from "@legendapp/list";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
 import { Button } from "@acme/ui/button";
 import { Input } from "@acme/ui/input";
 import { Text } from "@acme/ui/text";
-
+import { LegendList } from "@legendapp/list";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Link, Stack, useRouter } from "expo-router";
+import { push } from "expo-router/build/global-state/routing";
+import { useState } from "react";
+import { Pressable, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import type { RouterOutputs } from "~/lib/api";
-import { ThemeToggle } from "~/components/theme-toggle";
 import { trpc } from "~/lib/api";
 import { authClient } from "~/utils/auth";
 

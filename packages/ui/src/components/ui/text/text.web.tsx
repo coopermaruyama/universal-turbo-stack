@@ -1,10 +1,8 @@
 "use client";
 
-import type { TextProps } from "react-native";
-import * as React from "react";
 // mockServerContext.ts
-import { ReactNode } from "react";
-import * as Slot from "@rn-primitives/slot";
+import type { ReactNode } from "react";
+import type { TextProps } from "react-native";
 
 export interface MockContext<T> {
   Provider: (props: { value: T; children: ReactNode }) => ReactNode;

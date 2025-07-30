@@ -1,8 +1,7 @@
-import * as React from "react";
-import * as TablePrimitive from "@rn-primitives/table";
-
 import { cn } from "@acme/ui/lib/utils";
 import { TextClassContext } from "@acme/ui/text";
+import * as TablePrimitive from "@rn-primitives/table";
+import type * as React from "react";
 
 function Table({
   className,

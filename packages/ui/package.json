@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "format": "prettier --check . --ignore-path ../../.gitignore",
-    "lint": "eslint",
+    "format": "biome format .",
+    "lint": "biome lint .",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-    "ui-add": "pnpm dlx @react-native-reusables/cli@latest add --overwrite && prettier src --write --list-different"
+    "ui-add": "pnpm dlx @react-native-reusables/cli@latest add --overwrite && biome format src --write"
   },
   "exports": {
     ".": "./src/index.ts",
@@ -98,13 +98,9 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
     "@acme/tailwind-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "@types/react": "catalog:react19",
-    "eslint": "catalog:",
-    "prettier": "catalog:",
     "react": "catalog:react19",
     "typescript": "catalog:",
     "zod": "catalog:"
@@ -119,6 +115,5 @@
     "@types/react": "catalog:react19",
     "react": "catalog:react19",
     "react-dom": "catalog:react19"
-  },
-  "prettier": "@acme/prettier-config"
+  }
 }

@@ -1,9 +1,7 @@
-import { createRequire } from "module";
-import { dirname, join } from "path";
+import { createRequire } from "node:module";
+import { dirname, join } from "node:path";
 import type { StorybookConfig } from "@storybook/react-native-web-vite";
-import react from "@vitejs/plugin-react";
-import { mergeConfig, optimizeDeps, transformWithEsbuild } from "vite";
-import reactNativeWeb from "vite-plugin-react-native-web";
+import { mergeConfig, transformWithEsbuild } from "vite";
 
 const require = createRequire(import.meta.url);
 

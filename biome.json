@@ -1,0 +1,119 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
+  "files": {
+    "ignoreUnknown": true
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "recommended": true,
+        "organizeImports": "on"
+      }
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80,
+    "attributePosition": "auto"
+  },
+  "json": {
+    "parser": {
+      "allowComments": true
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "a11y": {
+        "useSemanticElements": "off"
+      },
+      "recommended": true,
+      "complexity": {
+        "noForEach": "off",
+        "useOptionalChain": "error"
+      },
+      "correctness": {
+        "noUnusedVariables": {
+          "level": "error",
+          "options": {
+            "ignoreRestSiblings": true
+          }
+        },
+        "useExhaustiveDependencies": "warn",
+        "useHookAtTopLevel": "error"
+      },
+      "nursery": {
+        "useSortedClasses": {
+          "level": "off",
+          "options": {
+            "attributes": ["className", "class"],
+            "functions": ["clsx", "cn", "cva"]
+          }
+        }
+      },
+      "style": {
+        "noNonNullAssertion": "error",
+        "useAsConstAssertion": "error",
+        "useConsistentArrayType": {
+          "level": "warn",
+          "options": {
+            "syntax": "shorthand"
+          }
+        },
+        "useImportType": "warn"
+      },
+      "suspicious": {
+        "noExplicitAny": "warn",
+        "noArrayIndexKey": "warn"
+      },
+      "performance": {
+        "noAccumulatingSpread": "warn"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double",
+      "jsxQuoteStyle": "double",
+      "trailingCommas": "all",
+      "semicolons": "always",
+      "arrowParentheses": "always",
+      "bracketSpacing": true,
+      "bracketSameLine": false
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.ts", "**/*.tsx"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUndeclaredVariables": "off",
+            "noUnusedImports": "error"
+          }
+        }
+      }
+    },
+    {
+      "linter": {
+        "rules": {
+          "a11y": {
+            "useKeyWithClickEvents": "off",
+            "useSemanticElements": "off"
+          }
+        }
+      }
+    }
+  ],
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true,
+    "defaultBranch": "main"
+  }
+}

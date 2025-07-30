@@ -1,6 +1,6 @@
-import { SafeAreaView, Text, View } from "react-native";
-import { Stack, useGlobalSearchParams } from "expo-router";
 import { useQuery } from "@tanstack/react-query";
+import { Stack, useGlobalSearchParams } from "expo-router";
+import { SafeAreaView, Text, View } from "react-native";
 
 import { trpc } from "~/lib/api";
 

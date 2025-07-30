@@ -1,10 +1,9 @@
-import * as React from "react";
-import { Platform } from "react-native";
-import * as CheckboxPrimitive from "@rn-primitives/checkbox";
-import { Check } from "lucide-react-native";
-
 import { Icon } from "@acme/ui/icon";
 import { cn } from "@acme/ui/lib/utils";
+import * as CheckboxPrimitive from "@rn-primitives/checkbox";
+import { Check } from "lucide-react-native";
+import type * as React from "react";
+import { Platform } from "react-native";
 
 function Checkbox({
   className,

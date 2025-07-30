@@ -1,0 +1,47 @@
+# See https://fly.io/docs/app-guides/continuous-deployment-with-github-actions/
+
+name: Fly Deploy
+on:
+  push:
+    branches:
+      - replace-me # Replace with your production branch, e.g., "main" or "master"
+env:
+  DOTENV_PRIVATE_KEY_PRODUCTION: ${{ secrets.DOTENV_PRIVATE_KEY_PRODUCTION }}
+jobs:
+  deploy:
+    name: Deploy app
+    runs-on: ubuntu-latest
+    concurrency: deploy-group # optional: ensure only one action runs at a time
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: |
+          echo "validating env vars"
+          [ -z "$DOTENV_PRIVATE_KEY_PRODUCTION" ] && echo "missing DOTENV_PRIVATE_KEY_PRODUCTION" && exit 1 || echo "✅ Environment variables are valid"
+          flyctl deploy --config apps/nextjs/fly.toml --dockerfile apps/nextjs/Dockerfile --build-arg DOTENV_PRIVATE_KEY_PRODUCTION="$DOTENV_PRIVATE_KEY_PRODUCTION" -e DOTENV_PRIVATE_KEY_PRODUCTION="$DOTENV_PRIVATE_KEY_PRODUCTION"
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          DOTENV_PRIVATE_KEY_PRODUCTION: ${{ secrets.DOTENV_PRIVATE_KEY_PRODUCTION }}
+      - name: Setup tmate session
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
+  deploy-python:
+    name: Deploy python api
+    runs-on: ubuntu-latest
+    concurrency: deploy-group # optional: ensure only one action runs at a time
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: |
+          echo "validating env vars"
+          [ -z "$DOTENV_PRIVATE_KEY_PRODUCTION" ] && echo "missing DOTENV_PRIVATE_KEY_PRODUCTION" && exit 1 || echo "✅ Environment variables are valid"
+          flyctl deploy --config apps/travel-assistant-api/fly.toml --dockerfile apps/travel-assistant-api/Dockerfile --build-arg DOTENV_PRIVATE_KEY_PRODUCTION="$DOTENV_PRIVATE_KEY_PRODUCTION" -e DOTENV_PRIVATE_KEY_PRODUCTION="$DOTENV_PRIVATE_KEY_PRODUCTION"
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          DOTENV_PRIVATE_KEY_PRODUCTION: ${{ secrets.DOTENV_PRIVATE_KEY_PRODUCTION }}
+      # Optional: Uncomment the following lines to set up a tmate session for debugging if the deployment fails
+      # - name: Setup tmate session
+      #   if: ${{ failure() }}
+      #   uses: mxschmitt/action-tmate@v3
+      #   with:
+      #     detached: true

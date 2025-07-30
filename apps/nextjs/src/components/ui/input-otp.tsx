@@ -1,9 +1,12 @@
+/** biome-ignore-all lint/a11y/useFocusableInteractive: external */
+/** biome-ignore-all lint/a11y/useAriaPropsForRole: external */
+/** biome-ignore-all lint/a11y/useSemanticElements: external */
 "use client";
 
-import * as React from "react";
-import { cn } from "@/lib/utils";
 import { OTPInput, OTPInputContext } from "input-otp";
 import { MinusIcon } from "lucide-react";
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
 function InputOTP({
   className,

@@ -1,11 +1,8 @@
+import { Icon } from "@acme/ui/icon";
 import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
-import { Platform, Pressable, View } from "react-native";
-import Animated, { FadeIn } from "react-native-reanimated";
 import {
   Cloud,
   Github,
-  Keyboard,
   LifeBuoy,
   LogOut,
   Mail,
@@ -16,8 +13,9 @@ import {
   UserPlus,
   Users,
 } from "lucide-react-native";
-
-import { Icon } from "@acme/ui/icon";
+import React from "react";
+import { Platform, Pressable, View } from "react-native";
+import Animated, { FadeIn } from "react-native-reanimated";
 
 import { Button } from "./button";
 import {
@@ -51,11 +49,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args) => {
+  render: (_args) => {
     const triggerRef =
       React.useRef<React.ElementRef<typeof DropdownMenuTrigger>>(null);
     //   const insets = useSafeAreaInsets();
-    const contentInsets = {
+    const _contentInsets = {
       // top: insets.top,
       // bottom: insets.bottom,
       top: 12,
@@ -158,7 +156,7 @@ export const Default: Story = {
 };
 
 export const WithCheckboxes: Story = {
-  render: (args) => {
+  render: (_args) => {
     const [checked, setChecked] = React.useState(true);
     const [checked2, setChecked2] = React.useState(false);
     const [checked3, setChecked3] = React.useState(true);
@@ -199,7 +197,7 @@ export const WithCheckboxes: Story = {
 };
 
 export const WithRadioGroup: Story = {
-  render: (args) => {
+  render: (_args) => {
     const [value, setValue] = React.useState("bottom");
     const handleValueChange = (newValue: string) => {
       setValue(newValue);

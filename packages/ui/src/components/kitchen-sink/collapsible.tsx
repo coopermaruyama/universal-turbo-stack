@@ -1,11 +1,3 @@
-import * as React from "react";
-import { Platform, Text, View } from "react-native";
-import Animated, {
-  FadeInDown,
-  LinearTransition,
-} from "react-native-reanimated";
-import { ChevronsDownUp, ChevronsUpDown } from "lucide-react-native";
-
 import { Button } from "@acme/ui/button";
 import {
   Collapsible,
@@ -13,6 +5,13 @@ import {
   CollapsibleTrigger,
 } from "@acme/ui/collapsible";
 import { Icon } from "@acme/ui/icon";
+import { ChevronsDownUp, ChevronsUpDown } from "lucide-react-native";
+import * as React from "react";
+import { Platform, Text, View } from "react-native";
+import Animated, {
+  FadeInDown,
+  LinearTransition,
+} from "react-native-reanimated";
 
 export default function CollapsibleScreen() {
   const [open, setOpen] = React.useState(false);

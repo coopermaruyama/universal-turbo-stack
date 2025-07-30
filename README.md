@@ -1,10 +1,23 @@
 # universal-turbo-stack
 
-This is a fork of [create-t3-turbo](https://github.com/t3-oss/create-t3-turbo) with the following changes:
+A slightly opinionated starter for cross-platform React that runs anywhere, with a focus
+on developer experience, code sharing, and production readiness.
 
-- The UI package uses [react-native-reusables](https://github.com/mrzachnugent/react-native-reusables) to enable
-  cross-platform UI components.
-- Storybook support on both Expo and NextJS. A story is created for each component in the UI package.
+This starter is built on top of [Turborepo](https://turborepo.org) and includes:
+
+- [Next.js](https://nextjs.org) for web development.
+- [Expo](https://expo.dev) for mobile development.
+- [tRPC](https://trpc.io) for typesafe API calls.
+- [Drizzle](https://orm.drizzle.team) for typesafe database calls.
+- [Better-Auth](https://better-auth.com) for authentication.
+- [NativeWind](https://www.nativewind.dev) for Tailwind CSS in React Native.
+- [React Native Web](https://reactnative.dev) for web support in the Expo app.
+- [React Native Reusables](https://github.com/mrzachnugent/react-native-reusables) in a
+  ready-to-use `ui` package for cross-platform UI components.
+- [Storybook](https://storybook.js.org) for both Expo and Next.js apps.
+- [docker-compose](https://docs.docker.com/compose/) pre-configured with Postgres and Redis.
+- [fly.io](https://fly.io) for deploying the Next.js app with Postgres and Redis.
+- Pre-configured CI with GitHub Actions which will create preview deployments for every PR.
 
 ## Installation
 
@@ -57,10 +70,6 @@ packages
   └─ ui
       └─ Cross-platform UI components using React Native Reusables
 tooling
-  ├─ eslint
-  |   └─ shared, fine-grained, eslint presets
-  ├─ prettier
-  |   └─ shared prettier configuration
   ├─ tailwind
   |   └─ shared tailwind configuration
   └─ typescript

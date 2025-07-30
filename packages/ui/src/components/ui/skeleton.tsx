@@ -1,3 +1,4 @@
+import { cn } from "@acme/ui/lib/utils";
 import * as React from "react";
 import Animated, {
   useAnimatedStyle,
@@ -6,8 +7,6 @@ import Animated, {
   withSequence,
   withTiming,
 } from "react-native-reanimated";
-
-import { cn } from "@acme/ui/lib/utils";
 
 const duration = 1000;
 
@@ -22,7 +21,7 @@ function Skeleton({
       withSequence(withTiming(0.5, { duration }), withTiming(1, { duration })),
       -1,
     );
-  }, []);
+  }, [sv]);
 
   const style = useAnimatedStyle(
     () => ({

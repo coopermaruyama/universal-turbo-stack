@@ -4,8 +4,8 @@ import { View } from "react-native";
 import { Button } from "./button";
 import { Input } from "./input";
 import { Label } from "./label";
-import { Text } from "./text";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { Text } from "./text";
 
 const meta: Meta<typeof Popover> = {
   title: "UI/Popover",

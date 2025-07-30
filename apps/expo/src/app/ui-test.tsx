@@ -1,8 +1,7 @@
-import React from "react";
-import { Image, ScrollView } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-
 import KitchenSink from "@acme/ui/kitchen-sink";
+import React from "react";
+import { ScrollView } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function UITestScreen() {
   const insets = useSafeAreaInsets();

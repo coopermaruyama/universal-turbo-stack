@@ -1,4 +1,3 @@
-import { Platform } from "react-native";
 import Constants from "expo-constants";
 
 // export const ENABLE_STORYBOOK = true;

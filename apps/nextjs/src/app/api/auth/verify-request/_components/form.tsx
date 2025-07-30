@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
 
 interface VerifyRequestPageProps {
   initialCode?: string;

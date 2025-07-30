@@ -2,17 +2,17 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { View } from "react-native";
 
 import {
+  BlockQuote,
+  Code,
   H1,
   H2,
   H3,
   H4,
-  P,
-  BlockQuote,
-  Code,
-  Lead,
   Large,
-  Small,
+  Lead,
   Muted,
+  P,
+  Small,
 } from "./typography";
 
 const meta: Meta<typeof H1> = {
@@ -102,7 +102,7 @@ export const Article: Story = {
           development practices.
         </Lead>
       </View>
-      
+
       <View className="space-y-4">
         <H2>Getting Started</H2>
         <P>
@@ -110,24 +110,22 @@ export const Article: Story = {
           using React. It allows you to write your app once and deploy it to
           both iOS and Android platforms.
         </P>
-        
+
         <H3>Installation</H3>
         <P>
           To get started, you'll need to install the React Native CLI. Run the
           following command in your terminal:
         </P>
         <Code>npx react-native init MyProject</Code>
-        
+
         <H3>Key Benefits</H3>
-        <P>
-          React Native offers several advantages for mobile development:
-        </P>
+        <P>React Native offers several advantages for mobile development:</P>
         <BlockQuote>
           "Learn once, write anywhere" - this philosophy allows developers to
           leverage their React knowledge for mobile development.
         </BlockQuote>
       </View>
-      
+
       <View>
         <Small>Last updated: December 2024</Small>
       </View>

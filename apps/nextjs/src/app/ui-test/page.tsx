@@ -1,10 +1,8 @@
 "use client";
 
-import React from "react";
-import { verifyInstallation } from "nativewind";
-
-import { Card, CardContent, CardHeader, CardTitle } from "@acme/ui/card";
 import KitchenSink from "@acme/ui/components/kitchen-sink";
+import { verifyInstallation } from "nativewind";
+import React from "react";
 
 export default function UITestScreen() {
   React.useEffect(() => {

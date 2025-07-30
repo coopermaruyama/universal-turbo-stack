@@ -61,7 +61,7 @@ export async function sendEmail(opts: {
   });
   // REVIEW: Clean up error handling
   if (!res.ok) {
-    throw new Error("Sendgrid error: " + (await res.text()));
+    throw new Error(`Sendgrid error: ${await res.text()}`);
   }
   if (opts.debug) {
     console.log(`

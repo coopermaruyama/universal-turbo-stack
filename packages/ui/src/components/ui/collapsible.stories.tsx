@@ -1,11 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { ChevronDown } from "lucide-react-native";
 import { useState } from "react";
 import { View } from "react-native";
-import { ChevronDown } from "lucide-react-native";
 
 import { Button } from "./button";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "./collapsible";
 import { Text } from "./text";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsible";
 
 const meta: Meta<typeof Collapsible> = {
   title: "UI/Collapsible",
@@ -22,7 +26,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => {
     const [isOpen, setIsOpen] = useState(false);
-    
+
     return (
       <Collapsible
         open={isOpen}
@@ -58,7 +62,7 @@ export const Default: Story = {
 export const WithContent: Story = {
   render: () => {
     const [isOpen, setIsOpen] = useState(false);
-    
+
     return (
       <Collapsible
         open={isOpen}
@@ -73,8 +77,8 @@ export const WithContent: Story = {
         </CollapsibleTrigger>
         <CollapsibleContent className="rounded-md border px-4 py-3">
           <Text className="text-sm">
-            Yes. Free to use for personal and commercial projects. No attribution
-            required.
+            Yes. Free to use for personal and commercial projects. No
+            attribution required.
           </Text>
         </CollapsibleContent>
       </Collapsible>

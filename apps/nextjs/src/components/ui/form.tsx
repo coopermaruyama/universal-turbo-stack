@@ -1,21 +1,21 @@
 "use client";
 
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
+import { Slot } from "radix-ui";
+import * as React from "react";
 import type {
   ControllerProps,
   FieldPath,
   FieldValues,
   UseFormProps,
 } from "react-hook-form";
-import type { ZodType } from "zod/v4";
-import * as React from "react";
-import { cn } from "@/lib/utils";
-import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
-import { Slot } from "radix-ui";
 import {
   useForm as __useForm,
   Controller,
   useFormContext,
 } from "react-hook-form";
+import type { ZodType } from "zod/v4";
+import { cn } from "@/lib/utils";
 
 import { Label } from "./label";
 

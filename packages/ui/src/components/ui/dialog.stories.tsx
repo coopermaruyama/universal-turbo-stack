@@ -2,9 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { View } from "react-native";
 
 import { Button } from "./button";
-import { Input } from "./input";
-import { Label } from "./label";
-import { Text } from "./text";
 import {
   Dialog,
   DialogContent,
@@ -14,6 +11,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./dialog";
+import { Input } from "./input";
+import { Label } from "./label";
+import { Text } from "./text";
 
 const meta: Meta<typeof Dialog> = {
   title: "UI/Dialog",
@@ -124,9 +124,7 @@ export const WithForm: Story = {
             <Text>Add New User</Text>
           </DialogTitle>
           <DialogDescription>
-            <Text>
-              Enter the user details below to add them to your team.
-            </Text>
+            <Text>Enter the user details below to add them to your team.</Text>
           </DialogDescription>
         </DialogHeader>
         <View className="space-y-4">

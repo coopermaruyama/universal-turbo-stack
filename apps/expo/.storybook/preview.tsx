@@ -1,7 +1,6 @@
-import type { Preview } from "@storybook/react";
-import * as React from "react";
-import { View } from "react-native";
 import { withBackgrounds } from "@storybook/addon-ondevice-backgrounds";
+import type { Preview } from "@storybook/react";
+import { View } from "react-native";
 
 import { NAV_THEME } from "../src/lib/constants";
 

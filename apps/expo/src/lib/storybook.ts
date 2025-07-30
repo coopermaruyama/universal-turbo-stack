@@ -1,10 +1,9 @@
 import Constants from "expo-constants";
 
 // MMKV is native -- avoid crashing JS thread if not linked/configured
-let safeGetBoolean: ((key: string) => boolean | undefined) | undefined = undefined;
+let safeGetBoolean: ((key: string) => boolean | undefined) | undefined;
 try {
   // Delay MMKV import, so we only use if available.
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const { MMKV } = require("react-native-mmkv");
   const storage = new MMKV({ id: "storybook" });
   safeGetBoolean = (key: string) => {
@@ -21,9 +20,9 @@ try {
 
 /**
  * Returns true if storybook is explicitly enabled by
- * - MMKV key "storybookEnabled" 
+ * - MMKV key "storybookEnabled"
  * - config.extra.storybookEnabled: true
- * 
+ *
  * Fails safe: disables if MMKV not available or errors.
  */
 export function checkStorybookEnabled(): boolean {
@@ -37,7 +36,7 @@ export function checkStorybookEnabled(): boolean {
   }
   try {
     const isEnabledViaConfig = Boolean(
-      Constants.expoConfig?.extra?.storybookEnabled
+      Constants.expoConfig?.extra?.storybookEnabled,
     );
     if (isEnabledViaConfig) return true;
   } catch {
@@ -51,7 +50,6 @@ export function setStorybookEnabled(enabled: boolean): void {
   // Use safe MMKV access (if available), but fail silently if not
   if (typeof safeGetBoolean === "function") {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const { MMKV } = require("react-native-mmkv");
       const storage = new MMKV({ id: "storybook" });
       storage.set("storybookEnabled", enabled);

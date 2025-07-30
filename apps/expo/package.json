@@ -10,10 +10,10 @@
     "dev:ios": "expo start --ios",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path .prettierignore",
-    "lint": "eslint",
+    "format": "biome format .",
+    "lint": "biome lint .",
     "typecheck": "tsc --noEmit",
-    "ui-add": "pnpm dlx @react-native-reusables/cli@latest add --overwrite && prettier src --write --list-different",
+    "ui-add": "pnpm dlx @react-native-reusables/cli@latest add --overwrite && biome format src --write",
     "storybook": "STORYBOOK_ENABLED=1 EXPO_USE_METRO_STORYBOOK=1 expo start",
     "storybook:ios": "STORYBOOK_ENABLED=1 EXPO_USE_METRO_STORYBOOK=1 expo start --ios",
     "storybook:android": "STORYBOOK_ENABLED=1 EXPO_USE_METRO_STORYBOOK=1 expo start --android"
@@ -73,8 +73,6 @@
   },
   "devDependencies": {
     "@acme/api": "workspace:*",
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
     "@acme/tailwind-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "@acme/ui": "workspace:*",
@@ -84,9 +82,7 @@
     "@tailwindcss/postcss": "^4.1.8",
     "@types/babel__core": "^7.20.5",
     "@types/react": "catalog:react19",
-    "eslint": "catalog:",
     "postcss": "^8.5.4",
-    "prettier": "catalog:",
     "tailwindcss": "catalog:",
     "typescript": "catalog:"
   },
@@ -94,7 +90,6 @@
     "react-native-renderer": "catalog:react19",
     "@expo/config-plugins": "~10.0.2"
   },
-  "prettier": "@acme/prettier-config",
   "expo": {
     "doctor": {
       "reactNativeDirectoryCheck": {

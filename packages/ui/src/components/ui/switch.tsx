@@ -1,4 +1,7 @@
-import * as React from "react";
+import { useColorScheme } from "@acme/ui/hooks/useColorScheme";
+import { cn } from "@acme/ui/lib/utils";
+import * as SwitchPrimitives from "@rn-primitives/switch";
+import type * as React from "react";
 import { Platform } from "react-native";
 import Animated, {
   interpolateColor,
@@ -6,10 +9,6 @@ import Animated, {
   useDerivedValue,
   withTiming,
 } from "react-native-reanimated";
-import * as SwitchPrimitives from "@rn-primitives/switch";
-
-import { useColorScheme } from "@acme/ui/hooks/useColorScheme";
-import { cn } from "@acme/ui/lib/utils";
 
 function SwitchWeb({
   className,

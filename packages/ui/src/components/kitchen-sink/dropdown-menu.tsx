@@ -1,6 +1,19 @@
-import * as React from "react";
-import { Pressable, View } from "react-native";
-import Animated, { FadeIn } from "react-native-reanimated";
+import { Button } from "@acme/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@acme/ui/dropdown-menu";
+import { Icon } from "@acme/ui/icon";
+import { Text } from "@acme/ui/text";
 // import { useSafeAreaInsets } from "react-native-safe-area-context";
 // import { Cloud } from '~/lib/icons/Cloud';
 // import { Github } from '~/lib/icons/Github';
@@ -24,29 +37,15 @@ import {
   UserPlus,
   Users,
 } from "lucide-react-native";
-
-import { Button } from "@acme/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from "@acme/ui/dropdown-menu";
-import { Icon } from "@acme/ui/icon";
-import { Text } from "@acme/ui/text";
+import * as React from "react";
+import { Pressable, View } from "react-native";
+import Animated, { FadeIn } from "react-native-reanimated";
 
 export default function DropdownMenuScreen() {
   const triggerRef =
     React.useRef<React.ElementRef<typeof DropdownMenuTrigger>>(null);
   //   const insets = useSafeAreaInsets();
-  const contentInsets = {
+  const _contentInsets = {
     // top: insets.top,
     // bottom: insets.bottom,
     top: 12,

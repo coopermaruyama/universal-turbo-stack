@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/nextjs";
-import { themes, ThemeVars } from "storybook/theming";
+import { themes } from "storybook/theming";
 
 import "../../../packages/ui/src/styles/globals.css";
 

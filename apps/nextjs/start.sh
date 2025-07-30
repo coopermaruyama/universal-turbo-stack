@@ -42,10 +42,10 @@ fi
 
 # Run db migration
 cd /app/packages/db
-dotenvx run -f /app/.env.production -- \
+dotenvx run -f /app/.env.production  --ignore=MISSING_ENV_FILE -- \
     npx -p @neondatabase/serverless -p drizzle-orm -p drizzle-kit drizzle-kit migrate
 cd /app
 
 # Start the Next.js application
 echo "Starting in production mode..."
-dotenvx run -f .env.production -- node /app/apps/nextjs/server.js -H 0.0.0.0
+dotenvx run -f .env.production --ignore=MISSING_ENV_FILE -- node /app/apps/nextjs/server.js -H 0.0.0.0

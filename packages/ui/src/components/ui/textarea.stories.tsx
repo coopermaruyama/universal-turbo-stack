@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { View } from "react-native";
-
-import { Text } from "./text";
 import { Label } from "./label";
+import { Text } from "./text";
 import { Textarea } from "./textarea";
 
 const meta: Meta<typeof Textarea> = {
@@ -65,8 +64,8 @@ export const WithLabelAndDescription: Story = {
       <Label htmlFor="message-2">
         <Text>Your message</Text>
       </Label>
-      <Textarea 
-        placeholder="Type your message here." 
+      <Textarea
+        placeholder="Type your message here."
         id="message-2"
         numberOfLines={6}
       />

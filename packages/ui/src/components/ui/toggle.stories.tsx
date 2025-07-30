@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Bold, Italic, Underline } from "lucide-react-native";
 import * as React from "react";
 import { View } from "react-native";
-import { Bold, Italic, Underline } from "lucide-react-native";
 
 import { Text } from "./text";
 import { Toggle, ToggleIcon } from "./toggle";

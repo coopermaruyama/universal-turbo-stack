@@ -1,8 +1,5 @@
 "use client";
 
-import React from "react";
-import { Image, View } from "react-native";
-
 import {
   Accordion,
   AccordionContent,
@@ -21,7 +18,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@acme/ui/alert-dialog";
-import { AspectRatio } from "@acme/ui/aspect-ratio";
 import { Avatar, AvatarFallback, AvatarImage } from "@acme/ui/avatar";
 import { Badge } from "@acme/ui/badge";
 import { Button } from "@acme/ui/button";
@@ -45,21 +41,6 @@ import { Input } from "@acme/ui/input";
 import { Label } from "@acme/ui/label";
 import { AlertTriangle } from "@acme/ui/lib/icons/AlertTriangle";
 import { Terminal } from "@acme/ui/lib/icons/Terminal";
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarTrigger,
-} from "@acme/ui/menubar";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@acme/ui/navigation-menu";
 import { Popover, PopoverContent, PopoverTrigger } from "@acme/ui/popover";
 import { Progress } from "@acme/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@acme/ui/radio-group";
@@ -81,13 +62,14 @@ import {
   TableHeader,
   TableRow,
 } from "@acme/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@acme/ui/tabs";
 import { Text } from "@acme/ui/text";
 import { Textarea } from "@acme/ui/textarea";
 import { Toggle } from "@acme/ui/toggle";
 import { ToggleGroup, ToggleGroupItem } from "@acme/ui/toggle-group";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@acme/ui/tooltip";
 import { H1, H2, P } from "@acme/ui/typography";
+import React from "react";
+import { View } from "react-native";
 
 import CollapsibleDemo from "./collapsible";
 import DropdownMenuScreen from "./dropdown-menu";
@@ -423,7 +405,7 @@ export default function UITestScreen() {
         <ToggleGroup
           type="single"
           value={toggleValue}
-          onValueChange={(v) => setToggleValue(v!)}
+          onValueChange={(v) => setToggleValue(v || "")}
         >
           <ToggleGroupItem value="a">
             <Text>A</Text>

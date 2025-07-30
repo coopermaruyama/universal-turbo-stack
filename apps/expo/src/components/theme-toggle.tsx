@@ -1,5 +1,3 @@
-import { Text } from "react-native";
-
 import { Button } from "@acme/ui/button";
 
 import { Moon } from "~/lib/icons/Moon";

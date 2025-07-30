@@ -1,10 +1,9 @@
 "use client";
 
-import type { LucideIcon, LucideProps } from "lucide-react-native";
-import { Platform } from "react-native";
-import { cssInterop } from "nativewind";
-
 import { cn } from "@acme/ui/lib/utils";
+import type { LucideIcon, LucideProps } from "lucide-react-native";
+import { cssInterop } from "nativewind";
+import { Platform } from "react-native";
 
 type IconProps = LucideProps & {
   as: LucideIcon;

@@ -9,8 +9,6 @@ import "../../../../packages/ui/src/styles/globals.css";
 import { AppProviders } from "@/components/app-providers";
 import { env } from "@/env";
 
-import { PortalHost } from "@acme/ui/index";
-
 export const metadata: Metadata = {
   metadataBase: new URL(
     env.VERCEL_ENV === "production"

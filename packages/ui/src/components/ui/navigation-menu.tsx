@@ -1,4 +1,8 @@
-import * as React from "react";
+import { ChevronDown } from "@acme/ui/lib/icons/ChevronDown";
+import { cn } from "@acme/ui/lib/utils";
+import * as NavigationMenuPrimitive from "@rn-primitives/navigation-menu";
+import { cva } from "class-variance-authority";
+import type * as React from "react";
 import { Platform, View } from "react-native";
 import Animated, {
   Extrapolation,
@@ -9,11 +13,6 @@ import Animated, {
   useDerivedValue,
   withTiming,
 } from "react-native-reanimated";
-import * as NavigationMenuPrimitive from "@rn-primitives/navigation-menu";
-import { cva } from "class-variance-authority";
-
-import { ChevronDown } from "@acme/ui/lib/icons/ChevronDown";
-import { cn } from "@acme/ui/lib/utils";
 
 function NavigationMenu({
   className,

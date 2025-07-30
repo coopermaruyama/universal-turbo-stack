@@ -1,16 +1,14 @@
 "use client";
 
-import type { VariantProps } from "class-variance-authority";
-import type { LucideIcon } from "lucide-react-native";
-import type { ViewProps } from "react-native";
-import * as React from "react";
-import { View } from "react-native";
-import { cva } from "class-variance-authority";
-import { colorScheme } from "nativewind";
-
 import { NAV_THEME } from "@acme/ui/lib/constants";
 import { cn } from "@acme/ui/lib/utils";
 import { Text } from "@acme/ui/text";
+import type { VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
+import type { LucideIcon } from "lucide-react-native";
+import type * as React from "react";
+import type { ViewProps } from "react-native";
+import { View } from "react-native";
 
 const alertVariants = cva(
   "relative w-full rounded-lg border border-border bg-background p-4 shadow shadow-foreground/10",
@@ -42,7 +40,7 @@ function Alert({
     iconSize?: number;
     iconClassName?: string;
   }) {
-  const colors = NAV_THEME["dark"];
+  const colors = NAV_THEME.dark;
   return (
     <View
       role="alert"

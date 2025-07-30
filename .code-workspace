@@ -1,0 +1,15 @@
+{
+  "folders": [
+    {
+      "path": ".",
+    },
+    {
+      "nam": "nextjs",
+      "path": "apps/nextjs",
+    },
+    {
+      "name": "expo",
+      "path": "apps/expo",
+    },
+  ],
+}

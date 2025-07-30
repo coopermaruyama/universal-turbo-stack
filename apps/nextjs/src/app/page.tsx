@@ -1,14 +1,10 @@
-import { Suspense } from "react";
-import { Pressable } from "react-native";
-import Link from "next/link";
-import { redirect } from "next/navigation";
-import { CreatePostForm, PostCardSkeleton, PostList } from "@/components/posts";
-import { HydrateClient, prefetch, trpc } from "@/lib/trpc/server";
-
 import { Button } from "@acme/ui/button";
 import { Text } from "@acme/ui/text";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { HydrateClient } from "@/lib/trpc/server";
 
-import { auth, getSession, signOut } from "~/lib/auth/server";
+import { getSession, signOut } from "~/lib/auth/server";
 
 async function serverAction() {
   "use server";

@@ -22,8 +22,12 @@
       "mcp__playwright__browser_tab_list",
       "mcp__playwright__browser_hover",
       "mcp__playwright__browser_press_key",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Bash(rm:*)",
+      "Bash(pnpm biome check:*)"
     ],
     "deny": []
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": ["playwright"]
 }

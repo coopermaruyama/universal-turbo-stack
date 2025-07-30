@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as React from "react";
-import { View } from "react-native";
 import {
   AlignCenter,
   AlignLeft,
@@ -9,6 +7,8 @@ import {
   Italic,
   Underline,
 } from "lucide-react-native";
+import * as React from "react";
+import { View } from "react-native";
 
 import { Text } from "./text";
 import { ToggleGroup, ToggleGroupIcon, ToggleGroupItem } from "./toggle-group";

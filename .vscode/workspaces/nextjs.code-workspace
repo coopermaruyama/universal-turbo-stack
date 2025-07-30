@@ -30,15 +30,7 @@
       "**/node_modules": true,
       ".cache": true,
       ".expo": true,
-      ".next": true,
-    },
-    "eslint.workingDirectories": [
-      { "mode": "auto" },
-      { "directory": "../../apps/nextjs", "changeProcessCWD": true },
-      { "directory": "../../packages/ui", "changeProcessCWD": true },
-      { "directory": "../../packages/api", "changeProcessCWD": true },
-      { "directory": "../../packages/db", "changeProcessCWD": true },
-      { "directory": "../../packages/auth", "changeProcessCWD": true },
-    ],
-  },
+      ".next": true
+    }
+  }
 }

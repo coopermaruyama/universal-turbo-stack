@@ -1,20 +1,20 @@
 {
   "folders": [
     {
-      "path": "../../apps/expo",
+      "path": "../../apps/expo"
     },
     {
-      "path": "../../packages/ui",
+      "path": "../../packages/ui"
     },
     {
-      "path": "../../packages/api",
+      "path": "../../packages/api"
     },
     {
-      "path": "../../packages/db",
+      "path": "../../packages/db"
     },
     {
-      "path": "../../packages/auth",
-    },
+      "path": "../../packages/auth"
+    }
   ],
   "settings": {
     "typescript.tsdk": "../../node_modules/typescript/lib",
@@ -26,15 +26,7 @@
       "**/Thumbs.db": true,
       "**/node_modules": true,
       ".cache": true,
-      ".expo": true,
-    },
-    "eslint.workingDirectories": [
-      { "mode": "auto" },
-      { "directory": "../../apps/expo", "changeProcessCWD": true },
-      { "directory": "../../packages/ui", "changeProcessCWD": true },
-      { "directory": "../../packages/api", "changeProcessCWD": true },
-      { "directory": "../../packages/db", "changeProcessCWD": true },
-      { "directory": "../../packages/auth", "changeProcessCWD": true },
-    ],
-  },
+      ".expo": true
+    }
+  }
 }

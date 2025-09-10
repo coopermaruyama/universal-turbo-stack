@@ -31,6 +31,7 @@ export default function VeryifyRequestForm(props: VerifyRequestPageProps) {
   // const nextUrl =  `/api/auth/callback/sendgrid?callbackUrl=${encodeURIComponent(callbackUrl || '')}&email=${encodeURIComponent(email || '')}`
   return (
     <div className="card">
+      {/** biome-ignore lint/performance/noImgElement: ignored using `--suppress` */}
       {logo && <img src={logo} alt="Logo" className="logo" />}
       <h1>Check your email</h1>
       {/* <form action={handleSubmit}> */}

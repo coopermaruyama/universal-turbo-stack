@@ -130,7 +130,8 @@ export const Disabled: Story = {
 
 export const WithDefaultValue: Story = {
   render: () => (
-    <Select defaultValue={"apple" as any} onValueChange={() => {}}>
+    // biome-ignore lint/suspicious/noExplicitAny: ignored using `--suppress`
+<Select defaultValue={"apple" as any} onValueChange={() => {}}>
       <SelectTrigger className="w-48">
         <SelectValue placeholder="Select a fruit" />
       </SelectTrigger>

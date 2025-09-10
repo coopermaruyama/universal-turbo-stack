@@ -1,6 +1,5 @@
 {
   "name": "@acme/auth",
-  "version": "0.1.0",
   "private": true,
   "type": "module",
   "exports": {
@@ -14,22 +13,23 @@
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "format": "biome format .",
     "lint": "biome lint .",
-    "generate": "with-env pnpx @better-auth/cli generate --output ../db/src/auth-schema.ts",
+    "generate": "with-env pnpx @better-auth/cli generate --config script/auth-cli.ts --output ../db/src/auth-schema.ts",
     "typecheck": "tsc --noEmit",
     "with-env": "../scripts/with-env.sh"
   },
   "dependencies": {
     "@acme/db": "workspace:*",
     "@better-auth/expo": "catalog:",
-    "@t3-oss/env-nextjs": "^0.13.6",
+    "@t3-oss/env-nextjs": "^0.13.8",
     "better-auth": "catalog:",
-    "next": "^15.3.5",
+    "next": "^15.5.2",
     "react": "catalog:react19",
     "react-dom": "catalog:react19",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@acme/tsconfig": "workspace:*",
+    "@better-auth/cli": "1.3.8",
     "@types/react": "catalog:react19",
     "typescript": "catalog:"
   }

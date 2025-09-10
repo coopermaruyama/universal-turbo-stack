@@ -31,6 +31,7 @@ import { ThemeToggle } from "./theme-toggle";
 // SIWE imports
 declare global {
   interface Window {
+    // biome-ignore lint/suspicious/noExplicitAny: ignored using `--suppress`
     ethereum?: any;
   }
 }
@@ -76,6 +77,7 @@ const Text: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 
 // SocialButton component
 function SocialButton({
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: ignored using `--suppress`
   provider,
   onPress,
   isLoading,
@@ -172,6 +174,7 @@ export default function AuthForm() {
         setSuccess("Signed in successfully!");
         router.replace("/");
       }
+    // biome-ignore lint/suspicious/noExplicitAny: ignored using `--suppress`
     } catch (err: any) {
       setError(err.message ?? "Authentication failed");
     } finally {
@@ -199,6 +202,7 @@ export default function AuthForm() {
       if (error) {
         throw new Error(error.message || `${provider} authentication failed`);
       }
+    // biome-ignore lint/suspicious/noExplicitAny: ignored using `--suppress`
     } catch (err: any) {
       setError(err.message || `${provider} authentication failed`);
     } finally {

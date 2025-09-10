@@ -1,4 +1,5 @@
 // Learn more: https://docs.expo.dev/guides/monorepos/
+const path = require("node:path");
 const { getDefaultConfig } = require("expo/metro-config");
 const { FileStore } = require("metro-cache");
 const { withNativeWind } = require("nativewind/metro");
@@ -6,7 +7,6 @@ const withStorybook = require("@storybook/react-native/metro/withStorybook");
 const {
   wrapWithReanimatedMetroConfig,
 } = require("react-native-reanimated/metro-config");
-const path = require("node:path");
 
 let config = getDefaultConfig(__dirname, {
   isCSSEnabled: true, // Enable CSS support

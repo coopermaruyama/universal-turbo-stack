@@ -47,14 +47,11 @@ This repo uses [Turborepo](https://turborepo.org) and contains:
   └─ Recommended extensions and settings for VSCode users
 apps
   ├─ expo
-  |   ├─ Expo SDK 53 (EXPERIMENTAL)
-  |   |   > [!WARNING]
-  |   |   > Using Expo SDK 53 (canary) to unblock Next.js 15 / React 19 support.
-  |   |   > This is experimental and might not work as expected.
-  |   ├─ React Native using React 19
-  |   ├─ Navigation using Expo Router
-  |   ├─ Tailwind using NativeWind
-  |   └─ Typesafe API calls using tRPC
+  │   ├─ Expo SDK 53
+  │   ├─ React Native using React 19
+  │   ├─ Navigation using Expo Router
+  │   ├─ Tailwind using NativeWind
+  │   └─ Typesafe API calls using tRPC
   └─ next.js
       ├─ Next.js 15
       ├─ React 19
@@ -62,16 +59,16 @@ apps
       └─ E2E Typesafe API Server & Client
 packages
   ├─ api
-  |   └─ tRPC v11 router definition
+  │   └─ tRPC v11 router definition
   ├─ auth
-  |   └─ Authentication using better-auth.
+  │   └─ Authentication using better-auth.
   ├─ db
   |   └─ Typesafe db calls using Drizzle & Postgres
   └─ ui
       └─ Cross-platform UI components using React Native Reusables
 tooling
   ├─ tailwind
-  |   └─ shared tailwind configuration
+  │   └─ shared tailwind configuration
   └─ typescript
       └─ shared tsconfig you can extend from
 ```
@@ -108,7 +105,31 @@ EOF
 pnpm db:push
 ```
 
-### 2. Configure Expo `dev`-script
+### 2. Generate Better Auth Schema
+
+This project uses [Better Auth](https://www.better-auth.com) for authentication. The auth schema needs to be generated using the Better Auth CLI before you can use the authentication features.
+
+```bash
+# Generate the Better Auth schema
+pnpm --filter @acme/auth generate
+```
+
+This command runs the Better Auth CLI with the following configuration:
+
+- **Config file**: `packages/auth/script/auth-cli.ts` - A CLI-only configuration file (isolated from src to prevent imports)
+- **Output**: `packages/db/src/auth-schema.ts` - Generated Drizzle schema for authentication tables
+
+The generation process:
+
+1. Reads the Better Auth configuration from `packages/auth/script/auth-cli.ts`
+2. Generates the appropriate database schema based on your auth setup
+3. Outputs a Drizzle-compatible schema file to the `@acme/db` package
+
+> **Note**: The `auth-cli.ts` file is placed in the `script/` directory (instead of `src/`) to prevent accidental imports from other parts of the codebase. This file is exclusively for CLI schema generation and should **not** be used directly in your application. For runtime authentication, use the configuration from `packages/auth/src/index.ts`.
+
+For more information about the Better Auth CLI, see the [official documentation](https://www.better-auth.com/docs/concepts/cli#generate).
+
+### 3. Configure Expo `dev`-script
 
 #### Use iOS Simulator
 

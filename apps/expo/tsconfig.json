@@ -3,14 +3,13 @@
   "compilerOptions": {
     "baseUrl": ".",
     "esModuleInterop": true,
-    "paths": {
-      "~/*": ["./src/*"]
-      // "@acme/ui/*": ["../../packages/ui/src/*"]
-    },
     "jsx": "react-native",
     "lib": ["ES2022", "dom"],
     "checkJs": false,
-    "moduleSuffixes": [".ios", ".android", ".native", ""]
+    "moduleSuffixes": [".ios", ".android", ".native", ""],
+    "paths": {
+      "~/*": ["./src/*"]
+    }
   },
   "include": [
     ".storybook/**/*.ts",

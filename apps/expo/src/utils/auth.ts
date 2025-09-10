@@ -1,10 +1,7 @@
 import { expoClient } from "@better-auth/expo/client";
 import { createAuthClient } from "better-auth/react";
 
-import { getBaseUrl } from "./base-url";
 import { getItem, setItem } from "./storage";
-
-console.log("getBaseUrl", getBaseUrl());
 
 export const authClient = createAuthClient({
   // baseURL: getBaseUrl(),

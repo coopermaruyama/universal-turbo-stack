@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TRPCReactProvider } from "@/lib/trpc/react";
 import { cn } from "@/lib/utils";
 
-import "../../../../packages/ui/src/styles/globals.css";
+import "@acme/ui/styles/globals.css";
 
 import { AppProviders } from "@/components/app-providers";
 import { env } from "@/env";

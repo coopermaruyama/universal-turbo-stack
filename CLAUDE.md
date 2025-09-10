@@ -118,7 +118,6 @@ packages/
 └── validators/    # Shared Zod validation schemas
 
 tooling/
-├── prettier/      # Shared Prettier configuration
 ├── tailwind/      # Shared Tailwind configurations
 └── typescript/    # Shared TypeScript configurations
 ```

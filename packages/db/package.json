@@ -1,6 +1,5 @@
 {
   "name": "@acme/db",
-  "version": "0.1.0",
   "private": true,
   "type": "module",
   "exports": {
@@ -33,13 +32,13 @@
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",
     "@vercel/postgres": "^0.10.0",
-    "drizzle-orm": "^0.44.1",
-    "drizzle-zod": "^0.8.2",
+    "drizzle-orm": "^0.44.5",
+    "drizzle-zod": "^0.8.3",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@acme/tsconfig": "workspace:*",
-    "dotenv-cli": "^8.0.0",
+    "dotenv-cli": "^10.0.0",
     "drizzle-kit": "^0.31.1",
     "typescript": "catalog:"
   }

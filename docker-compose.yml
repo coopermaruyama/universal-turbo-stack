@@ -17,11 +17,11 @@ services:
       start_period: 30s
 
   redis:
-    image: redis:7-alpine
+    image: valkey/valkey:8-alpine
     ports:
       - "6379:6379"
     volumes:
-      - redis_data:/data
+      - cache_data:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -34,18 +34,19 @@ services:
       dockerfile: ./apps/nextjs/Dockerfile
       args:
         NODE_VERSION: 22.14.0
-        PNPM_VERSION: 10.11.1
+        PNPM_VERSION: 10.15.1
         ENV: development
     # Uncomment to expose ports
-    # ports:
-      # - "3000:3000"
+    ports:
+      - "3000:3000"
     volumes:
       - ./apps/nextjs:/app
       # dont put it in /app or it will create a copy of the .env.keys file in host
       - ./.env.keys:/.env.keys
       # exclusions
-      - /app/.venv
+      # - /app/.venv
     environment:
+      - NODE_ENV=development
       - ENV=development
       - POSTGRES_URL=postgresql://pguser:password@postgres:5432/app
       - REDIS_URL=redis://redis:6379
@@ -55,7 +56,9 @@ services:
       redis:
         condition: service_healthy
     tty: true # Keep tty open for debugging
+    # Run via bash to avoid execute-bit issues from bind mounts
+    command: ["bash", "/app/start.sh"]
 
 volumes:
   postgres_data:
-  redis_data:
+  cache_data:

@@ -2,104 +2,94 @@
 
 # ========== Build Arguments ==========
 ARG NODE_VERSION=22.14.0
-ARG PNPM_VERSION=10.11.1
+ARG PNPM_VERSION=10.15.1
 
 # ========== Base Stage ==========
 FROM node:${NODE_VERSION}-alpine AS base
 
-# Install dependencies required for node-gyp
-RUN apk add --no-cache libc6-compat python3 make g++
+# Set working directory
+WORKDIR /app
 
-# Enable corepack for pnpm
+# ========== Builder (prune) ==========
+FROM base AS builder
+RUN apk update
+RUN apk add --no-cache libc6-compat
+# Enable pnpm via corepack and install turbo globally (pin to major v2)
+RUN corepack enable && corepack prepare pnpm@${PNPM_VERSION} --activate
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN pnpm add -g turbo@^2
+# Copy repo and prune to target workspace (@acme/nextjs)
+COPY . .
+RUN turbo prune @acme/nextjs --docker
+
+# ========== Installer (install + build) ==========
+FROM base AS installer
+RUN apk update
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+# Enable pnpm via corepack
 RUN corepack enable && corepack prepare pnpm@${PNPM_VERSION} --activate
 
-WORKDIR /app
-
-# ========== Dependencies Stage ==========
-FROM base AS deps
-
-# Copy workspace configuration
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml turbo.json ./
-
-# Create directory structure and copy package.json files
-COPY apps/nextjs/package.json ./apps/nextjs/
-COPY apps/expo/package.json ./apps/expo/
-
-# Copy packages
-COPY packages/api/package.json ./packages/api/
-COPY packages/auth/package.json ./packages/auth/
-COPY packages/db/package.json ./packages/db/
-COPY packages/liteapi/package.json ./packages/liteapi/
-COPY packages/ui/package.json ./packages/ui/
-COPY packages/validators/package.json ./packages/validators/
-
-# Copy tooling
-COPY tooling/github/package.json ./tooling/github/
-COPY tooling/prettier/package.json ./tooling/prettier/
-COPY tooling/tailwind/package.json ./tooling/tailwind/
-COPY tooling/typescript/package.json ./tooling/typescript/
-
-# Install dependencies
+# First install the dependencies (as they change less often)
+COPY --from=builder /app/out/json/ .
 RUN pnpm install --frozen-lockfile
 
-# ========== Builder Stage ==========
-FROM base AS builder
-
-# Copy all installed dependencies from deps stage
-COPY --from=deps /app ./
-
-# Copy source code (excluding env files that will be handled separately)
-COPY . .
-
-# Set build-time environment variables
-ARG DOTENV_PRIVATE_KEY_PRODUCTION
-ARG NODE_ENV="production"
-ENV DOTENV_PRIVATE_KEY_PRODUCTION=${DOTENV_PRIVATE_KEY_PRODUCTION}
-ENV NEXT_TELEMETRY_DISABLED=1
+# Build the project
+COPY --from=builder /app/out/full/ .
+COPY .env* .
+ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN echo "NODE_ENV=${NODE_ENV}"
+RUN pnpm turbo run build --filter=@acme/nextjs
 
-# Build the application using dotenvx convention
-WORKDIR /app/apps/nextjs
-RUN npm install -g @dotenvx/dotenvx@latest
-RUN echo "DEBUG: DOTENV_PRIVATE_KEY_PRODUCTION (len)=${#DOTENV_PRIVATE_KEY_PRODUCTION}"
-RUN DOTENV_PRIVATE_KEY_PRODUCTION=$DOTENV_PRIVATE_KEY_PRODUCTION dotenvx run --convention=nextjs -- pnpm next build
-
-# ========== Runner Stage ==========
+# ========== Runner ==========
 FROM node:${NODE_VERSION}-alpine AS runner
-
-# Install runtime dependencies
-RUN apk add --no-cache libc6-compat curl bash
-
-# Install dotenvx globally
-RUN npm install -g @dotenvx/dotenvx@latest
-
-# Create non-root user
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nextjs -u 1001
-
 WORKDIR /app
 
-# Copy production files
-COPY --from=builder --chown=nextjs:nodejs /app/apps/nextjs/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/apps/nextjs/.next/static ./apps/nextjs/.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/apps/nextjs/public ./apps/nextjs/public
+# Runtime deps
+RUN apk add --no-cache libc6-compat curl bash
 
-# Copy database package for migrations with its node_modules
-COPY --from=builder --chown=nextjs:nodejs /app/packages/db ./packages/db
+# Enable pnpm in runtime and set non-root install locations
+RUN corepack enable && corepack prepare pnpm@${PNPM_VERSION} --activate
+ENV PNPM_HOME="/home/nextjs/.local/share/pnpm"
+ENV PNPM_STORE_DIR="/home/nextjs/.pnpm-store"
+ENV NPM_CONFIG_PREFIX="/home/nextjs/.npm-global"
+ENV PATH="/home/nextjs/.npm-global/bin:$PNPM_HOME:$PATH"
+RUN mkdir -p /home/nextjs/.local/share/pnpm /home/nextjs/.pnpm-store /home/nextjs/.npm-global
 
-# Copy environment files if they exist
+# Optional: tools used by start.sh
+RUN npm install -g @dotenvx/dotenvx@latest
+RUN npm install -g drizzle-kit
+
+# Don't run production as root
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+# Ensure nextjs owns its global dirs
+RUN chown -R 1001:1001 /home/nextjs/.local /home/nextjs/.pnpm-store /home/nextjs/.npm-global
+USER nextjs
+
+# Automatically leverage output traces to reduce image size
+# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=installer --chown=nextjs:nodejs /app/apps/nextjs/.next/standalone ./
+COPY --from=installer --chown=nextjs:nodejs /app/apps/nextjs/.next/static ./apps/nextjs/.next/static
+COPY --from=installer --chown=nextjs:nodejs /app/apps/nextjs/public ./apps/nextjs/public
+
+# Copy database package if needed at runtime (e.g., migrations)
+COPY --from=installer --chown=nextjs:nodejs /app/packages/db ./packages/db
+
+# Optionally include production env files
 COPY --chown=nextjs:nodejs .env.production* ./
 
-# Copy start script and set permissions
-COPY apps/nextjs/start.sh ./start.sh
-RUN chmod +x ./start.sh && chown nextjs:nodejs ./start.sh
+# Start script
+COPY --chown=nextjs:nodejs --chmod=0755 apps/nextjs/start.sh ./start.sh
 
-# Set runtime environment
-ENV HOSTNAME="0.0.0.0"
+# Runtime environment
+ENV HOSTNAME=0.0.0.0
 ENV PORT=3000
 ENV NEXT_TELEMETRY_DISABLED=1
-
-USER nextjs
 
 EXPOSE 3000
 
@@ -107,4 +97,4 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
   CMD curl -f http://localhost:3000/api/health || exit 1
 
-CMD ["dotenvx", "run", "--convention=nextjs", "--", "./start.sh"]
+CMD ["/app/start.sh"]

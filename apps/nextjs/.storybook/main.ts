@@ -9,7 +9,9 @@ const require = createRequire(import.meta.url);
  * This function is used to resolve the absolute path of a package.
  * It is needed in projects that use Yarn PnP or are set up within a monorepo.
  */
-function getAbsolutePath(value: string): any {
+
+// biome-ignore lint/suspicious/noExplicitAny: ignored using `--suppress`
+function  getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, "package.json")));
 }
 
@@ -52,6 +54,7 @@ const config: StorybookConfig = {
     },
   },
   staticDirs: ["../public"],
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: ignored using `--suppress`
   viteFinal: async (config, { configType }) => {
     // const { tamaguiPlugin } = await import("@tamagui/vite-plugin");
     return mergeConfig(config, {

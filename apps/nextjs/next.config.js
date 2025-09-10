@@ -10,6 +10,7 @@ const config = (_name, { defaultConfig }) => {
   const config = {
     ...defaultConfig,
     reactStrictMode: true,
+    output: "standalone",
     turbopack: {
       resolveAlias: {
         "react-native": "react-native-web",
@@ -87,6 +88,23 @@ const config = (_name, { defaultConfig }) => {
       define: {
         __DEV__: JSON.stringify(process.env.NODE_ENV !== "production"),
       },
+    },
+    // Ensure webpack (production build) uses the same aliases/extensions as Turbopack (dev)
+    webpack: (/** @type {any} */ config) => {
+      config.resolve = config.resolve || {};
+      config.resolve.alias = {
+        ...(config.resolve.alias || {}),
+        "react-native$": "react-native-web",
+        "react-native-svg": "react-native-svg-web",
+      };
+      config.resolve.extensions = [
+        ".web.js",
+        ".web.jsx",
+        ".web.ts",
+        ".web.tsx",
+        ...(config.resolve.extensions || []),
+      ];
+      return config;
     },
   };
 

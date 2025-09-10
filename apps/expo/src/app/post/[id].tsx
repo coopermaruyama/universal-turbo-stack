@@ -5,8 +5,7 @@ import { SafeAreaView, Text, View } from "react-native";
 import { trpc } from "~/lib/api";
 
 export default function Post() {
-  const { id } = useGlobalSearchParams();
-  if (!id || typeof id !== "string") throw new Error("unreachable");
+  const { id } = useGlobalSearchParams<{ id: string }>();
   const { data } = useQuery(trpc.post.byId.queryOptions({ id }));
 
   if (!data) return null;

@@ -89,23 +89,19 @@ test-build: ## Test production builds locally
 env-decrypt-dev:
 	exec dotenvx decrypt \
 		-fk .env.keys \
-		-f apps/nextjs/.env.development \
-		-f apps/travel-assistant-api/.env.development
+		-f apps/nextjs/.env.development
 .PHONY: env-encrypt-dev
 env-encrypt-dev:
 	dotenvx encrypt \
 		-fk .env.keys \
-		-f apps/nextjs/.env.development \
-		-f apps/travel-assistant-api/.env.development
+		-f apps/nextjs/.env.development
 .PHONY: env-decrypt-prod
 env-decrypt-prod:
 	dotenvx decrypt \
 		-fk .env.keys \
-		-f apps/nextjs/.env.production \
-		-f apps/travel-assistant-api/.env.production
+		-f apps/nextjs/.env.production
 .PHONY: env-decrypt-prod
 env-encrypt-prod:
 	dotenvx encrypt \
 		-fk .env.keys \
-		-f apps/nextjs/.env.production \
-		-f apps/travel-assistant-api/.env.production
+		-f apps/nextjs/.env.production

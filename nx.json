@@ -1,0 +1,114 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "sharedGlobals": [
+      {
+        "env": "POSTGRES_URL"
+      },
+      {
+        "env": "AUTH_DISCORD_ID"
+      },
+      {
+        "env": "AUTH_DISCORD_SECRET"
+      },
+      {
+        "env": "AUTH_GOOGLE_ID"
+      },
+      {
+        "env": "AUTH_GOOGLE_SECRET"
+      },
+      {
+        "env": "AUTH_REDIRECT_PROXY_URL"
+      },
+      {
+        "env": "AUTH_SECRET"
+      },
+      {
+        "env": "PORT"
+      },
+      {
+        "env": "SENDGRID_API_KEY"
+      },
+      {
+        "env": "SENDGRID_FROM_EMAIL"
+      },
+      {
+        "env": "STORYBOOK_ENABLED"
+      },
+      {
+        "env": "NEXTJS_APP_URL"
+      }
+    ],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ]
+  },
+  "targetDefaults": {
+    "topo": {
+      "dependsOn": [
+        "^topo"
+      ],
+      "cache": true
+    },
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "{projectRoot}/.cache/tsbuildinfo.json",
+        "{projectRoot}/dist/**"
+      ],
+      "cache": true
+    },
+    "dev": {
+      "dependsOn": [
+        "^dev"
+      ],
+      "cache": false
+    },
+    "format": {
+      "cache": true
+    },
+    "lint": {
+      "dependsOn": [
+        "^topo"
+      ],
+      "cache": true
+    },
+    "typecheck": {
+      "dependsOn": [
+        "^topo",
+        "^build"
+      ],
+      "outputs": [
+        "{projectRoot}/.cache/tsbuildinfo.json"
+      ],
+      "cache": true
+    },
+    "clean": {
+      "cache": false
+    },
+    "push": {
+      "cache": false
+    },
+    "studio": {
+      "cache": false
+    },
+    "ui-add": {
+      "cache": false
+    },
+    "storybook": {
+      "cache": false
+    },
+    "build-storybook": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "{projectRoot}/storybook-static/**"
+      ],
+      "cache": true
+    }
+  }
+}

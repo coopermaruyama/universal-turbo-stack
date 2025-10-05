@@ -1,22 +1,34 @@
 import { cn } from "@acme/ui/lib/utils";
 import { TextClassContext } from "@acme/ui/text";
 import * as Slot from "@rn-primitives/slot";
-import type { VariantProps } from "class-variance-authority";
-import { cva } from "class-variance-authority";
-import { View, type ViewProps } from "react-native";
+import { cva, type VariantProps } from "class-variance-authority";
+import { Platform, View, type ViewProps } from "react-native";
 
 const badgeVariants = cva(
-  "web:inline-flex web:transition-colors web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2 items-center rounded-full border border-border px-2.5 py-0.5",
+  cn(
+    "border-border group shrink-0 flex-row items-center justify-center gap-1 overflow-hidden rounded-md border px-2 py-0.5",
+    Platform.select({
+      web: "focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive w-fit whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3",
+    }),
+  ),
   {
     variants: {
       variant: {
-        default:
-          "web:hover:opacity-80 border-transparent bg-primary active:opacity-80",
-        secondary:
-          "web:hover:opacity-80 border-transparent bg-secondary active:opacity-80",
-        destructive:
-          "web:hover:opacity-80 border-transparent bg-destructive active:opacity-80",
-        outline: "text-foreground",
+        default: cn(
+          "bg-primary border-transparent",
+          Platform.select({ web: "[a&]:hover:bg-primary/90" }),
+        ),
+        secondary: cn(
+          "bg-secondary border-transparent",
+          Platform.select({ web: "[a&]:hover:bg-secondary/90" }),
+        ),
+        destructive: cn(
+          "bg-destructive border-transparent",
+          Platform.select({ web: "[a&]:hover:bg-destructive/90" }),
+        ),
+        outline: Platform.select({
+          web: "[a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+        }),
       },
     },
     defaultVariants: {
@@ -25,12 +37,12 @@ const badgeVariants = cva(
   },
 );
 
-const badgeTextVariants = cva("text-xs font-semibold", {
+const badgeTextVariants = cva("text-xs font-medium", {
   variants: {
     variant: {
       default: "text-primary-foreground",
       secondary: "text-secondary-foreground",
-      destructive: "text-destructive-foreground",
+      destructive: "text-white",
       outline: "text-foreground",
     },
   },
@@ -39,9 +51,10 @@ const badgeTextVariants = cva("text-xs font-semibold", {
   },
 });
 
-type BadgeProps = ViewProps & {
-  asChild?: boolean;
-} & VariantProps<typeof badgeVariants>;
+type BadgeProps = ViewProps &
+  React.RefAttributes<View> & {
+    asChild?: boolean;
+  } & VariantProps<typeof badgeVariants>;
 
 function Badge({ className, variant, asChild, ...props }: BadgeProps) {
   const Component = asChild ? Slot.View : View;

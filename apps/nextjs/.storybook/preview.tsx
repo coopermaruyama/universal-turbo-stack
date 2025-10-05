@@ -1,7 +1,7 @@
 import type { Preview } from "@storybook/nextjs";
 import { themes } from "storybook/theming";
 
-import "../../../packages/ui/src/styles/globals.css";
+import "../../../tooling/tailwind/web.css";
 
 // import React from "react";
 // import { DARK_MODE_EVENT_NAME } from "@vueless/storybook-dark-mode";

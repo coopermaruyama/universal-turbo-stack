@@ -1,4 +1,4 @@
-import { cn } from "@acme/ui/lib/utils";
+import { cn } from "../../lib/utils";
 import type * as React from "react";
 import type { TextInputProps } from "react-native";
 import { TextInput } from "react-native";

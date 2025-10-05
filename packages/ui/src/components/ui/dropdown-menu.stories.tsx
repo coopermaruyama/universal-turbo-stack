@@ -1,4 +1,4 @@
-import { Icon } from "@acme/ui/icon";
+import { Icon } from "./icon";
 import type { Meta, StoryObj } from "@storybook/react";
 import {
   Cloud,

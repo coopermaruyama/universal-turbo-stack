@@ -15,6 +15,37 @@ const meta: Meta<typeof Alert> = {
       control: { type: "select" },
       options: ["default", "destructive"],
     },
+    children: {
+      mapping: {
+        default: (
+          <>
+            <AlertTitle>Heads up!</AlertTitle>
+            <AlertDescription>
+              You can add components to your app using the cli.
+            </AlertDescription>
+          </>
+        ),
+        destructive: (
+          <>
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>
+              Your session has expired. Please log in again.
+            </AlertDescription>
+          </>
+        ),
+        info: (
+          <>
+            <AlertTitle>Information</AlertTitle>
+            <AlertDescription>
+              This is an informational alert with useful details.
+            </AlertDescription>
+          </>
+        ),
+        simple: <AlertDescription>A simple alert message.</AlertDescription>,
+      },
+      control: { type: "select" },
+      options: ["default", "destructive", "info", "simple"],
+    },
   },
 };
 
@@ -24,14 +55,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     icon: Terminal,
-    children: (
-      <>
-        <AlertTitle>Heads up!</AlertTitle>
-        <AlertDescription>
-          You can add components to your app using the cli.
-        </AlertDescription>
-      </>
-    ),
+    children: "default",
   },
 };
 
@@ -39,34 +63,20 @@ export const Destructive: Story = {
   args: {
     variant: "destructive",
     icon: AlertTriangle,
-    children: (
-      <>
-        <AlertTitle>Error</AlertTitle>
-        <AlertDescription>
-          Your session has expired. Please log in again.
-        </AlertDescription>
-      </>
-    ),
+    children: "destructive",
   },
 };
 
 export const Info: Story = {
   args: {
     icon: InfoIcon,
-    children: (
-      <>
-        <AlertTitle>Information</AlertTitle>
-        <AlertDescription>
-          This is an informational alert with useful details.
-        </AlertDescription>
-      </>
-    ),
+    children: "info",
   },
 };
 
 export const Simple: Story = {
   args: {
     icon: Terminal,
-    children: <AlertDescription>A simple alert message.</AlertDescription>,
+    children: "simple",
   },
 };

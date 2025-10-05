@@ -1,5 +1,5 @@
-import { cn } from "@acme/ui/lib/utils";
-import { TextClassContext } from "@acme/ui/text";
+import { cn } from "../../lib/utils";
+import { TextClassContext } from "./text";
 import * as TablePrimitive from "@rn-primitives/table";
 import type * as React from "react";
 

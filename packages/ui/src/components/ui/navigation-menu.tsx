@@ -1,5 +1,5 @@
-import { ChevronDown } from "@acme/ui/lib/icons/ChevronDown";
-import { cn } from "@acme/ui/lib/utils";
+import { ChevronDown } from "../../lib/icons/ChevronDown";
+import { cn } from "../../lib/utils";
 import * as NavigationMenuPrimitive from "@rn-primitives/navigation-menu";
 import { cva } from "class-variance-authority";
 import type * as React from "react";

@@ -6,9 +6,15 @@
   "[typescript,typescriptreact]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
   "editor.formatOnSave": true,
   "tailwindCSS.classFunctions": ["cva", "cx", "cn"],
-  "tailwindCSS.experimental.configFile": "./tooling/tailwind/web.ts",
+  "tailwindCSS.experimental.configFile": "./tooling/tailwind/base.css",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.preferences.autoImportFileExcludePatterns": [
     "zod/dist/types/index.d.ts", // Force auto-imports to v4
@@ -22,5 +28,6 @@
     "**/node_modules": true,
     ".cache": true,
     ".expo": true
-  }
+  },
+  "sarif-viewer.connectToGithubCodeScanning": "off"
 }

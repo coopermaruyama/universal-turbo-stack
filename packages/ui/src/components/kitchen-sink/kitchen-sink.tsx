@@ -47,7 +47,9 @@ import { RadioGroup, RadioGroupItem } from "@acme/ui/radio-group";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@acme/ui/select";
@@ -68,9 +70,11 @@ import { Toggle } from "@acme/ui/toggle";
 import { ToggleGroup, ToggleGroupItem } from "@acme/ui/toggle-group";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@acme/ui/tooltip";
 import { H1, H2, P } from "@acme/ui/typography";
+import type { TriggerRef } from "@rn-primitives/select";
+import { BadgeCheckIcon } from "lucide-react-native";
 import React from "react";
 import { View } from "react-native";
-
+import { Icon } from "../ui/icon";
 import CollapsibleDemo from "./collapsible";
 import DropdownMenuScreen from "./dropdown-menu";
 import HoverCardScreen from "./hover-card";
@@ -79,6 +83,7 @@ import NavigationMenuDemo from "./navigation-menu";
 import TabsScreen from "./tabs";
 
 export default function UITestScreen() {
+  const selectRef = React.useRef<TriggerRef>(null);
   const [checked, setChecked] = React.useState(false);
   const [switchChecked, setSwitchChecked] = React.useState(false);
   const [toggleValue, setToggleValue] = React.useState("a");
@@ -87,6 +92,9 @@ export default function UITestScreen() {
     // Run validation on component mount
     // validateThemes();
   }, []);
+  function onTouchStartSelect() {
+    selectRef.current?.open();
+  }
 
   return (
     <View style={{ flex: 1 }} className="gap-4 p-4">
@@ -139,18 +147,25 @@ export default function UITestScreen() {
 
       {/* alert */}
       <Section title="Alert">
-        <Alert icon={Terminal} className="max-w-xl">
-          <AlertTitle>Heads up!</AlertTitle>
-          <AlertDescription>
-            You can use a terminal to run commands on your computer.
-          </AlertDescription>
+        <Alert icon={Terminal}>
+          <AlertTitle>This Alert has no description.</AlertTitle>
         </Alert>
-        <Alert icon={AlertTriangle} variant="destructive" className="max-w-xl">
-          <AlertTitle>Danger!</AlertTitle>
+        <Alert variant="destructive" icon={AlertTriangle}>
+          <AlertTitle>Unable to process your payment.</AlertTitle>
           <AlertDescription>
-            High voltage. Do not touch. Risk of electric shock. Keep away from
-            children.
+            Please verify your billing information and try again.
           </AlertDescription>
+          <View role="list" className="ml-0.5 pb-2 pl-6">
+            <Text role="listitem" className="text-sm">
+              <Text className="web:pr-2">•</Text> Check your card details
+            </Text>
+            <Text role="listitem" className="text-sm">
+              <Text className="web:pr-2">•</Text> Ensure sufficient funds
+            </Text>
+            <Text role="listitem" className="text-sm">
+              <Text className="web:pr-2">•</Text> Verify billing address
+            </Text>
+          </View>
         </Alert>
       </Section>
 
@@ -178,9 +193,35 @@ export default function UITestScreen() {
 
       {/* badge */}
       <Section title="Badge">
-        <Badge>
-          <Text>Badge</Text>
-        </Badge>
+        <View className="flex w-full flex-row flex-wrap gap-2">
+          <Badge>
+            <Text>Badge</Text>
+          </Badge>
+          <Badge variant="secondary">
+            <Text>Secondary</Text>
+          </Badge>
+          <Badge variant="destructive">
+            <Text>Destructive</Text>
+          </Badge>
+          <Badge variant="outline">
+            <Text>Outline</Text>
+          </Badge>
+        </View>
+        <View className="flex w-full flex-row flex-wrap gap-2">
+          <Badge variant="secondary" className="bg-blue-500 dark:bg-blue-600">
+            <Icon as={BadgeCheckIcon} className="text-white" />
+            <Text className="text-white">Verified</Text>
+          </Badge>
+          <Badge className="min-w-5 rounded-full px-1">
+            <Text>8</Text>
+          </Badge>
+          <Badge className="min-w-5 rounded-full px-1" variant="destructive">
+            <Text>99</Text>
+          </Badge>
+          <Badge className="min-w-5 rounded-full px-1" variant="outline">
+            <Text>20+</Text>
+          </Badge>
+        </View>
       </Section>
 
       {/* button */}
@@ -307,30 +348,54 @@ export default function UITestScreen() {
 
       {/* radio-group */}
       <Section title="Radio Group">
-        <RadioGroup value="option-one" onValueChange={() => {}}>
-          <RadioGroupItem value="option-one" id="option-one" />
-          <Label htmlFor="option-one">Option One</Label>
-          <RadioGroupItem value="option-two" id="option-two" />
-          <Label htmlFor="option-two">Option Two</Label>
+        <RadioGroup value={"option-one"} onValueChange={() => {}}>
+          <View className="flex flex-row items-center gap-3">
+            <RadioGroupItem value="default" id="r1" />
+            <Label htmlFor="r1" onPress={() => {}}>
+              Default
+            </Label>
+          </View>
+          <View className="flex flex-row items-center gap-3">
+            <RadioGroupItem value="comfortable" id="r2" />
+            <Label htmlFor="r2" onPress={() => {}}>
+              Comfortable
+            </Label>
+          </View>
+          <View className="flex flex-row items-center gap-3">
+            <RadioGroupItem value="compact" id="r3" />
+            <Label htmlFor="r3" onPress={() => {}}>
+              Compact
+            </Label>
+          </View>
         </RadioGroup>
       </Section>
 
       {/* select */}
       <Section title="Select">
         <Select>
-          <SelectTrigger>
-            <SelectValue placeholder="Select a theme" />
+          <SelectTrigger
+            ref={selectRef}
+            className="w-[180px]"
+            onTouchStart={onTouchStartSelect}
+          >
+            <SelectValue placeholder="Select a fruit" />
           </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="light" label="Light">
-              Light
-            </SelectItem>
-            <SelectItem value="dark" label="Dark">
-              Dark
-            </SelectItem>
-            <SelectItem value="system" label="System">
-              System
-            </SelectItem>
+          <SelectContent
+            insets={{ top: 8, left: 8, right: 8, bottom: 8 }}
+            className="w-[180px]"
+          >
+            <SelectGroup>
+              <SelectLabel>Fruits</SelectLabel>
+              <SelectItem key="apple" label="Apple" value="apple">
+                Apple
+              </SelectItem>
+              <SelectItem key="banana" label="Banana" value="banana">
+                Apple
+              </SelectItem>
+              <SelectItem key="orange" label="Orange" value="orange">
+                Orange
+              </SelectItem>
+            </SelectGroup>
           </SelectContent>
         </Select>
       </Section>
@@ -349,7 +414,23 @@ export default function UITestScreen() {
 
       {/* switch */}
       <Section title="Switch">
-        <Switch checked={switchChecked} onCheckedChange={setSwitchChecked} />
+        <View className="flex-row items-center gap-2">
+          <Switch
+            checked={switchChecked}
+            onCheckedChange={setSwitchChecked}
+            id="airplane-mode"
+            nativeID="airplane-mode"
+          />
+
+          <Label
+            nativeID="airplane-mode"
+            htmlFor="airplane-mode"
+            onPress={() => setSwitchChecked((prev) => !prev)}
+          >
+            Airplane Mode
+          </Label>
+        </View>
+
       </Section>
 
       {/* table */}
@@ -436,6 +517,7 @@ export default function UITestScreen() {
         <H1>Heading 1</H1>
         <H2>Heading 2</H2>
         <P>Paragraph text</P>
+        <P className="pl-6">another paragraph text</P>
       </Section>
     </View>
   );

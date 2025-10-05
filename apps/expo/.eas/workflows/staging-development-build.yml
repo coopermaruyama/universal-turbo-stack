@@ -1,0 +1,13 @@
+name: Create staging builds
+
+on:
+  push:
+    branches: ["staging"]
+
+jobs:
+  build_ios:
+    name: Build iOS app
+    type: build
+    params:
+      platform: ios
+      profile: development

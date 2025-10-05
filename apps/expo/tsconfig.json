@@ -6,9 +6,10 @@
     "jsx": "react-native",
     "lib": ["ES2022", "dom"],
     "checkJs": false,
-    "moduleSuffixes": [".ios", ".android", ".native", ""],
+    "moduleSuffixes": [".ios", ".android", ".native", ".web", ""],
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["./src/*"],
+      "@/*": ["./src/*"]
     }
   },
   "include": [

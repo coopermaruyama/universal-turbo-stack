@@ -1,0 +1,28 @@
+diff --git a/package.json b/package.json
+index 4606707db27fe5c0df7f6e72a16ba2a4c04a5741..08e5f9ccf098f6440f83f238307bbce3056a6c6b 100644
+--- a/package.json
++++ b/package.json
+@@ -9,12 +9,12 @@
+     ".": {
+       "import": "./dist/module/index.js",
+       "require": "./dist/commonjs/index.js",
+-      "typescript": "./dist/typescript/commonjs/src/index.d.ts"
++      "types": "./dist/typescript/commonjs/src/index.d.ts"
+     },
+     "./babel": {
+       "import": "./dist/module/babel.js",
+       "require": "./dist/commonjs/babel.js",
+-      "typescript": "./dist/typescript/commonjs/src/babel.d.ts"
++      "types": "./dist/typescript/commonjs/src/babel.d.ts"
+     },
+     "./metro": {
+       "source": "./src/metro.ts",
+@@ -28,7 +28,7 @@
+       }
+     },
+     "./types": {
+-      "typescript": "./types.d.ts"
++      "types": "./types.d.ts"
+     },
+     "./theme": "./theme.css"
+   },

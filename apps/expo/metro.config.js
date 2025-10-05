@@ -8,14 +8,34 @@ const {
   wrapWithReanimatedMetroConfig,
 } = require("react-native-reanimated/metro-config");
 
+const root = path.resolve(__dirname, "../..");
+
+// Logger disabled to avoid Metro serialization issues
+
+/**
+ * Move the Metro cache to the `.cache/metro` folder.
+ * If you have any environment variables, you can configure Turborepo to invalidate it when needed.
+ *
+ * @see https://turborepo.com/docs/reference/configuration#env
+ * @param {import('expo/metro-config').MetroConfig} config
+ * @returns {import('expo/metro-config').MetroConfig}
+ */
+function withTurborepoManagedCache(config) {
+  config.cacheStores = [
+    new FileStore({ root: path.join(__dirname, ".cache/metro") }),
+  ];
+  return config;
+}
+
 let config = getDefaultConfig(__dirname, {
   isCSSEnabled: true, // Enable CSS support
 });
 
-// First apply NativeWind
 config = withNativeWind(config, {
-  input: "../../packages/ui/src/styles/globals.css",
-  configPath: "./tailwind.config.ts",
+  projectRoot: root,
+  input: path.resolve(root, "tooling/tailwind/base.css"),
+  inlineRem: 16,
+  // logger: disabled due to Metro serialization issues
 });
 
 // Then apply Storybook
@@ -50,18 +70,3 @@ config.resolver.sourceExts.push("mjs");
 config = wrapWithReanimatedMetroConfig(config);
 
 module.exports = config;
-
-/**
- * Move the Metro cache to the `.cache/metro` folder.
- * If you have any environment variables, you can configure Turborepo to invalidate it when needed.
- *
- * @see https://turborepo.com/docs/reference/configuration#env
- * @param {import('expo/metro-config').MetroConfig} config
- * @returns {import('expo/metro-config').MetroConfig}
- */
-function withTurborepoManagedCache(config) {
-  config.cacheStores = [
-    new FileStore({ root: path.join(__dirname, ".cache/metro") }),
-  ];
-  return config;
-}

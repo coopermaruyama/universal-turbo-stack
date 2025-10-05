@@ -1,4 +1,4 @@
-import { cn } from "@acme/ui/lib/utils";
+import { cn } from "../../lib/utils";
 import * as AvatarPrimitive from "@rn-primitives/avatar";
 import type * as React from "react";
 

@@ -22,6 +22,10 @@
       "dependsOn": ["^topo"],
       "outputs": []
     },
+    "migrate": {
+      "cache": false,
+      "interactive": true
+    },
     "typecheck": {
       "dependsOn": ["^topo", "^build"],
       "outputs": [".cache/tsbuildinfo.json"]

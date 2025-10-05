@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@acme/ui/lib/utils";
+import { cn } from "../../lib/utils";
 import * as LabelPrimitive from "@rn-primitives/label";
 import type * as React from "react";
 

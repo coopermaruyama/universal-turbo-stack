@@ -1,9 +1,9 @@
-import { Check } from "@acme/ui/lib/icons/Check";
-import { ChevronDown } from "@acme/ui/lib/icons/ChevronDown";
-import { ChevronRight } from "@acme/ui/lib/icons/ChevronRight";
-import { ChevronUp } from "@acme/ui/lib/icons/ChevronUp";
-import { cn } from "@acme/ui/lib/utils";
-import { TextClassContext } from "@acme/ui/text";
+import { Check } from "../../lib/icons/Check";
+import { ChevronDown } from "../../lib/icons/ChevronDown";
+import { ChevronRight } from "../../lib/icons/ChevronRight";
+import { ChevronUp } from "../../lib/icons/ChevronUp";
+import { cn } from "../../lib/utils";
+import { TextClassContext } from "./text";
 import * as ContextMenuPrimitive from "@rn-primitives/context-menu";
 import type * as React from "react";
 import type { StyleProp, TextProps, ViewStyle } from "react-native";

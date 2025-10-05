@@ -1,18 +1,16 @@
 "use client";
 
-import { cssInterop } from "nativewind";
 import type React from "react";
 import { Pressable, StyleSheet } from "react-native";
 
-const _SyledButton = cssInterop(Pressable, {
-  className: {
-    target: "style",
-    nativeStyleToProp: {},
-  },
-});
-
 export function Button(props: React.ComponentProps<typeof Pressable>) {
   return (
+    // <_SyledButton {...props} style={styles.button}>
+    //   {props.children}
+    // </_SyledButton>
+    // <StyledButton {...props} style={styles.button}>
+    //   {props.children}
+    // </StyledButton>
     <Pressable {...props} style={styles.button}>
       {props.children}
     </Pressable>

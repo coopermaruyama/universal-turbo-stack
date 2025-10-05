@@ -1,4 +1,4 @@
-import "@acme/ui/globals.css";
+import "../../../../tooling/tailwind/base.css";
 
 import {
   Montserrat_300Light,
@@ -17,13 +17,14 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import * as React from "react";
-import { Platform } from "react-native";
-
+import { Platform, useColorScheme } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+// import * as storage from "@/lib/storage";
 import { ThemeToggle } from "~/components/theme-toggle";
 import { queryClient } from "~/lib/api";
 import { NAV_THEME } from "~/lib/constants";
 import { useIsomorphicLayoutEffect } from "~/lib/hooks/useIsomorphicLayoutEffect";
-import { useColorScheme } from "~/lib/useColorScheme";
+import AppThemeProvider from "../lib/theme-provider";
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -38,7 +39,7 @@ const DARK_THEME: Theme = {
 // It wraps your pages with the providers they need
 export default function RootLayout() {
   const hasMounted = React.useRef(false);
-  const { colorScheme } = useColorScheme();
+  const colorScheme = useColorScheme();
   const isDarkColorScheme = colorScheme !== "light";
   const theme = NAV_THEME[colorScheme ?? "dark"];
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
@@ -56,6 +57,7 @@ export default function RootLayout() {
     if (Platform.OS === "web") {
       // Adds the background color to the html element to prevent white background on overscroll.
       document?.documentElement.classList.add("bg-background");
+      document?.body.classList.add("debug-screens");
     }
     setIsColorSchemeLoaded(true);
     hasMounted.current = true;
@@ -67,30 +69,34 @@ export default function RootLayout() {
 
   return (
     <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-          {/*
-              The Stack component displays the current page.
-              It also allows you to configure your screens
-            */}
-          <Stack
-            screenOptions={{
-              headerShown: false,
-              statusBarBackgroundColor: theme.background,
-              animation: "none",
-              contentStyle: {
-                backgroundColor: isDarkColorScheme
-                  ? "hsl(240, 10%, 3.9%)" // dark background
-                  : "hsl(240, 0%, 98%)", // light
-              },
-            }}
-          />
-          {/* Default Portal Host (one per app) */}
-          <PortalHost />
-          <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-          <ThemeToggle />
-        </ThemeProvider>
-      </QueryClientProvider>
+      <GestureHandlerRootView style={{ flex: 1 }} className="debug-screens">
+        <QueryClientProvider client={queryClient}>
+          {/* <AppThemeProvider> */}
+          <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
+            {/*
+                  The Stack component displays the current page.
+                  It also allows you to configure your screens
+                */}
+            <Stack
+              screenOptions={{
+                headerShown: false,
+                statusBarBackgroundColor: theme.background,
+                animation: "none",
+                contentStyle: {
+                  backgroundColor: isDarkColorScheme
+                    ? "hsl(240, 10%, 3.9%)" // dark background
+                    : "hsl(240, 0%, 98%)", // light
+                },
+              }}
+            />
+            {/* Default Portal Host (one per app) */}
+            <PortalHost />
+            <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
+            <ThemeToggle />
+          </ThemeProvider>
+          {/* </AppThemeProvider> */}
+        </QueryClientProvider>
+      </GestureHandlerRootView>
     </React.StrictMode>
   );
 }

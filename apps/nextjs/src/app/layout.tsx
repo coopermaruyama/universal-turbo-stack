@@ -1,10 +1,12 @@
+import "raf/polyfill";
+
 import type { Metadata, Viewport } from "next";
 import { Montserrat, Source_Code_Pro } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { TRPCReactProvider } from "@/lib/trpc/react";
 import { cn } from "@/lib/utils";
 
-import "@acme/ui/styles/globals.css";
+import "@acme/tailwind-config/web.css";
 
 import { AppProviders } from "@/components/app-providers";
 import { env } from "@/env";

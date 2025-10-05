@@ -1,20 +1,14 @@
-import baseConfig from "@acme/tailwind-config/web";
 import type { Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
 
 export default {
-  // We need to append the path to the UI package to the content array so that
-  // those classes are included correctly.
-  content: [...baseConfig.content, "../../packages/ui/src/**/*.{ts,tsx}"],
-  // content: [...baseConfig.content],
-  presets: [require("nativewind/preset"), baseConfig],
-  important: "html",
+  darkMode: "class",
+  content: ["./src/**/*.{ts,tsx}", "../../packages/ui/src/**/*.{ts,tsx}"],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["var(--font-montserrat)", ...fontFamily.sans],
-        mono: ["var(--font-source-code-pro)", ...fontFamily.mono],
+      spacing: {
+        "6": "1.5rem", // Ensure spacing-6 is available
       },
     },
   },
+  plugins: [],
 } satisfies Config;

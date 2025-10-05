@@ -29,6 +29,20 @@ const meta: Meta<typeof Button> = {
     disabled: {
       control: { type: "boolean" },
     },
+    children: {
+      control: { type: "text" },
+      mapping: {
+        Button: <Text>Button</Text>,
+        Secondary: <Text>Secondary</Text>,
+        Destructive: <Text>Destructive</Text>,
+        Outline: <Text>Outline</Text>,
+        Ghost: <Text>Ghost</Text>,
+        Link: <Text>Link</Text>,
+        Small: <Text>Small</Text>,
+        Large: <Text>Large</Text>,
+        Disabled: <Text>Disabled</Text>,
+      },
+    },
   },
 };
 
@@ -37,62 +51,62 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: <Text>Button</Text>,
+    children: "Button",
   },
 };
 
 export const Secondary: Story = {
   args: {
     variant: "secondary",
-    children: <Text>Secondary</Text>,
+    children: "Secondary",
   },
 };
 
 export const Destructive: Story = {
   args: {
     variant: "destructive",
-    children: <Text>Destructive</Text>,
+    children: "Destructive",
   },
 };
 
 export const Outline: Story = {
   args: {
     variant: "outline",
-    children: <Text>Outline</Text>,
+    children: "Outline",
   },
 };
 
 export const Ghost: Story = {
   args: {
     variant: "ghost",
-    children: <Text>Ghost</Text>,
+    children: "Ghost",
   },
 };
 
 export const Link: Story = {
   args: {
     variant: "link",
-    children: <Text>Link</Text>,
+    children: "Link",
   },
 };
 
 export const Small: Story = {
   args: {
     size: "sm",
-    children: <Text>Small</Text>,
+    children: "Small",
   },
 };
 
 export const Large: Story = {
   args: {
     size: "lg",
-    children: <Text>Large</Text>,
+    children: "Large",
   },
 };
 
 export const Disabled: Story = {
   args: {
     disabled: true,
-    children: <Text>Disabled</Text>,
+    children: "Disabled",
   },
 };

@@ -1,4 +1,4 @@
-import { cn } from "@acme/ui/lib/utils";
+import { cn } from "../../lib/utils";
 import * as ProgressPrimitive from "@rn-primitives/progress";
 import type * as React from "react";
 import { Platform, View } from "react-native";

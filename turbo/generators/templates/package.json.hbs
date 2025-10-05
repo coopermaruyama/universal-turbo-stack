@@ -1,6 +1,7 @@
 {
   "name": "@acme/{{ name }}",
   "private": true,
+  "version": "0.1.0",
   "type": "module",
   "exports": {
     ".": "./src/index.ts"
@@ -10,11 +11,14 @@
     "build": "tsc",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "dev": "tsc",
-    "format": "biome format .",
-    "lint": "biome lint .",
+    "format": "biome format . --files-ignore-unknown=true",
+    "format:fix": "biome format . --files-ignore-unknown=true --write",
+    "lint": "biome lint . --files-ignore-unknown=true",
+    "lint:fix": "biome lint . --files-ignore-unknown=true --write --unsafe",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "devDependencies": {
+    "@biomejs/biome": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "typescript": "catalog:"
   }

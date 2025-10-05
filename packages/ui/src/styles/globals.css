@@ -1,71 +1,96 @@
+/**
+** Do NOT make changes to the following imports unless you know what you are doing
+** You will most likely break Nativewind unless Nativewind 5 is stable
+*/
 /* @import "@fontsource/montserrat/400.css"; */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+@import "tw-animate-css";
+@import "nativewind/theme";
 
-@layer base {
-  :root {
-    --tw-background: 0 0% 100%;
-    --tw-foreground: 240 10% 3.9%;
-    --tw-card: 0 0% 100%;
-    --tw-card-foreground: 240 10% 3.9%;
-    --tw-popover: 0 0% 100%;
-    --tw-popover-foreground: 240 10% 3.9%;
-    --tw-primary: 240 5.9% 10%;
-    --tw-primary-foreground: 0 0% 98%;
-    --tw-secondary: 240 4.8% 95.9%;
-    --tw-secondary-foreground: 240 5.9% 10%;
-    --tw-muted: 240 4.8% 95.9%;
-    --tw-muted-foreground: 240 3.8% 46.1%;
-    --tw-accent: 240 4.8% 95.9%;
-    --tw-accent-foreground: 240 5.9% 10%;
-    --tw-destructive: 0 84.2% 60.2%;
-    --tw-destructive-foreground: 0 0% 98%;
-    --tw-border: 240 5.9% 90%;
-    --tw-input: 240 5.9% 90%;
-    --tw-ring: 240 5.9% 10%;
-    --radius: 0.5rem;
-    --tw-chart-1: 12 76% 61%;
-    --tw-chart-2: 173 58% 39%;
-    --tw-chart-3: 197 37% 24%;
-    --tw-chart-4: 43 74% 66%;
-    --tw-chart-5: 27 87% 67%;
-  }
 
-  .dark:root,
-  .t_dark:root,
-  .dark {
-    --tw-background: 240 10% 3.9%;
-    --tw-foreground: 0 0% 98%;
-    --tw-card: 240 10% 3.9%;
-    --tw-card-foreground: 0 0% 98%;
-    --tw-popover: 240 10% 3.9%;
-    --tw-popover-foreground: 0 0% 98%;
-    --tw-primary: 0 0% 98%;
-    --tw-primary-foreground: 240 5.9% 10%;
-    --tw-secondary: 240 3.7% 15.9%;
-    --tw-secondary-foreground: 0 0% 98%;
-    --tw-muted: 240 3.7% 15.9%;
-    --tw-muted-foreground: 240 5% 64.9%;
-    --tw-accent: 240 3.7% 15.9%;
-    --tw-accent-foreground: 0 0% 98%;
-    --tw-destructive: 0 62.8% 30.6%;
-    --tw-destructive-foreground: 0 0% 98%;
-    --tw-border: 240 3.7% 15.9%;
-    --tw-input: 240 3.7% 15.9%;
-    --tw-ring: 240 4.9% 83.9%;
-    --tw-chart-1: 220 70% 50%;
-    --tw-chart-2: 160 60% 45%;
-    --tw-chart-3: 30 80% 55%;
-    --tw-chart-4: 280 65% 60%;
-    --tw-chart-5: 340 75% 55%;
-  }
+@custom-variant dark (&:is(.dark *));
+
+
+
+
+
+@theme {
+  --zinc-50: 0 0% 98%;
+  --zinc-100: 0 0% 96.1%;
+  --zinc-200: 0 0% 89.8%;
+  --zinc-300: 0 0% 83.1%;
+  --zinc-400: 0 0% 63.9%;
+  --zinc-500: 0 0% 45.1%;
+  --zinc-600: 0 0% 32.2%;
+  --zinc-700: 0 0% 25.1%;
+  --zinc-800: 0 0% 14.9%;
+  --zinc-900: 0 0% 9%;
+  --zinc-950: 0 0% 3.9%; 
 }
 
-/* body {
-  background: hsl(var(--tw-background));
-} */
-.dark {
+
+
+
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(240 10% 3.9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(240 10% 3.9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(240 10% 3.9%);
+  --primary: hsl(240 5.9% 10%);
+  --primary-foreground: hsl(0 0% 98%);
+  --secondary: hsl(240 4.8% 95.9%);
+  --secondary-foreground: hsl(240 5.9% 10%);
+  --muted: hsl(240 4.8% 95.9%);
+  --muted-foreground: hsl(240 3.8% 46.1%);
+  --accent: hsl(240 4.8% 95.9%);
+  --accent-foreground: hsl(240 5.9% 10%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(240 5.9% 90%);
+  --input: hsl(240 5.9% 90%);
+  --ring: hsl(240 5.9% 10%);
+  --radius: 0.5rem;
+  --chart-1: hsl(12 76% 61%);
+  --chart-2: hsl(173 58% 39%);
+  --chart-3: hsl(197 37% 24%);
+  --chart-4: hsl(43 74% 66%);
+  --chart-5: hsl(27 87% 67%);
+}
+
+
+
+/* Base Theme */
+
+
+.dark, .dark:root {
+  --background:hsl(240 10% 3.9%);
+  --foreground:hsl(0 0% 98%);
+  --card:hsl(240 10% 7%);
+  --card-foreground:hsl(0 0% 98%);
+  --popover:hsl(240 10% 3.9%);
+  --popover-foreground:hsl(0 0% 98%);
+  --primary:hsl(0 0% 98%);
+  --primary-foreground:hsl(240 5.9% 10%);
+  --secondary:hsl(240 3.7% 15.9%);
+  --secondary-foreground:hsl(0 0% 98%);
+  --muted:hsl(240 3.7% 15.9%);
+  --muted-foreground:hsl(240 5% 64.9%);
+  --accent:hsl(240 3.7% 15.9%);
+  --accent-foreground:hsl(0 0% 98%);
+  --destructive:hsl(0 62.8% 30.6%);
+  --destructive-foreground:hsl(0 0% 98%);
+  --border:hsl(240 4% 16%);
+  --input:hsl(240 4% 16%);
+  --ring:hsl(240 4.9% 83.9%);
+  --chart-1:hsl(220 70% 50%);
+  --chart-2:hsl(160 60% 45%);
+  --chart-3:hsl(30 80% 55%);
+  --chart-4:hsl(280 65% 60%);
+  --chart-5:hsl(340 75% 55%);
   --sidebar: hsl(240 5.9% 10%);
   --sidebar-foreground: hsl(240 4.8% 95.9%);
   --sidebar-primary: hsl(224.3 76.3% 48%);
@@ -75,8 +100,73 @@
   --sidebar-border: hsl(240 3.7% 15.9%);
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
 }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background:hsl(240 10% 3.9%);
+    --foreground:hsl(0 0% 98%);
+    --card:hsl(240 10% 7%);
+    --card-foreground:hsl(0 0% 98%);
+    --popover:hsl(240 10% 3.9%);
+    --popover-foreground:hsl(0 0% 98%);
+    --primary:hsl(0 0% 98%);
+    --primary-foreground:hsl(240 5.9% 10%);
+    --secondary:hsl(240 3.7% 15.9%);
+    --secondary-foreground:hsl(0 0% 98%);
+    --muted:hsl(240 3.7% 15.9%);
+    --muted-foreground:hsl(240 5% 64.9%);
+    --accent:hsl(240 3.7% 15.9%);
+    --accent-foreground:hsl(0 0% 98%);
+    --destructive:hsl(0 62.8% 30.6%);
+    --destructive-foreground:hsl(0 0% 98%);
+    --border:hsl(240 4% 16%);
+    --input:hsl(240 4% 16%);
+    --ring:hsl(240 4.9% 83.9%);
+    --chart-1:hsl(220 70% 50%);
+    --chart-2:hsl(160 60% 45%);
+    --chart-3:hsl(30 80% 55%);
+    --chart-4:hsl(280 65% 60%);
+    --chart-5:hsl(340 75% 55%);
+    --sidebar: hsl(240 5.9% 10%);
+    --sidebar-foreground: hsl(240 4.8% 95.9%);
+    --sidebar-primary: hsl(224.3 76.3% 48%);
+    --sidebar-primary-foreground: hsl(0 0% 100%);
+    --sidebar-accent: hsl(240 3.7% 15.9%);
+    --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+    --sidebar-border: hsl(240 3.7% 15.9%);
+    --sidebar-ring: hsl(217.2 91.2% 59.8%);
+  }
+}
 
-@theme inline {
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -86,19 +176,19 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 }
-
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+* {
+  @apply border-border outline-ring/50;
 }
-/* These styles make the body full-height */
+body {
+  @apply bg-background text-foreground;
+}
+}
+
 html,
 body {
   height: 100%;
+  background: hsl(var(--background));
 }
 /* These styles disable body scrolling if you are using <ScrollView> */
 body {
@@ -108,4 +198,5 @@ body {
 #root {
   display: flex;
   height: 100%;
+  background: hsl(var(--background));
 }

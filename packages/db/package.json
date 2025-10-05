@@ -1,5 +1,6 @@
 {
   "name": "@acme/db",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "exports": {
@@ -14,6 +15,10 @@
     "./schema": {
       "types": "./dist/schema.d.ts",
       "default": "./src/schema.ts"
+    },
+    "./migrate": {
+      "types": "./dist/migrate.d.ts",
+      "default": "./src/migrate.ts"
     }
   },
   "license": "MIT",
@@ -21,25 +26,29 @@
     "build": "tsc",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "dev": "tsc",
-    "format": "biome format .",
-    "lint": "biome lint .",
+    "format": "biome format . --files-ignore-unknown=true",
+    "format:fix": "biome format . --files-ignore-unknown=true --write",
+    "lint": "biome lint . --files-ignore-unknown=true",
+    "lint:fix": "biome lint . --files-ignore-unknown=true --write --unsafe",
     "push": "pnpm with-env drizzle-kit push",
     "studio": "pnpm with-env drizzle-kit studio",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
     "genmigration": "pnpm with-env drizzle-kit generate",
-    "with-env": "../scripts/with-env.sh"
+    "migrate": "pnpm with-env drizzle-kit migrate",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
+    "echo": "echo $POSTGRES_URL"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",
     "@vercel/postgres": "^0.10.0",
-    "drizzle-orm": "^0.44.5",
-    "drizzle-zod": "^0.8.3",
+    "drizzle-orm": "^0.44.1",
+    "drizzle-zod": "^0.8.2",
+    "pg": "^8.16.3",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@acme/tsconfig": "workspace:*",
     "dotenv-cli": "^10.0.0",
-    "drizzle-kit": "^0.31.1",
+    "drizzle-kit": "^0.31.5",
     "typescript": "catalog:"
   }
 }

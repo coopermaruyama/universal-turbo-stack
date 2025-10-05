@@ -1,10 +1,11 @@
 import { withBackgrounds } from "@storybook/addon-ondevice-backgrounds";
 import type { Preview } from "@storybook/react";
+import React from "react";
 import { View } from "react-native";
 
 import { NAV_THEME } from "../src/lib/constants";
 
-import "@acme/ui/globals.css"; // Import global styles
+import "../../../tooling/tailwind/base";
 
 const preview: Preview = {
   decorators: [

@@ -1,7 +1,7 @@
 // import { useNavigation } from 'expo-router';
 
 import { Icon } from "@acme/ui/icon";
-import { cn } from "@acme/ui/lib/utils";
+import { cn } from "../../lib/utils";
 // import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   NavigationMenu,

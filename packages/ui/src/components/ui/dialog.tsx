@@ -1,5 +1,5 @@
-import { X } from "@acme/ui/lib/icons/X";
-import { cn } from "@acme/ui/lib/utils";
+import { X } from "../../lib/icons/X";
+import { cn } from "../../lib/utils";
 import * as DialogPrimitive from "@rn-primitives/dialog";
 import type * as React from "react";
 import type { ViewProps } from "react-native";

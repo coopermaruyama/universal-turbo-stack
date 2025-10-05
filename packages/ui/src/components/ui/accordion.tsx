@@ -1,7 +1,7 @@
 "use client";
 
-import { cn } from "@acme/ui/lib/utils";
-import { TextClassContext } from "@acme/ui/text";
+import { cn } from "../../lib/utils";
+import { TextClassContext } from "./text";
 import * as AccordionPrimitive from "@rn-primitives/accordion";
 import type * as React from "react";
 import { Platform, Pressable, View } from "react-native";

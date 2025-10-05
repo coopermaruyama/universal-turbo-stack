@@ -5,7 +5,7 @@
   "tsx": true,
   "tailwind": {
     "config": "",
-    "css": "@acme/ui/styles/globals.css",
+    "css": "@acme/tailwind-config/native.css",
     "baseColor": "zinc",
     "cssVariables": true
   },

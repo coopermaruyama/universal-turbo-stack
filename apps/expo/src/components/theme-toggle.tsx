@@ -1,17 +1,20 @@
 import { Button } from "@acme/ui/button";
+import { Appearance } from "react-native";
 
 import { Moon } from "~/lib/icons/Moon";
 import { Sun } from "~/lib/icons/Sun";
 import { useColorScheme } from "~/lib/useColorScheme";
 
 export function ThemeToggle() {
-  const { colorScheme, setColorScheme } = useColorScheme();
+  const colorScheme = useColorScheme();
 
   return (
     <Button
       variant="outline"
       size="icon"
-      onPress={() => setColorScheme(colorScheme === "light" ? "dark" : "light")}
+      onPress={() =>
+        Appearance.setColorScheme(colorScheme === "light" ? "dark" : "light")
+      }
       className="right-safe-or-5 bottom-safe-or-2 absolute z-50"
     >
       {/* <Sun className="h-4 w-4 rotate-0 scale-100 text-primary transition-all dark:-rotate-90 dark:scale-0" /> */}

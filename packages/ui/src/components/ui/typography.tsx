@@ -1,4 +1,4 @@
-import { cn } from "@acme/ui/lib/utils";
+import { cn } from "../../lib/utils";
 import * as Slot from "@rn-primitives/slot";
 import type * as React from "react";
 import { Platform, Text as RNText } from "react-native";

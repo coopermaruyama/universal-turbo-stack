@@ -1,10 +1,10 @@
 "use client";
 
-import { PortalHost } from "@acme/ui/index";
+import { PortalHost } from "@acme/ui";
 import { useServerInsertedHTML } from "next/navigation";
 import { useTheme } from "next-themes";
 import type { ReactNode } from "react";
-import { StyleSheet } from "react-native";
+// import { StyleSheet } from "react-native";
 
 import { ThemeProvider } from "./theme-provider";
 
@@ -12,8 +12,7 @@ export const AppProviders = ({ children }: { children: ReactNode }) => {
   useTheme();
 
   useServerInsertedHTML(() => {
-    // @ts-ignore
-    const _ = StyleSheet.getSheet();
+    // const _ = StyleSheet.getSheet();
     return (
       <>
         <style jsx global>{`

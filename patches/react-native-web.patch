@@ -1,0 +1,259 @@
+diff --git a/dist/cjs/modules/createDOMProps/index.js b/dist/cjs/modules/createDOMProps/index.js
+index d643013ccf5b6e343a4aa468346cd02a10a45035..43c755d804cd1559f84b9e9349430bc12d8c0548 100644
+--- a/dist/cjs/modules/createDOMProps/index.js
++++ b/dist/cjs/modules/createDOMProps/index.js
+@@ -15,7 +15,7 @@ var _excluded = ["aria-activedescendant", "accessibilityActiveDescendant", "aria
+  * This source code is licensed under the MIT license found in the
+  * LICENSE file in the root directory of this source tree.
+  *
+- * 
++ *
+  */
+ var emptyObject = {};
+ var hasOwnProperty = Object.prototype.hasOwnProperty;
+@@ -812,10 +812,14 @@ var createDOMProps = (elementType, props, options) => {
+       writingDirection: 'ltr'
+     }, options)),
+     className = _StyleSheet[0],
+-    inlineStyle = _StyleSheet[1];
++    inlineStyle = _StyleSheet[1],
++    _className = _props['className'];;
+   if (className) {
+     domProps.className = className;
+   }
++  if (_className) {
++    domProps.className = domProps.className ? domProps.className + ' ' + _className : _className;
++  }
+   if (inlineStyle) {
+     domProps.style = inlineStyle;
+   }
+diff --git a/dist/cjs/modules/forwardedProps/index.js b/dist/cjs/modules/forwardedProps/index.js
+index 3ee8c888a94517bfa4df4fcdbfc9eef5b7064076..acd450b70e28fa967d3fa9e4462297980387ec6d 100644
+--- a/dist/cjs/modules/forwardedProps/index.js
++++ b/dist/cjs/modules/forwardedProps/index.js
+@@ -8,7 +8,7 @@ exports.touchProps = exports.styleProps = exports.mouseProps = exports.keyboardP
+  * This source code is licensed under the MIT license found in the
+  * LICENSE file in the root directory of this source tree.
+  *
+- * 
++ *
+  */
+ 
+ var defaultProps = exports.defaultProps = {
+@@ -164,5 +164,6 @@ var touchProps = exports.touchProps = {
+   onTouchStartCapture: true
+ };
+ var styleProps = exports.styleProps = {
+-  style: true
++  style: true,
++  className: true
+ };
+\ No newline at end of file
+diff --git a/dist/modules/createDOMProps/index.js b/dist/modules/createDOMProps/index.js
+index 18f5e8b769d49d0168e109a1e8b4a402a5a39f79..0be369ec9838993eb647ee6048cfcadde7ab854d 100644
+--- a/dist/modules/createDOMProps/index.js
++++ b/dist/modules/createDOMProps/index.js
+@@ -7,7 +7,7 @@ var _excluded = ["aria-activedescendant", "accessibilityActiveDescendant", "aria
+  * This source code is licensed under the MIT license found in the
+  * LICENSE file in the root directory of this source tree.
+  *
+- * 
++ *
+  */
+ 
+ import AccessibilityUtil from '../AccessibilityUtil';
+@@ -808,10 +808,14 @@ var createDOMProps = (elementType, props, options) => {
+       writingDirection: 'ltr'
+     }, options)),
+     className = _StyleSheet[0],
+-    inlineStyle = _StyleSheet[1];
++    inlineStyle = _StyleSheet[1],
++    _className = _props['className'];
+   if (className) {
+     domProps.className = className;
+   }
++  if (_className) {
++    domProps.className = domProps.className ? domProps.className + ' ' + _className : _className;
++  }
+   if (inlineStyle) {
+     domProps.style = inlineStyle;
+   }
+diff --git a/dist/modules/forwardedProps/index.js b/dist/modules/forwardedProps/index.js
+index 96f20698efeb86fbaf71f35702a5d6ac70678820..5a53bbfef6aafbdc6a3ed5fbd06690eef91e7db3 100644
+--- a/dist/modules/forwardedProps/index.js
++++ b/dist/modules/forwardedProps/index.js
+@@ -4,7 +4,7 @@
+  * This source code is licensed under the MIT license found in the
+  * LICENSE file in the root directory of this source tree.
+  *
+- * 
++ *
+  */
+ 
+ export var defaultProps = {
+@@ -160,5 +160,6 @@ export var touchProps = {
+   onTouchStartCapture: true
+ };
+ export var styleProps = {
+-  style: true
++  style: true,
++  className: true
+ };
+\ No newline at end of file
+diff --git a/dist/modules/forwardedProps/index.js.flow b/dist/modules/forwardedProps/index.js.flow
+index d544390d4ab227a2e17e71ee94866e4762b710a7..40120fd248bb7779b0b997332894ee574c9e3986 100644
+--- a/dist/modules/forwardedProps/index.js.flow
++++ b/dist/modules/forwardedProps/index.js.flow
+@@ -18,55 +18,55 @@ export const defaultProps = {
+   testID: true,
+   // @deprecated
+   focusable: true,
+-  nativeID: true
++  nativeID: true,
+ };
+ export const accessibilityProps = {
+-  'aria-activedescendant': true,
+-  'aria-atomic': true,
+-  'aria-autocomplete': true,
+-  'aria-busy': true,
+-  'aria-checked': true,
+-  'aria-colcount': true,
+-  'aria-colindex': true,
+-  'aria-colspan': true,
+-  'aria-controls': true,
+-  'aria-current': true,
+-  'aria-describedby': true,
+-  'aria-details': true,
+-  'aria-disabled': true,
+-  'aria-errormessage': true,
+-  'aria-expanded': true,
+-  'aria-flowto': true,
+-  'aria-haspopup': true,
+-  'aria-hidden': true,
+-  'aria-invalid': true,
+-  'aria-keyshortcuts': true,
+-  'aria-label': true,
+-  'aria-labelledby': true,
+-  'aria-level': true,
+-  'aria-live': true,
+-  'aria-modal': true,
+-  'aria-multiline': true,
+-  'aria-multiselectable': true,
+-  'aria-orientation': true,
+-  'aria-owns': true,
+-  'aria-placeholder': true,
+-  'aria-posinset': true,
+-  'aria-pressed': true,
+-  'aria-readonly': true,
+-  'aria-required': true,
++  "aria-activedescendant": true,
++  "aria-atomic": true,
++  "aria-autocomplete": true,
++  "aria-busy": true,
++  "aria-checked": true,
++  "aria-colcount": true,
++  "aria-colindex": true,
++  "aria-colspan": true,
++  "aria-controls": true,
++  "aria-current": true,
++  "aria-describedby": true,
++  "aria-details": true,
++  "aria-disabled": true,
++  "aria-errormessage": true,
++  "aria-expanded": true,
++  "aria-flowto": true,
++  "aria-haspopup": true,
++  "aria-hidden": true,
++  "aria-invalid": true,
++  "aria-keyshortcuts": true,
++  "aria-label": true,
++  "aria-labelledby": true,
++  "aria-level": true,
++  "aria-live": true,
++  "aria-modal": true,
++  "aria-multiline": true,
++  "aria-multiselectable": true,
++  "aria-orientation": true,
++  "aria-owns": true,
++  "aria-placeholder": true,
++  "aria-posinset": true,
++  "aria-pressed": true,
++  "aria-readonly": true,
++  "aria-required": true,
+   role: true,
+-  'aria-roledescription': true,
+-  'aria-rowcount': true,
+-  'aria-rowindex': true,
+-  'aria-rowspan': true,
+-  'aria-selected': true,
+-  'aria-setsize': true,
+-  'aria-sort': true,
+-  'aria-valuemax': true,
+-  'aria-valuemin': true,
+-  'aria-valuenow': true,
+-  'aria-valuetext': true,
++  "aria-roledescription": true,
++  "aria-rowcount": true,
++  "aria-rowindex": true,
++  "aria-rowspan": true,
++  "aria-selected": true,
++  "aria-setsize": true,
++  "aria-sort": true,
++  "aria-valuemax": true,
++  "aria-valuemin": true,
++  "aria-valuenow": true,
++  "aria-valuetext": true,
+   // @deprecated
+   accessibilityActiveDescendant: true,
+   accessibilityAtomic: true,
+@@ -113,7 +113,7 @@ export const accessibilityProps = {
+   accessibilityValueMax: true,
+   accessibilityValueMin: true,
+   accessibilityValueNow: true,
+-  accessibilityValueText: true
++  accessibilityValueText: true,
+ };
+ export const clickProps = {
+   onClick: true,
+@@ -128,17 +128,17 @@ export const clickProps = {
+   onPointerLeave: true,
+   onPointerOut: true,
+   onPointerOver: true,
+-  onPointerUp: true
++  onPointerUp: true,
+ };
+ export const focusProps = {
+   onBlur: true,
+-  onFocus: true
++  onFocus: true,
+ };
+ export const keyboardProps = {
+   onKeyDown: true,
+   onKeyDownCapture: true,
+   onKeyUp: true,
+-  onKeyUpCapture: true
++  onKeyUpCapture: true,
+ };
+ export const mouseProps = {
+   onMouseDown: true,
+@@ -147,7 +147,7 @@ export const mouseProps = {
+   onMouseMove: true,
+   onMouseOver: true,
+   onMouseOut: true,
+-  onMouseUp: true
++  onMouseUp: true,
+ };
+ export const touchProps = {
+   onTouchCancel: true,
+@@ -157,8 +157,9 @@ export const touchProps = {
+   onTouchMove: true,
+   onTouchMoveCapture: true,
+   onTouchStart: true,
+-  onTouchStartCapture: true
++  onTouchStartCapture: true,
+ };
+ export const styleProps = {
+-  style: true
++  style: true,
++  className: true,
+ };

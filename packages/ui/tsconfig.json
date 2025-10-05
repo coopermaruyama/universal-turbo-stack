@@ -6,7 +6,7 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@acme/ui/*": ["./src/*"],
+      // "@acme/ui/*": ["./src/*"],
       "~/*": ["./src/*"],
       "@/*": ["./src/*"]
     }

@@ -3,15 +3,21 @@
   "compilerOptions": {
     "lib": ["ES2022", "dom", "dom.iterable"],
     "jsx": "preserve",
-    "jsxImportSource": "nativewind",
     "esModuleInterop": true,
     "composite": true,
+    "rootDir": ".",
     "baseUrl": ".",
     "paths": {
       "@/ui/*": ["./src/components/ui/*"],
       "@/*": ["./src/*"],
       "~/*": ["./src/*"],
-      "@acme/ui/*": ["../../packages/ui/src/*"],
+      // "@acme/ui/*": [
+      //   "../../packages/ui/src/components/ui/*",
+      //   "../../packages/ui/src/*"
+      // ],
+      // "react-native": [
+      //   "react-native-web"
+      // ],
       "react-native": ["react-native-web"]
     },
     "plugins": [
@@ -24,10 +30,12 @@
   "include": [
     ".storybook/**/*",
     "*.ts",
+    "*.tsx",
     "*.js",
     "./src/**/*",
     ".next/types/**/*.ts",
-    "../../packages/ui/src/**/*"
+    // "../../packages/ui/src/**/*",
+    "postcss.config.mjs"
   ],
   "exclude": ["node_modules"]
 }

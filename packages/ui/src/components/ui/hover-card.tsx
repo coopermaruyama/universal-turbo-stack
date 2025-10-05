@@ -1,5 +1,5 @@
-import { cn } from "@acme/ui/lib/utils";
-import { TextClassContext } from "@acme/ui/text";
+import { cn } from "../../lib/utils";
+import { TextClassContext } from "./text";
 import * as HoverCardPrimitive from "@rn-primitives/hover-card";
 import type * as React from "react";
 import { Platform, StyleSheet } from "react-native";

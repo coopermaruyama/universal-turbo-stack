@@ -55,6 +55,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
+<<<<<<< HEAD
           "min-h-screen bg-background font-sans text-foreground antialiased",
           montserrat.variable,
           sourceCodePro.variable,
@@ -75,6 +76,20 @@ export default function RootLayout(props: { children: React.ReactNode }) {
             <Toaster />
           </TRPCReactProvider>
         </AppProviders>
+=======
+          "bg-background text-foreground min-h-screen font-sans antialiased",
+          geistSans.variable,
+          geistMono.variable,
+        )}
+      >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <TRPCReactProvider>{props.children}</TRPCReactProvider>
+          <div className="absolute right-4 bottom-4">
+            <ThemeToggle />
+          </div>
+          <Toaster />
+        </ThemeProvider>
+>>>>>>> upstream/main
       </body>
     </html>
   );

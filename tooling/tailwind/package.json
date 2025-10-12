@@ -3,27 +3,48 @@
   "private": true,
   "type": "module",
   "exports": {
+<<<<<<< HEAD
     "./native.css": "./native.css",
     "./web.css": "./web.css",
     "./base.css": "./base.css",
     "./postcss.config": "./postcss.config.mjs"
+=======
+    "./theme": "./theme.css",
+    "./postcss-config": "./postcss-config.js"
+>>>>>>> upstream/main
   },
   "license": "MIT",
   "scripts": {
     "clean": "git clean -xdf .cache .turbo node_modules",
+<<<<<<< HEAD
+=======
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint --flag unstable_native_nodejs_ts_config",
+>>>>>>> upstream/main
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@tailwindcss/postcss": "catalog:",
+<<<<<<< HEAD
     "postcss": "catalog:",
     "tailwindcss": "catalog:",
     "tw-animate-css": "catalog:"
+=======
+    "postcss": "^8.5.6",
+    "tailwindcss": "catalog:"
+>>>>>>> upstream/main
   },
   "devDependencies": {
     "@acme/tsconfig": "workspace:*",
+<<<<<<< HEAD
     "@types/node": "^24.6.2",
     "postcss-font-magician": "^4.0.0",
     "tailwindcss-debug-screens": "^3.0.1",
+=======
+    "@types/node": "^22.18.10",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+>>>>>>> upstream/main
     "typescript": "catalog:"
   }
 }

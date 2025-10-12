@@ -40,6 +40,7 @@ export function initAuth(options: {
     baseURL: options.baseUrl,
     secret: options.secret,
     plugins: [
+<<<<<<< HEAD
       passkey({}),
       ...(options.sendgridApiKey && options.emailFrom
         ? [
@@ -59,6 +60,11 @@ export function initAuth(options: {
       //   productionURL: options.productionUrl,
       // }),
       nextCookies(), // "supposed" to be last
+=======
+      oAuthProxy({
+        productionURL: options.productionUrl,
+      }),
+>>>>>>> upstream/main
       expo(),
     ],
     socialProviders: buildSocialProviders(options),
@@ -71,6 +77,7 @@ export function initAuth(options: {
         maxAge: 5 * 60, // 5 minutes
       },
     },
+<<<<<<< HEAD
     emailAndPassword: {
       enabled: true,
       autoSignIn: true,
@@ -96,6 +103,17 @@ export function initAuth(options: {
     //   disableCSRFCheck: true, // Disable CSRF check for better compatibility with Expo
     // }
   }) satisfies AuthInstance;
+=======
+    trustedOrigins: ["expo://"],
+    onAPIError: {
+      onError(error, ctx) {
+        console.error("BETTER AUTH API ERROR", error, ctx);
+      },
+    },
+  } satisfies BetterAuthOptions;
+
+  return betterAuth(config);
+>>>>>>> upstream/main
 }
 
 function buildSocialProviders(

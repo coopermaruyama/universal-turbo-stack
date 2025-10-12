@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "../../../../tooling/tailwind/base.css";
 
 import {
@@ -25,6 +26,12 @@ import { queryClient } from "~/lib/api";
 import { NAV_THEME } from "~/lib/constants";
 import { useIsomorphicLayoutEffect } from "~/lib/hooks/useIsomorphicLayoutEffect";
 import AppThemeProvider from "../lib/theme-provider";
+=======
+import { useColorScheme } from "react-native";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { QueryClientProvider } from "@tanstack/react-query";
+>>>>>>> upstream/main
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -38,6 +45,7 @@ const DARK_THEME: Theme = {
 // This is the main layout of the app
 // It wraps your pages with the providers they need
 export default function RootLayout() {
+<<<<<<< HEAD
   const hasMounted = React.useRef(false);
   const colorScheme = useColorScheme();
   const isDarkColorScheme = colorScheme !== "light";
@@ -98,5 +106,26 @@ export default function RootLayout() {
         </QueryClientProvider>
       </GestureHandlerRootView>
     </React.StrictMode>
+=======
+  const colorScheme = useColorScheme();
+  return (
+    <QueryClientProvider client={queryClient}>
+      {/*
+          The Stack component displays the current page.
+          It also allows you to configure your screens 
+        */}
+      <Stack
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#c03484",
+          },
+          contentStyle: {
+            backgroundColor: colorScheme == "dark" ? "#09090B" : "#FFFFFF",
+          },
+        }}
+      />
+      <StatusBar />
+    </QueryClientProvider>
+>>>>>>> upstream/main
   );
 }

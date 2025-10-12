@@ -80,8 +80,8 @@ COPY --from=installer --chown=nextjs:nodejs /app/apps/nextjs/public ./apps/nextj
 # Copy database package if needed at runtime (e.g., migrations)
 COPY --from=installer --chown=nextjs:nodejs /app/packages/db ./packages/db
 
-# Optionally include production env files
-COPY --chown=nextjs:nodejs .env.production* ./
+# Optionally include production env files from app workspace
+COPY --from=installer --chown=nextjs:nodejs /app/apps/nextjs/.env.production* ./
 
 # Start script
 COPY --chown=nextjs:nodejs --chmod=0755 apps/nextjs/start.sh ./start.sh

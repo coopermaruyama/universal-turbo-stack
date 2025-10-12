@@ -1,12 +1,10 @@
-# Default SOPS config: use age by default; optional KMS via env
+# SOPS config: default to AGE; allow optional cloud KMS via env
+# See https://github.com/getsops/sops#usage for env variable semantics
 creation_rules:
   - path_regex: ".*\\.sops$"
-    # Age recipient: replace or generate via `age-keygen -y -o age.key`
-    # Use env var SOPS_AGE_RECIPIENTS to override
-    age: ${SOPS_AGE_RECIPIENTS}
-    # Optional KMS (AWS) can be enabled by setting SOPS_AWS_KMS_ARN
-    kms: ${SOPS_AWS_KMS_ARN}
-    # Optional GCP KMS
-    gcp_kms: ${SOPS_GCP_KMS_RESOURCE_ID}
-    # Optional Azure Key Vault
-    azure_keyvault: ${SOPS_AZURE_KEY_VAULT}
+    # Provide recipients via env; recommend SOPS_AGE_RECIPIENTS for public template
+    age: "${SOPS_AGE_RECIPIENTS}"
+    # Optional providers (set to empty when not used)
+    kms: "${SOPS_AWS_KMS_ARN:-}"
+    gcp_kms: "${SOPS_GCP_KMS_RESOURCE_ID:-}"
+    azure_keyvault: "${SOPS_AZURE_KEY_VAULT:-}"

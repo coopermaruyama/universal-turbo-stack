@@ -65,14 +65,14 @@ prune: ## Remove all unused Docker resources
 .PHONY: ci-build-nextjs
 ci-build-nextjs: ## Build Next.js for CI
 	docker build -f apps/nextjs/Dockerfile \
-		--build-arg DOTENV_PRIVATE_KEY_PRODUCTION="$(DOTENV_PRIVATE_KEY_PRODUCTION)" \
+		--build-arg SOPS_KMS_KEY="$(SOPS_KMS_KEY)" \
 		--tag voytravel-nextjs:latest .
 
 .PHONY: ci-build-api
 ci-build-api: ## Build Python API for CI
 	docker build -f apps/travel-assistant-api/Dockerfile \
 		--build-arg ENV=production \
-		--build-arg DOTENV_PRIVATE_KEY_PRODUCTION="$(DOTENV_PRIVATE_KEY_PRODUCTION)" \
+		--build-arg SOPS_KMS_KEY="$(SOPS_KMS_KEY)" \
 		--tag voytravel-api:latest .
 
 .PHONY: test-build
@@ -87,21 +87,17 @@ test-build: ## Test production builds locally
 
 .PHONY: env-decrypt-dev
 env-decrypt-dev:
-	exec dotenvx decrypt \
-		-fk .env.keys \
-		-f apps/nextjs/.env.development
+	@[ -f apps/nextjs/.env.development.sops ] || { echo "No apps/nextjs/.env.development.sops"; exit 1; }
+	sops -d apps/nextjs/.env.development.sops > apps/nextjs/.env.development
 .PHONY: env-encrypt-dev
 env-encrypt-dev:
-	dotenvx encrypt \
-		-fk .env.keys \
-		-f apps/nextjs/.env.development
+	@[ -f apps/nextjs/.env.development ] || { echo "No apps/nextjs/.env.development"; exit 1; }
+	sops -e -i apps/nextjs/.env.development
 .PHONY: env-decrypt-prod
 env-decrypt-prod:
-	dotenvx decrypt \
-		-fk .env.keys \
-		-f apps/nextjs/.env.production
+	@[ -f apps/nextjs/.env.production.sops ] || { echo "No apps/nextjs/.env.production.sops"; exit 1; }
+	sops -d apps/nextjs/.env.production.sops > apps/nextjs/.env.production
 .PHONY: env-decrypt-prod
 env-encrypt-prod:
-	dotenvx encrypt \
-		-fk .env.keys \
-		-f apps/nextjs/.env.production
+	@[ -f apps/nextjs/.env.production ] || { echo "No apps/nextjs/.env.production"; exit 1; }
+	sops -e -i apps/nextjs/.env.production

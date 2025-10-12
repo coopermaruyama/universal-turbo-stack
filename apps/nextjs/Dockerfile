@@ -61,7 +61,7 @@ ENV PATH="/home/nextjs/.npm-global/bin:$PNPM_HOME:$PATH"
 RUN mkdir -p /home/nextjs/.local/share/pnpm /home/nextjs/.pnpm-store /home/nextjs/.npm-global
 
 # Optional: tools used by start.sh
-RUN npm install -g @dotenvx/dotenvx@latest
+# Using nix/flox or local install for extras; keep minimal
 RUN npm install -g drizzle-kit
 
 # Don't run production as root

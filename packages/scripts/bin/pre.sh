@@ -34,7 +34,17 @@ keys_file="$root_dir/.env.keys"
 
 if [[ -f "$keys_file" ]]; then
   set -a
-  export TURBO_TOKEN=$(dotenvx get TURBO_TOKEN -f "$root_dir/.env.development" -f "$keys_file")
+  if command -v sops >/dev/null 2>&1; then
+    # Prefer sops if an encrypted env exists
+    if [[ -f "$root_dir/.env.development.sops" ]]; then
+      export TURBO_TOKEN=$(sops -d "$root_dir/.env.development.sops" | grep '^TURBO_TOKEN=' | cut -d'=' -f2-)
+    fi
+  fi
+  # Fallback to plaintext .env if present
+  if [[ -z "${TURBO_TOKEN:-}" && -f "$root_dir/.env.development" ]]; then
+    # shellcheck disable=SC1090
+    . "$root_dir/.env.development"
+  fi
   export TURBO_TEAM=team_KXVaispsHwsXlmn4asRmt1iB
   set +a
 fi

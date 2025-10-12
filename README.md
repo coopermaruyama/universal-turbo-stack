@@ -88,18 +88,14 @@ To get it running, follow the steps below:
 # Install dependencies
 pnpm i
 
-# Configure environment variables
-# Environment variables are checked in but encrypted for security. The encryption
-# keys are store in .env.keys and should not be checked in.
-echo << EOF > .env.keys
-#/------------------!DOTENV_PRIVATE_KEYS!-------------------/
-#/ private decryption keys. DO NOT commit to source control /
-#/     [how it works](https://dotenvx.com/encryption)       /
-#/----------------------------------------------------------/
-# .env.development
-DOTENV_PRIVATE_KEY_DEVELOPMENT=32481a02ef873fd2386669251ef0d7d5083f76465f92e013cc9948c403fcc20b
-
-EOF
+# Configure environment variables with SOPS (AGE by default)
+# Generate an age keypair (store key locally; do not commit):
+#   age-keygen -o age.key
+# Export recipient for this shell (or set in your profile):
+#   export SOPS_AGE_RECIPIENTS="$(age-keygen -y age.key)"
+# Create encrypted envs (edit will create if missing):
+#   sops apps/nextjs/.env.development.sops
+#   sops apps/nextjs/.env.production.sops
 
 # Push the Drizzle schema to the database
 pnpm db:push

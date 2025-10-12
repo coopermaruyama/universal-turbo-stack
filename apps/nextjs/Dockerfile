@@ -50,7 +50,7 @@ FROM node:${NODE_VERSION}-alpine AS runner
 WORKDIR /app
 
 # Runtime deps
-RUN apk add --no-cache libc6-compat curl bash
+RUN apk add --no-cache libc6-compat curl bash sops age
 
 # Enable pnpm in runtime and set non-root install locations
 RUN corepack enable && corepack prepare pnpm@${PNPM_VERSION} --activate

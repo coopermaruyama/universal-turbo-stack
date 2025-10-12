@@ -51,3 +51,50 @@ jobs:
 
       - name: Typecheck
         run: pnpm typecheck
+
+  smoke-template:
+    name: Template smoke (fresh clone -> install -> encrypt -> run)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup
+        uses: ./tooling/github/setup
+
+      - name: Install Flox
+        shell: bash
+        run: |
+          if ! command -v flox >/dev/null 2>&1; then
+            curl -fsSL https://get.flox.dev | bash
+            echo "$HOME/.flox/bin" >> "$GITHUB_PATH"
+          fi
+          flox --version || true
+
+      - name: Install via install.sh
+        shell: bash
+        run: |
+          bash ./install.sh
+
+      - name: Generate dev keypair and encrypt secrets (Next.js)
+        working-directory: apps/nextjs
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Create .env.keys at repo root with development private key
+          keyval=$(pnpm dlx @dotenvx/dotenvx keypair DOTENV_PRIVATE_KEY_DEVELOPMENT -f .env.development)
+          echo "$keyval" >> ../../.env.keys
+          # Encrypt the development env file using public key within it
+          pnpm dlx @dotenvx/dotenvx encrypt -fk ../../.env.keys -f .env.development
+          echo "Encrypted development env file."
+
+      - name: Smoke check env loading (Next.js)
+        working-directory: apps/nextjs
+        shell: bash
+        run: |
+          set -euo pipefail
+          pnpm run with-env node -e "if (!process.env.AUTH_SECRET) { console.error('AUTH_SECRET not loaded'); process.exit(1) } else { console.log('AUTH_SECRET loaded OK') }"
+
+      - name: Build Next.js with env
+        working-directory: apps/nextjs
+        shell: bash
+        run: pnpm build

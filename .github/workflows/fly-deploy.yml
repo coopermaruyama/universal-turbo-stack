@@ -6,7 +6,8 @@ on:
     branches:
       - replace-me # Replace with your production branch, e.g., "main" or "master"
 env:
-  DOTENV_PRIVATE_KEY_PRODUCTION: ${{ secrets.DOTENV_PRIVATE_KEY_PRODUCTION }}
+  SOPS_AGE_KEY: ${{ secrets.SOPS_AGE_KEY }}
+  SOPS_KMS_KEY: ${{ secrets.SOPS_KMS_KEY }}
 jobs:
   deploy:
     name: Deploy app
@@ -17,11 +18,12 @@ jobs:
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: |
           echo "validating env vars"
-          [ -z "$DOTENV_PRIVATE_KEY_PRODUCTION" ] && echo "missing DOTENV_PRIVATE_KEY_PRODUCTION" && exit 1 || echo "✅ Environment variables are valid"
-          flyctl deploy --config apps/nextjs/fly.toml --dockerfile apps/nextjs/Dockerfile --build-arg DOTENV_PRIVATE_KEY_PRODUCTION="$DOTENV_PRIVATE_KEY_PRODUCTION" -e DOTENV_PRIVATE_KEY_PRODUCTION="$DOTENV_PRIVATE_KEY_PRODUCTION"
+          echo "Using SOPS for envs (AGE or KMS)"
+          flyctl deploy --config apps/nextjs/fly.toml --dockerfile apps/nextjs/Dockerfile --build-arg SOPS_KMS_KEY="$SOPS_KMS_KEY" -e SOPS_AGE_KEY="$SOPS_AGE_KEY" -e SOPS_KMS_KEY="$SOPS_KMS_KEY"
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-          DOTENV_PRIVATE_KEY_PRODUCTION: ${{ secrets.DOTENV_PRIVATE_KEY_PRODUCTION }}
+          SOPS_AGE_KEY: ${{ secrets.SOPS_AGE_KEY }}
+          SOPS_KMS_KEY: ${{ secrets.SOPS_KMS_KEY }}
       - name: Setup tmate session
         if: ${{ failure() }}
         uses: mxschmitt/action-tmate@v3
@@ -34,11 +36,12 @@ jobs:
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: |
           echo "validating env vars"
-          [ -z "$DOTENV_PRIVATE_KEY_PRODUCTION" ] && echo "missing DOTENV_PRIVATE_KEY_PRODUCTION" && exit 1 || echo "✅ Environment variables are valid"
-          flyctl deploy --config apps/travel-assistant-api/fly.toml --dockerfile apps/travel-assistant-api/Dockerfile --build-arg DOTENV_PRIVATE_KEY_PRODUCTION="$DOTENV_PRIVATE_KEY_PRODUCTION" -e DOTENV_PRIVATE_KEY_PRODUCTION="$DOTENV_PRIVATE_KEY_PRODUCTION"
+          echo "Using SOPS for envs (AGE or KMS)"
+          flyctl deploy --config apps/travel-assistant-api/fly.toml --dockerfile apps/travel-assistant-api/Dockerfile --build-arg SOPS_KMS_KEY="$SOPS_KMS_KEY" -e SOPS_AGE_KEY="$SOPS_AGE_KEY" -e SOPS_KMS_KEY="$SOPS_KMS_KEY"
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-          DOTENV_PRIVATE_KEY_PRODUCTION: ${{ secrets.DOTENV_PRIVATE_KEY_PRODUCTION }}
+          SOPS_AGE_KEY: ${{ secrets.SOPS_AGE_KEY }}
+          SOPS_KMS_KEY: ${{ secrets.SOPS_KMS_KEY }}
       # Optional: Uncomment the following lines to set up a tmate session for debugging if the deployment fails
       # - name: Setup tmate session
       #   if: ${{ failure() }}

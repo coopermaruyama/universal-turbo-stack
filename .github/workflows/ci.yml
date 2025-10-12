@@ -75,26 +75,40 @@ jobs:
         run: |
           bash ./install.sh
 
-      - name: Generate dev keypair and encrypt secrets (Next.js)
+      - name: Install sops and age
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends sops age
+
+      - name: Create and encrypt dev secrets with sops
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Minimal secrets required for build/env validation
+          cat > secrets.dev.env <<'ENV'
+          NODE_ENV=development
+          POSTGRES_URL=postgres://pguser:password@localhost:5432/app
+          AUTH_SECRET=smoke-secret
+          ENV
+          # Generate ephemeral age keypair
+          age-keygen -o agekey.txt
+          echo "SOPS_AGE_KEY_FILE=$(pwd)/agekey.txt" >> "$GITHUB_ENV"
+          RECIP=$(age-keygen -y agekey.txt)
+          # Encrypt in-place with sops using age recipient
+          sops --encrypt --age "$RECIP" --in-place secrets.dev.env
+
+      - name: Smoke check env loading via sops
+        shell: bash
+        run: |
+          set -euo pipefail
+          sops exec-env secrets.dev.env -- bash -lc 'node -e "if (!process.env.AUTH_SECRET) { process.exit(1) }"'
+          echo "Env loaded via sops OK"
+
+      - name: Build Next.js via sops exec-env
         working-directory: apps/nextjs
         shell: bash
         run: |
           set -euo pipefail
-          # Create .env.keys at repo root with development private key
-          keyval=$(pnpm dlx @dotenvx/dotenvx keypair DOTENV_PRIVATE_KEY_DEVELOPMENT -f .env.development)
-          echo "$keyval" >> ../../.env.keys
-          # Encrypt the development env file using public key within it
-          pnpm dlx @dotenvx/dotenvx encrypt -fk ../../.env.keys -f .env.development
-          echo "Encrypted development env file."
-
-      - name: Smoke check env loading (Next.js)
-        working-directory: apps/nextjs
-        shell: bash
-        run: |
-          set -euo pipefail
-          pnpm run with-env node -e "if (!process.env.AUTH_SECRET) { console.error('AUTH_SECRET not loaded'); process.exit(1) } else { console.log('AUTH_SECRET loaded OK') }"
-
-      - name: Build Next.js with env
-        working-directory: apps/nextjs
-        shell: bash
-        run: pnpm build
+          # Use sops to provide env only for this command; avoid any dotenvx scripts
+          sops exec-env ../../secrets.dev.env -- pnpm next build

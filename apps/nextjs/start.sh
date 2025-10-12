@@ -33,9 +33,27 @@ fi
 
 # Production mode
 
-# SOPS: optionally require a KMS key in private deployments; in public template default to AGE
-if [ -n "$SOPS_KMS_KEY" ]; then
-    echo "Using SOPS with KMS key"
+# Load environment variables
+ENV_FILE="/app/.env.production"
+ENV_SOPS_FILE="/app/.env.production.sops"
+
+if [ -f "$ENV_SOPS_FILE" ] && command -v sops >/dev/null 2>&1; then
+    echo "Decrypting env from $ENV_SOPS_FILE"
+    tmp_env="$(mktemp)"
+    trap 'rm -f "$tmp_env"' EXIT
+    sops -d "$ENV_SOPS_FILE" > "$tmp_env"
+    set -a
+    # shellcheck disable=SC1090
+    . "$tmp_env"
+    set +a
+elif [ -f "$ENV_FILE" ]; then
+    echo "Loading env from $ENV_FILE"
+    set -a
+    # shellcheck disable=SC1090
+    . "$ENV_FILE"
+    set +a
+else
+    echo "No production env file found; proceeding with existing environment"
 fi
 
 # Run db migration

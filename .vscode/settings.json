@@ -13,23 +13,8 @@
     "strings": "on"
   },
   "editor.formatOnSave": true,
-<<<<<<< HEAD
   "tailwindCSS.classFunctions": ["cva", "cx", "cn"],
   "tailwindCSS.experimental.configFile": "./tooling/tailwind/base.css",
-=======
-  "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-  "eslint.runtime": "node",
-  "eslint.workingDirectories": [
-    { "pattern": "apps/*/" },
-    { "pattern": "packages/*/" },
-    { "pattern": "tooling/*/" }
-  ],
-  "files.associations": {
-    "*.css": "tailwindcss"
-  },
-  "prettier.ignorePath": ".gitignore",
-  "tailwindCSS.classFunctions": ["cva", "cx", "cn"],
->>>>>>> upstream/main
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.preferences.autoImportFileExcludePatterns": [
     "next/router.d.ts",

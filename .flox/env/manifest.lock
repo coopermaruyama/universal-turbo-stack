@@ -55,7 +55,7 @@
       "INTRO_MESSAGE": "✅ Devbox activated"
     },
     "hook": {
-      "on-activate": "  pnpm install\n  if [ ! -f .env.keys ]; then\n    pnpm keys\n  fi\n  if [ ! -d .git/safe ]; then\n   resp=\"$(gum choose --header \"Helpers are not enabled. Enable them now? This will update your PATH while you have the dev environment active\" \"yes\" \"no\")\"\n  if [ \"$resp\" = \"yes\" ]; then\n    mkdir .git/safe\n  fi\n  fi\n  docker compose up -d\n"
+      "on-activate": "  # In CI, avoid interactive prompts and starting services\n  if [ -n \"$CI\" ] || [ -n \"$GITHUB_ACTIONS\" ]; then\n    pnpm install\n  else\n    pnpm install\n    if [ ! -f .env.keys ]; then\n      pnpm keys || true\n    fi\n    if [ ! -d .git/safe ]; then\n      resp=\"$(gum choose --header \"Helpers are not enabled. Enable them now? This will update your PATH while you have the dev environment active\" \"yes\" \"no\")\"\n      if [ \"$resp\" = \"yes\" ]; then\n        mkdir .git/safe\n      fi\n    fi\n    docker compose up -d\n  fi\n"
     },
     "profile": {
       "common": "   gum style \\\n   --foreground 212 --border-foreground 212 --border double \\\n   --align center --width 50 --margin \"1 2\" --padding \"2 4\" \\\n     $INTRO_MESSAGE\n "

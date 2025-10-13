@@ -18,9 +18,9 @@
     "typecheck": "tsc --noEmit",
     "with-env": "../scripts/with-env.sh"
 =======
-    "format": "prettier --check . --ignore-path ../../.gitignore",
-    "lint": "eslint --flag unstable_native_nodejs_ts_config",
-    "generate": "dotenv -e ../../.env -- pnpx @better-auth/cli generate --config script/auth-cli.ts --output ../db/src/auth-schema.ts",
+    "format": "biome format . --files-ignore-unknown=true",
+    "lint": "biome lint . --files-ignore-unknown=true",
+    "generate": "pnpm with-env pnpx @better-auth/cli generate --config script/auth-cli.ts --output ../db/src/auth-schema.ts",
     "typecheck": "tsc --noEmit"
 >>>>>>> upstream/main
   },

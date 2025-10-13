@@ -6,9 +6,9 @@
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "build": "tsc --emitDeclarationOnly false",
-    "format": "biome format .",
-    "lint": "biome lint .",
-=======
+    "format": "biome format . --files-ignore-unknown=true",
+    "lint": "biome lint . --files-ignore-unknown=true"
+  },
   "exports": {
     ".": "./src/index.ts",
     "./button": "./src/button.tsx",
@@ -147,12 +147,7 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "@acme/tailwind-config": "workspace:*",
-=======
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
->>>>>>> upstream/main
     "@acme/tsconfig": "workspace:*",
     "@types/react": "catalog:react19",
     "react": "catalog:react19",

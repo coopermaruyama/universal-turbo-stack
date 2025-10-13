@@ -41,8 +41,8 @@
     "@storybook/react-native": "^9.1.4",
     "@tailwindcss/postcss": "catalog:",
 =======
-    "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path .prettierignore",
-    "lint": "eslint --flag unstable_native_nodejs_ts_config",
+    "format": "biome format . --files-ignore-unknown=true",
+    "lint": "biome lint . --files-ignore-unknown=true",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

@@ -1,0 +1,9 @@
+# SOPS config: default to AGE (set recipients when you encrypt)
+# For public template we ship an empty rule; pass recipients via CLI:
+#   sops -e --age "$(age-keygen -y age.key)" <file>
+creation_rules:
+  - path_regex: ".*\\.sops$"
+    age: []
+    kms: []
+    gcp_kms: []
+    azure_keyvault: []

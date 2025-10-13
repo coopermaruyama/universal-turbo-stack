@@ -1,69 +1,70 @@
-#!/usr/bin/env sh
-set -e
+#!/usr/bin/env bash
+set -euo pipefail
 
-# Lightweight entrypoint that sources optional .env.keys without failing
-# when the file is missing (useful for container entrypoints).
+# Unified env runner using SOPS (AGE by default; optional KMS) or plain .env files
+# Requires dotenv-cli for loading plaintext files when present
 
-# Probe to detect and avoid re-running this script
-export __ENTRYPROBE=true
-
-keyfile=".env.keys"
-script_path="$(cd "$(dirname "$0")" && pwd -P)"
-root_path="$(cd "$script_path/.." && pwd -P)"
-
-# Candidate locations (in order). Keep this list conservative and explicit.
-candidate_repo_root="$(cd "$script_path/../.." 2>/dev/null && pwd -P)"
-
-matched_path=""
-
-# Iterate over explicit candidate paths (quoted to avoid word-splitting issues)
-for path in \
-    "$PWD/$keyfile" \
-    "$script_path/$keyfile" \
-    "$root_path/$keyfile" \
-    "$script_path/../$keyfile" \
-    "$candidate_repo_root/$keyfile" \
-    "/.env.keys"; do
-    [ -z "$path" ] && continue
-    if [ -r "$path" ]; then
-        matched_path="$path"
-        break
-    fi
-done
-
-if [ -z "$matched_path" ] && [ -z "$(printenv | grep DOTENV_PRIVATE_KEY)" ]; then
-    cat >&2 <<'WARN'
-*************************************************************
-*  WARNING: No .env.keys file found!                         *
-*  The application may not function correctly without it.   *
-*************************************************************
-WARN
-    echo "Run the helper script to sync keys from 1Password:" >&2
-    echo "  ./scripts/bin/get-keys.sh" >&2
-fi
-
-# Ensure ENV / NODE_ENV defaults (do not overwrite if already set)
 : "${ENV:=development}"
 : "${NODE_ENV:=${ENV}}"
 
+script_path="$(cd "$(dirname "$0")" && pwd -P)"
+repo_root="$(cd "$script_path/../.." && pwd -P)"
 
-# If explicit DOTENV_PRIVATE_KEY_* variables are present, prefer them.
-if [ -n "$DOTENV_PRIVATE_KEY_STAGING" ]; then
-    echo "🚀 Running in staging mode using \$DOTENV_PRIVATE_KEY_STAGING..."
-    export NODE_ENV=production
-    exec dotenvx run --ignore=MISSING_ENV_FILE -f .env.staging -f .env -- "$@"
-elif [ -n "$DOTENV_PRIVATE_KEY_PRODUCTION" ]; then
-    echo "🚀 Running in production mode using \$DOTENV_PRIVATE_KEY_PRODUCTION..."
-    exec dotenvx run --ignore=MISSING_ENV_FILE -f .env.production -f .env -- "$@"
-elif [ -n "$DOTENV_PRIVATE_KEY_DEVELOPMENT" ]; then
-    echo "🔐 Running in development mode using \$DOTENV_PRIVATE_KEY_DEVELOPMENT..."
-    exec dotenvx run --convention=nextjs -- "$@"
+info() { printf "%s\n" "$*" >&2; }
+
+# Find env file candidates relative to CWD first, then repo root
+env_base=".env.${ENV}"
+sops_candidates=("$PWD/${env_base}.sops" "$repo_root/${env_base}.sops")
+plain_candidates=("$PWD/${env_base}" "$repo_root/${env_base}")
+
+have_sops=false
+if command -v sops >/dev/null 2>&1; then
+  have_sops=true
 fi
 
-if [ "${ENV:-development}" = "development" ]; then
-    echo "🔨 Running in development mode..."
-    exec dotenvx run --convention=nextjs -fk $matched_path -- "$@"
-else
-    echo "🚀 Running in production mode..."
-    exec dotenvx run --ignore=MISSING_ENV_FILE -f .env.production -f .env -fk $matched_path -- "$@"
+run_with_dotenv() {
+  local env_file="$1"
+  shift
+  if command -v dotenv >/dev/null 2>&1; then
+    info "Using dotenv file: $env_file"
+    exec dotenv -e "$env_file" -- "$@"
+  else
+    info "dotenv-cli not found; sourcing $env_file directly"
+    set -a
+    # shellcheck disable=SC1090
+    . "$env_file"
+    set +a
+    exec "$@"
+  fi
+}
+
+run_with_sops() {
+  local sops_file="$1"
+  shift
+  info "Decrypting with SOPS: $sops_file"
+  # Decrypt to a temp file to interop cleanly with dotenv-cli
+  local tmp
+  tmp="$(mktemp)"
+  trap 'rm -f "$tmp"' EXIT
+  sops -d "$sops_file" > "$tmp"
+  run_with_dotenv "$tmp" "$@"
+}
+
+# Prefer SOPS files when available
+if $have_sops; then
+  for f in "${sops_candidates[@]}"; do
+    if [ -f "$f" ]; then
+      run_with_sops "$f" "$@"
+    fi
+  done
 fi
+
+# Fallback to plaintext .env files
+for f in "${plain_candidates[@]}"; do
+  if [ -f "$f" ]; then
+    run_with_dotenv "$f" "$@"
+  fi
+done
+
+info "No env file found for ENV=${ENV}. Running without extra env..."
+exec "$@"

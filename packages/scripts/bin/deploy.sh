@@ -49,4 +49,4 @@ fly deploy \
   -a "${APPNAME}" \
   -c "${APPDIR}/fly-${2}.toml" \
   --dockerfile "scripts/docker/${1}.Dockerfile" \
-  --build-arg "$KEYNAME=$(dotenvx keypair $KEYNAME -f .env.${2})"
+  --build-arg "$KEYNAME=$(printenv "$KEYNAME")"

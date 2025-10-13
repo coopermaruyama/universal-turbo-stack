@@ -17,7 +17,7 @@
 >>>>>>> upstream/main
     "start": "pnpm with-env next start",
     "typecheck": "tsc --noEmit",
-    "with-env": "dotenvx run --convention=nextjs -fk ../../.env.keys --",
+    "with-env": "../../packages/scripts/bin/env.sh",
     "ui-add": "pnpm dlx shadcn@latest add --overwrite && biome format src --write",
     "storybook:todo": "storybook dev -p 6006",
     "storybook": "echo \"TODO put mue back \"",
@@ -30,7 +30,6 @@
     "@acme/tailwind-config": "workspace:*",
     "@acme/ui": "workspace:*",
     "@acme/validators": "workspace:*",
-    "@dotenvx/dotenvx": "^1.51.0",
     "@expo/next-adapter": "^6.0.0",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-avatar": "^1.1.10",

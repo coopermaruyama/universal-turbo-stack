@@ -1,9 +1,38 @@
-# SOPS config: default to AGE (set recipients when you encrypt)
-# For public template we ship an empty rule; pass recipients via CLI:
-#   sops -e --age "$(age-keygen -y age.key)" <file>
+# SOPS configuration for encrypting secrets
+# Instructions:
+# 1. Generate a new key for each environment, or if you're using AWS, create
+#    a new alias in AWS KMS. KMS is nice because you don't need to manage a
+#    separate file, but collaborators need access to the KMS key. To generate
+#    a new key, run:
+#      age-keygen -y -o age.key
+# 2. Put the public keys in the age key section below, and the private keys in
+#    in ~/.config/sops/age/keys.txt
+# 3. Create files for each environment in secrets/<environment>/<name>.yaml -
+#    this config supports .env, .json, or .yaml.
+# 4. Encrypt each by running `sops encrypt -i secrets/<environment>/<name>.yaml`
+# 5. Edit them in-place with `sops edit -i secrets/<environment>/<name>.yaml`
+#
+# Use `sops exec-env secrets/<environment>/<name>.yaml -- <command>` to run a
+# command with the environment variables set.
 creation_rules:
-  - path_regex: ".*\\.sops$"
-    age: []
-    kms: []
-    gcp_kms: []
-    azure_keyvault: []
+  - path_regex: ^secrets/dev/.*\.(ya?ml|json|env)$
+    age: age16ltkjsvg29kchlrp3n3sq7wzul0gxh8ydxe5v3lupmnevwuu7v8qdc7v34
+    unencrypted_comment_regex: '^\s?(safe|plaintext|unencrypted)$'
+
+  # Add environments as needed - avoid reusing keys for different environments
+  - path_regex: ^secrets/tests?/.*\.(ya?ml|json|env)$
+    age: age16ltkjsvg29kchlrp3n3sq7wzul0gxh8ydxe5v3lupmnevwuu7v8qdc7v34
+    unencrypted_comment_regex: '^\s?(safe|plaintext|unencrypted)$'
+
+  - path_regex: ^secrets/staging/.*\.(ya?ml|json|env)$
+    age: age16ltkjsvg29kchlrp3n3sq7wzul0gxh8ydxe5v3lupmnevwuu7v8qdc7v34
+    unencrypted_comment_regex: '^\s?(safe|plaintext|unencrypted)$'
+
+  - path_regex: ^secrets/prod/.*\.(ya?ml|json|env)$
+    age: age16ltkjsvg29kchlrp3n3sq7wzul0gxh8ydxe5v3lupmnevwuu7v8qdc7v34
+    unencrypted_comment_regex: '^\s?(safe|plaintext|unencrypted)$'
+
+  # Example using KMS, you can combine as many as you want
+  # - path_regex: ^secrets/prod/.*\.(ya?ml|json|env)$
+  #   kms: arn:aws:kms:<region>:<account>:<alias>
+  #   age: age....

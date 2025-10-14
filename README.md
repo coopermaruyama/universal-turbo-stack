@@ -2,7 +2,8 @@
 
 Opinionated starter for cross-platform React (Native).
 
-This starter is built on top of [Turborepo](https://turborepo.org) and includes:
+This starter is built on top of [Turborepo](https://turborepo.org) and [Nix](https://nixos.org)
+for managing environments. Notable parts of the stack consist of the following:
 
 - [Next.js](https://nextjs.org) for web development.
 - [Expo](https://expo.dev) for mobile development.

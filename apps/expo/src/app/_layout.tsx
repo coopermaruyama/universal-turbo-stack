@@ -38,6 +38,30 @@ const DARK_THEME: Theme = {
 // This is the main layout of the app
 // It wraps your pages with the providers they need
 export default function RootLayout() {
+  const colorScheme = useColorScheme();
+  return (
+    <QueryClientProvider client={queryClient}>
+      {/*
+          The Stack component displays the current page.
+          It also allows you to configure your screens
+        */}
+      <Stack
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#c03484",
+          },
+          contentStyle: {
+            backgroundColor: colorScheme == "dark" ? "#09090B" : "#FFFFFF",
+          },
+        }}
+      />
+      <StatusBar />
+    </QueryClientProvider>
+  );
+}
+
+
+export function BackupRootLayout () {
   const hasMounted = React.useRef(false);
   const colorScheme = useColorScheme();
   const isDarkColorScheme = colorScheme !== "light";
@@ -99,4 +123,3 @@ export default function RootLayout() {
       </GestureHandlerRootView>
     </React.StrictMode>
   );
-}

@@ -17,8 +17,8 @@ function PostCard(props: {
   onDelete: () => void;
 }) {
   return (
-    <View className="flex flex-row rounded-lg bg-muted p-4">
-      <View className="flex-grow">
+    <View className="bg-muted flex flex-row rounded-lg p-4">
+      <View className="grow">
         <Link
           asChild
           href={{
@@ -27,15 +27,15 @@ function PostCard(props: {
           }}
         >
           <Pressable className="">
-            <Text className="text-xl font-semibold text-primary">
+            <Text className="text-primary text-xl font-semibold">
               {props.post.title}
             </Text>
-            <Text className="mt-2 text-foreground">{props.post.content}</Text>
+            <Text className="text-foreground mt-2">{props.post.content}</Text>
           </Pressable>
         </Link>
       </View>
       <Pressable onPress={props.onDelete}>
-        <Text className="font-bold uppercase text-primary">Delete</Text>
+        <Text className="text-primary font-bold uppercase">Delete</Text>
       </Pressable>
     </View>
   );
@@ -64,7 +64,7 @@ function CreatePost() {
       </Text>
       <Input value={title} onChangeText={setTitle} placeholder="Title" />
       {error?.data?.zodError?.fieldErrors.title && (
-        <Text className="mb-2 text-destructive">
+        <Text className="text-destructive mb-2">
           {error.data.zodError.fieldErrors.title}
         </Text>
       )}
@@ -75,7 +75,7 @@ function CreatePost() {
         placeholder="Content"
       />
       {error?.data?.zodError?.fieldErrors.content && (
-        <Text className="mb-2 text-destructive">
+        <Text className="text-destructive mb-2">
           {error.data.zodError.fieldErrors.content}
         </Text>
       )}
@@ -92,7 +92,7 @@ function CreatePost() {
       </Button>
 
       {error?.data?.code === "UNAUTHORIZED" && (
-        <Text className="mt-2 text-destructive">
+        <Text className="text-destructive mt-2">
           You need to be logged in to create a post
         </Text>
       )}
@@ -145,7 +145,7 @@ export default function Index() {
         <MobileAuth />
 
         <View className="py-2">
-          <Text className="font-semibold italic text-primary">
+          <Text className="text-primary font-semibold italic">
             Press on a post
           </Text>
         </View>

@@ -6,7 +6,8 @@
     "./native.css": "./native.css",
     "./web.css": "./web.css",
     "./base.css": "./base.css",
-    "./postcss.config": "./postcss.config.mjs"
+    "./theme": "./theme.css",
+    "./postcss-config": "./postcss-config.js"
   },
   "license": "MIT",
   "scripts": {

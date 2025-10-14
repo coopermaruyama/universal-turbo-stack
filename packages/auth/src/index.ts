@@ -3,9 +3,9 @@ import { expo } from "@better-auth/expo";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
+import { oAuthProxy } from "better-auth/plugins";
 import { passkey } from "better-auth/plugins/passkey";
 import type { SocialProviders } from "better-auth/social-providers";
-
 import { initEmailOTProvider, sendEmail } from "./email";
 
 export type AuthInstance = ReturnType<typeof betterAuth>;
@@ -59,6 +59,9 @@ export function initAuth(options: {
       //   productionURL: options.productionUrl,
       // }),
       nextCookies(), // "supposed" to be last
+      oAuthProxy({
+        productionURL: options.productionUrl,
+      }),
       expo(),
     ],
     socialProviders: buildSocialProviders(options),

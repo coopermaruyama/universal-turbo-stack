@@ -3,17 +3,20 @@
   "manifest": {
     "version": 1,
     "install": {
+      "age": {
+        "pkg-path": "age"
+      },
       "awscli": {
         "pkg-path": "awscli"
+      },
+      "direnv": {
+        "pkg-path": "direnv"
       },
       "docker": {
         "pkg-path": "docker"
       },
       "docker-compose": {
         "pkg-path": "docker-compose"
-      },
-      "dotenvx": {
-        "pkg-path": "dotenvx"
       },
       "gnugrep": {
         "pkg-path": "gnugrep"
@@ -41,6 +44,9 @@
       "ripgrep": {
         "pkg-path": "ripgrep"
       },
+      "sops": {
+        "pkg-path": "sops"
+      },
       "turbo": {
         "pkg-path": "turbo"
       },
@@ -55,10 +61,10 @@
       "INTRO_MESSAGE": "✅ Devbox activated"
     },
     "hook": {
-      "on-activate": "  pnpm install\n  if [ ! -f .env.keys ]; then\n    pnpm keys\n  fi\n  if [ ! -d .git/safe ]; then\n   resp=\"$(gum choose --header \"Helpers are not enabled. Enable them now? This will update your PATH while you have the dev environment active\" \"yes\" \"no\")\"\n  if [ \"$resp\" = \"yes\" ]; then\n    mkdir .git/safe\n  fi\n  fi\n  docker compose up -d\n"
+      "on-activate": "  # In CI, avoid interactive prompts and starting services\n  if [ -n \"$CI\" ] || [ -n \"$GITHUB_ACTIONS\" ]; then\n    pnpm install\n  else\n    pnpm install\n   #  if [ ! -d .git/safe ]; then\n   #    resp=\"$(gum choose --header \"Helpers are not enabled. Enable them now? This will update your PATH while you have the dev environment active\" \"yes\" \"no\")\"\n   #    if [ \"$resp\" = \"yes\" ]; then\n   #      mkdir .git/safe\n   #    fi\n   #  fi\n    # docker compose up -d\n  fi\n"
     },
     "profile": {
-      "common": "   gum style \\\n   --foreground 212 --border-foreground 212 --border double \\\n   --align center --width 50 --margin \"1 2\" --padding \"2 4\" \\\n     $INTRO_MESSAGE\n "
+      "common": "  # Prepare useful dynamic environment variables here\n  export PROJECT_ROOT=$(git rev-parse --show-toplevel)\n  export PATH=\"$PROJECT_ROOT/scripts:$PATH\"\n  \n  # Optional: Uncomment this to automatically start services when you cd into\n  # the repo. With the flox extension you can also have your IDE load the same\n  # environment which makes things like integrated unit testing simpler to \n  # configure.\n  #\n  # if [ -z \"$VSCODE_INJECTION\" ]; then\n  #   pgst=$(docker compose ps --format json | jq 'select(.Service == \"postgres\") | .State' | grep running)\n  #   app_state=$(docker compose ps --format json | jq 'select(.Service == \"app\") | .State' | grep running)\n  #   echo \"Postgres state: $pgst\"\n  #   echo \"App state: $app_state\"\n  #   if [ -z \"$pgst\" ]; then\n  #     if gum confirm \"Some containers are stopped. Would you like to start them now?\"; then\n  #       docker compose up -d\n  #     fi\n  #   fi\n  #   export POSTGRES_HOST=$(docker compose port postgres 5432)\n  #   export REDIS_HOST=$(docker compose port redis 6379)\n  # fi\n \n   # Show welcome message\n   . $PROJECT_ROOT/scripts/welcome.sh\n "
     },
     "options": {},
     "services": {
@@ -68,6 +74,122 @@
     }
   },
   "packages": [
+    {
+      "attr_path": "age",
+      "broken": false,
+      "derivation": "/nix/store/nhf609cg5kcb1bas3bjs6bwwbhylrrj7-age-1.2.1.drv",
+      "description": "Modern encryption tool with small explicit keys",
+      "install_id": "age",
+      "license": "BSD-3-Clause",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "name": "age-1.2.1",
+      "pname": "age",
+      "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "rev_count": 861038,
+      "rev_date": "2025-09-13T06:43:22Z",
+      "scrape_date": "2025-09-15T02:00:42.036153Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.2.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/3yk1hga83w9h9qadkkbyx97zpfnszkbk-age-1.2.1"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "age",
+      "broken": false,
+      "derivation": "/nix/store/a389jin1fb3wjayi5n6dkmhm8n8m76j6-age-1.2.1.drv",
+      "description": "Modern encryption tool with small explicit keys",
+      "install_id": "age",
+      "license": "BSD-3-Clause",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "name": "age-1.2.1",
+      "pname": "age",
+      "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "rev_count": 861038,
+      "rev_date": "2025-09-13T06:43:22Z",
+      "scrape_date": "2025-09-15T02:29:39.867497Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.2.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/0835y2qi2aqxbfdfaw6sv8alc3qx1jzv-age-1.2.1"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "age",
+      "broken": false,
+      "derivation": "/nix/store/1m8nfvy970jym808pj4nn6qfnp7wl3sd-age-1.2.1.drv",
+      "description": "Modern encryption tool with small explicit keys",
+      "install_id": "age",
+      "license": "BSD-3-Clause",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "name": "age-1.2.1",
+      "pname": "age",
+      "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "rev_count": 861038,
+      "rev_date": "2025-09-13T06:43:22Z",
+      "scrape_date": "2025-09-15T02:56:35.451627Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.2.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/3bl94rg7zy85mmq0dwa2mzp5x68dxm3y-age-1.2.1"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "age",
+      "broken": false,
+      "derivation": "/nix/store/pnd20wwwl5vcri15bnc9nl63jbvr2xnk-age-1.2.1.drv",
+      "description": "Modern encryption tool with small explicit keys",
+      "install_id": "age",
+      "license": "BSD-3-Clause",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "name": "age-1.2.1",
+      "pname": "age",
+      "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "rev_count": 861038,
+      "rev_date": "2025-09-13T06:43:22Z",
+      "scrape_date": "2025-09-15T03:26:55.938923Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.2.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/knzv1sc5cmi9jvfs0mk0f1dj33d4qxrs-age-1.2.1"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
     {
       "attr_path": "awscli",
       "broken": false,
@@ -183,6 +305,122 @@
       "outputs": {
         "dist": "/nix/store/81aq2pzrnis8xwiwn6p7d85j3jizpk3a-awscli-1.42.4-dist",
         "out": "/nix/store/a3l62z2jvr6frq8s82kw3g51vvlqi36i-awscli-1.42.4"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "direnv",
+      "broken": false,
+      "derivation": "/nix/store/mfq972c1sgv16b15jzbrmw1arfkyd9ma-direnv-2.37.1.drv",
+      "description": "Shell extension that manages your environment",
+      "install_id": "direnv",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "name": "direnv-2.37.1",
+      "pname": "direnv",
+      "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "rev_count": 861038,
+      "rev_date": "2025-09-13T06:43:22Z",
+      "scrape_date": "2025-09-15T02:00:42.695914Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.37.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/qdsl1sp5p4hpz1ihifkgx3dnn66yca26-direnv-2.37.1"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "direnv",
+      "broken": false,
+      "derivation": "/nix/store/v5wm6099d82rzr9zxh6s2b2cbrjjhin3-direnv-2.37.1.drv",
+      "description": "Shell extension that manages your environment",
+      "install_id": "direnv",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "name": "direnv-2.37.1",
+      "pname": "direnv",
+      "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "rev_count": 861038,
+      "rev_date": "2025-09-13T06:43:22Z",
+      "scrape_date": "2025-09-15T02:29:40.767067Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.37.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/2ihnxlg5z0rqq4pbf3bwr3yqfwj6srcf-direnv-2.37.1"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "direnv",
+      "broken": false,
+      "derivation": "/nix/store/a3bx2d4z67fg5fj5phn5x2v5aqhd13l2-direnv-2.37.1.drv",
+      "description": "Shell extension that manages your environment",
+      "install_id": "direnv",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "name": "direnv-2.37.1",
+      "pname": "direnv",
+      "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "rev_count": 861038,
+      "rev_date": "2025-09-13T06:43:22Z",
+      "scrape_date": "2025-09-15T02:56:36.123258Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.37.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/kvi0vfb8f6a7z6ga5wyn298ch5iv9w2m-direnv-2.37.1"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "direnv",
+      "broken": false,
+      "derivation": "/nix/store/nn76imprh7arf8fnivcqyp8gd629z8m5-direnv-2.37.1.drv",
+      "description": "Shell extension that manages your environment",
+      "install_id": "direnv",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "name": "direnv-2.37.1",
+      "pname": "direnv",
+      "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "rev_count": 861038,
+      "rev_date": "2025-09-13T06:43:22Z",
+      "scrape_date": "2025-09-15T03:26:56.891498Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.37.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/banmjx561hg41k0sw4bvhmx1sr35fjm1-direnv-2.37.1"
       },
       "system": "x86_64-linux",
       "group": "toplevel",
@@ -415,122 +653,6 @@
       ],
       "outputs": {
         "out": "/nix/store/ysvfla1awr4faiqc0mw27rcdkww8j6cn-docker-compose-2.39.1"
-      },
-      "system": "x86_64-linux",
-      "group": "toplevel",
-      "priority": 5
-    },
-    {
-      "attr_path": "dotenvx",
-      "broken": false,
-      "derivation": "/nix/store/x7xkbpqwih102rcj9d1bmbrmam62x3ma-dotenvx-1.48.4.drv",
-      "description": "Better dotenv–from the creator of `dotenv",
-      "install_id": "dotenvx",
-      "license": "BSD-3-Clause",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1",
-      "name": "dotenvx-1.48.4",
-      "pname": "dotenvx",
-      "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
-      "rev_count": 861038,
-      "rev_date": "2025-09-13T06:43:22Z",
-      "scrape_date": "2025-09-15T02:00:42.755679Z",
-      "stabilities": [
-        "unstable"
-      ],
-      "unfree": false,
-      "version": "1.48.4",
-      "outputs_to_install": [
-        "out"
-      ],
-      "outputs": {
-        "out": "/nix/store/l8s9s5i64my2j09fmqrvk408zplzm784-dotenvx-1.48.4"
-      },
-      "system": "aarch64-darwin",
-      "group": "toplevel",
-      "priority": 5
-    },
-    {
-      "attr_path": "dotenvx",
-      "broken": false,
-      "derivation": "/nix/store/51fvr94xxwbc100ibwxcgl60r09zxqiv-dotenvx-1.48.4.drv",
-      "description": "Better dotenv–from the creator of `dotenv",
-      "install_id": "dotenvx",
-      "license": "BSD-3-Clause",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1",
-      "name": "dotenvx-1.48.4",
-      "pname": "dotenvx",
-      "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
-      "rev_count": 861038,
-      "rev_date": "2025-09-13T06:43:22Z",
-      "scrape_date": "2025-09-15T02:29:40.835304Z",
-      "stabilities": [
-        "unstable"
-      ],
-      "unfree": false,
-      "version": "1.48.4",
-      "outputs_to_install": [
-        "out"
-      ],
-      "outputs": {
-        "out": "/nix/store/62nn3xlzpj4jwssz32fr6m11mf9gsjlc-dotenvx-1.48.4"
-      },
-      "system": "aarch64-linux",
-      "group": "toplevel",
-      "priority": 5
-    },
-    {
-      "attr_path": "dotenvx",
-      "broken": false,
-      "derivation": "/nix/store/7r1isg0m836z84ycwy0mn7y8pw4j6dqw-dotenvx-1.48.4.drv",
-      "description": "Better dotenv–from the creator of `dotenv",
-      "install_id": "dotenvx",
-      "license": "BSD-3-Clause",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1",
-      "name": "dotenvx-1.48.4",
-      "pname": "dotenvx",
-      "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
-      "rev_count": 861038,
-      "rev_date": "2025-09-13T06:43:22Z",
-      "scrape_date": "2025-09-15T02:56:36.172025Z",
-      "stabilities": [
-        "unstable"
-      ],
-      "unfree": false,
-      "version": "1.48.4",
-      "outputs_to_install": [
-        "out"
-      ],
-      "outputs": {
-        "out": "/nix/store/hirhyx6ldrm4g430xdjj9l93007s73lh-dotenvx-1.48.4"
-      },
-      "system": "x86_64-darwin",
-      "group": "toplevel",
-      "priority": 5
-    },
-    {
-      "attr_path": "dotenvx",
-      "broken": false,
-      "derivation": "/nix/store/d8ypik9n1skf3n4fpprxa1bvxjl99m4y-dotenvx-1.48.4.drv",
-      "description": "Better dotenv–from the creator of `dotenv",
-      "install_id": "dotenvx",
-      "license": "BSD-3-Clause",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1",
-      "name": "dotenvx-1.48.4",
-      "pname": "dotenvx",
-      "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
-      "rev_count": 861038,
-      "rev_date": "2025-09-13T06:43:22Z",
-      "scrape_date": "2025-09-15T03:26:56.966034Z",
-      "stabilities": [
-        "unstable"
-      ],
-      "unfree": false,
-      "version": "1.48.4",
-      "outputs_to_install": [
-        "out"
-      ],
-      "outputs": {
-        "out": "/nix/store/xx9c6ync0r2cj3779qz0in5bdr9cmnv9-dotenvx-1.48.4"
       },
       "system": "x86_64-linux",
       "group": "toplevel",
@@ -1473,6 +1595,122 @@
       ],
       "outputs": {
         "out": "/nix/store/5pv8jrp70w0flz9g3yqkk7fzcnr28mpx-ripgrep-14.1.1"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "sops",
+      "broken": false,
+      "derivation": "/nix/store/m1js404qnx1h1bzgjcv85xm8y57z8z10-sops-3.10.2.drv",
+      "description": "Simple and flexible tool for managing secrets",
+      "install_id": "sops",
+      "license": "MPL-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "name": "sops-3.10.2",
+      "pname": "sops",
+      "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "rev_count": 861038,
+      "rev_date": "2025-09-13T06:43:22Z",
+      "scrape_date": "2025-09-15T02:02:28.162797Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "3.10.2",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/0qy3lyh7sqvr5h90msnly7zw76mpqcfn-sops-3.10.2"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "sops",
+      "broken": false,
+      "derivation": "/nix/store/p8wc1rds6kc6c97kbl7g96rp6a28zgzv-sops-3.10.2.drv",
+      "description": "Simple and flexible tool for managing secrets",
+      "install_id": "sops",
+      "license": "MPL-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "name": "sops-3.10.2",
+      "pname": "sops",
+      "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "rev_count": 861038,
+      "rev_date": "2025-09-13T06:43:22Z",
+      "scrape_date": "2025-09-15T02:32:02.612958Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "3.10.2",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/zpw6padk6j43njhchzpgik6031bcyna3-sops-3.10.2"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "sops",
+      "broken": false,
+      "derivation": "/nix/store/m55kc61d3mipfwkhcqk47kxw78m4cl2n-sops-3.10.2.drv",
+      "description": "Simple and flexible tool for managing secrets",
+      "install_id": "sops",
+      "license": "MPL-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "name": "sops-3.10.2",
+      "pname": "sops",
+      "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "rev_count": 861038,
+      "rev_date": "2025-09-13T06:43:22Z",
+      "scrape_date": "2025-09-15T02:58:20.223683Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "3.10.2",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/gdpdcvr36hhgqwqwxln8sgmcfifnmp89-sops-3.10.2"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "sops",
+      "broken": false,
+      "derivation": "/nix/store/lrinziaq1b6ld5p0x4mx7p3n0dnxgm2m-sops-3.10.2.drv",
+      "description": "Simple and flexible tool for managing secrets",
+      "install_id": "sops",
+      "license": "MPL-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "name": "sops-3.10.2",
+      "pname": "sops",
+      "rev": "c23193b943c6c689d70ee98ce3128239ed9e32d1",
+      "rev_count": 861038,
+      "rev_date": "2025-09-13T06:43:22Z",
+      "scrape_date": "2025-09-15T03:29:26.623182Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "3.10.2",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/1gcsd95kjkw9qpr79k1vwy28cps7sxk1-sops-3.10.2"
       },
       "system": "x86_64-linux",
       "group": "toplevel",

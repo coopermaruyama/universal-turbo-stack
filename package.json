@@ -2,7 +2,7 @@
   "name": "create-t3-turbo",
   "private": true,
   "engines": {
-    "node": ">=22.19.0",
+    "node": ">=22.20.0",
     "pnpm": ">=10.15.1"
   },
   "packageManager": "pnpm@10.18.0",
@@ -27,12 +27,15 @@
     "ios": "expo run:ios",
     "storybook:next": "pnpm -F @acme/nextjs storybook",
     "storybook:expo": "pnpm -F @acme/expo storybook",
-    "x": "pnpm -F @acme/scripts x"
+    "x": "pnpm -F @acme/scripts x",
+    "env:check": "pnpm -F @acme/env envcheck",
+    "env:watch": "pnpm -F @acme/env envcheck --watch"
   },
   "devDependencies": {
     "@acme/scripts": "workspace:*",
     "@biomejs/biome": "^2.2.5",
     "@turbo/gen": "^2.5.8",
+    "chokidar": "^4.0.3",
     "turbo": "^2.5.8",
     "typescript": "catalog:"
   },

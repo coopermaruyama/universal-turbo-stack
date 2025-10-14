@@ -27,8 +27,8 @@ jobs:
       - name: Setup
         uses: ./tooling/github/setup
 
-      - name: Lint
-        run: pnpm lint && pnpm lint:ws
+      - name: Lint (Biome)
+        run: pnpm lint
 
   format:
     runs-on: ubuntu-latest
@@ -38,7 +38,7 @@ jobs:
       - name: Setup
         uses: ./tooling/github/setup
 
-      - name: Format
+      - name: Format (Biome)
         run: pnpm format
 
   typecheck:
@@ -51,3 +51,64 @@ jobs:
 
       - name: Typecheck
         run: pnpm typecheck
+
+  smoke-template:
+    name: Template smoke (fresh clone -> install -> encrypt -> run)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup
+        uses: ./tooling/github/setup
+
+      - name: Install Flox
+        shell: bash
+        run: |
+          if ! command -v flox >/dev/null 2>&1; then
+            curl -fsSL https://get.flox.dev | bash
+            echo "$HOME/.flox/bin" >> "$GITHUB_PATH"
+          fi
+          flox --version || true
+
+      - name: Install via install.sh
+        shell: bash
+        run: |
+          bash ./install.sh
+
+      - name: Install sops and age
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends sops age
+
+      - name: Create and encrypt dev secrets with sops
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Minimal secrets required for build/env validation
+          cat > secrets.dev.env <<'ENV'
+          NODE_ENV=development
+          POSTGRES_URL=postgres://pguser:password@localhost:5432/app
+          AUTH_SECRET=smoke-secret
+          ENV
+          # Generate ephemeral age keypair
+          age-keygen -o agekey.txt
+          echo "SOPS_AGE_KEY_FILE=$(pwd)/agekey.txt" >> "$GITHUB_ENV"
+          RECIP=$(age-keygen -y agekey.txt)
+          # Encrypt in-place with sops using age recipient
+          sops --encrypt --age "$RECIP" --in-place secrets.dev.env
+
+      - name: Smoke check env loading via sops
+        shell: bash
+        run: |
+          set -euo pipefail
+          sops exec-env secrets.dev.env -- bash -lc 'node -e "if (!process.env.AUTH_SECRET) { process.exit(1) }"'
+          echo "Env loaded via sops OK"
+
+      - name: Build Next.js via sops exec-env
+        working-directory: apps/nextjs
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Use sops to provide env only for this command; avoid any dotenvx scripts
+          sops exec-env ../../secrets.dev.env -- pnpm next build

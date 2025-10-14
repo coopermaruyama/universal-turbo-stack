@@ -41,13 +41,14 @@ services:
       - "3000:3000"
     volumes:
       - ./apps/nextjs:/app
-      # dont put it in /app or it will create a copy of the .env.keys file in host
-      - ./.env.keys:/.env.keys
+      # Optional: mount SOPS age key for local dev (do not commit)
+      - ./age.key:/age.key:ro
       # exclusions
       # - /app/.venv
     environment:
       - NODE_ENV=development
       - ENV=development
+      - SOPS_AGE_KEY_FILE=/age.key
       - POSTGRES_URL=postgresql://pguser:password@postgres:5432/app
       - REDIS_URL=redis://redis:6379
     depends_on:

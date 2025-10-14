@@ -1,7 +1,6 @@
-# 1. universal-turbo-stack
+# Universal Turbo <!-- omit in toc -->
 
-A slightly opinionated starter for cross-platform React that runs anywhere, with a focus
-on developer experience, code sharing, and production readiness.
+Opinionated starter for cross-platform React (Native).
 
 This starter is built on top of [Turborepo](https://turborepo.org) and includes:
 
@@ -19,13 +18,14 @@ This starter is built on top of [Turborepo](https://turborepo.org) and includes:
 - [fly.io](https://fly.io) for deploying the Next.js app with Postgres and Redis.
 - Pre-configured CI with GitHub Actions which will create preview deployments for every PR.
 
-## 1.1. Getting Started
+
+## 1. Getting Started
 
 <details open>
 
 <summary>Quick Start</summary>
 
-### 1.1.1. 🚀 Quick Start
+### 1.1. 🚀 Quick Start
 
 This repo uses [flox](https://flox.dev) + [nix](https://nixos.org). Install them
 by running `./install.sh`:
@@ -53,7 +53,7 @@ are needed other than `flox activate`.
 
 <summary>Automatic Activation</summary>
 
-### 1.1.2. 💎 Automatic Activation
+### 1.2. 💎 Automatic Activation
 
 The installer also installed `direnv` - A hook that runs whenever you change
 directory `cd` in your terminal. It looks for a file called `.envrc` and
@@ -77,7 +77,7 @@ separate python version which configure themselves when we `cd` into them.
 
 <summary>Directory Structure</summary>
 
-## 1.2. Directory Structure
+## 2. Directory Structure
 
 This repo uses [Turborepo](https://turborepo.org) and contains:
 
@@ -123,14 +123,14 @@ tooling
 
 <summary>
 
-## 1.3. Environment Variables
+## 3. Environment Variables
 
 </summary>
 
 
 This repository uses [SOPS](https://getsops.io/) to manage secrets, which supports multiple authentication methods. The included example is configured with [Age](https://github.com/FiloSottile/age). If working in a team environment, I'd recommend combining KMS and Age, so collaborators can use either one. If your team is already using AWS, KMS is nice because no one needs to attain an extra file - they can authenticate with their existing AWS credentials to decrypt.
 
-### 1.3.1. Configuration
+### 3.1. Configuration
 
 There are 2 locations relevant to environment variables:
 
@@ -147,7 +147,7 @@ AGE-SECRET-KEY-196AXMVQEELVYRTZLWVCHQU75D98E3K98P23LXJWJFS6RFYLZX4XQJ56SAL
 
 If you add this to `~/.config/sops/age/keys.txt`, you should be able to decrypt the secrets in this template and run the apps.
 
-### 1.3.2. VS Code Integration
+### 3.2. VS Code Integration
 
 
 Once you have a good typechecking setup, the most common source of runtime errors are misconfigured or missing environment variables. To address this, your code should define the schema of expected environment variables in the `@acme/env` package, and the values in `secrets/<env>/<app>.yaml`.
@@ -162,7 +162,7 @@ To set environment variables, run `s
 
 To update an envrionment variable, run `sops edit secrets/<env>/<file>`. A static checker is included to surface issues in VS Code's problem matcher if you forget to define any required environment variables.
 
-### 1.3.3. About SOPS
+### 3.3. About SOPS
 
 SOPS is an open-source tool for managing secrets which solves many of the shortcomings that
 have existed in similar solutions. Because of this, SOPS is well integrated into
@@ -201,11 +201,11 @@ The following are some of the key features of SOPS that are relevant to this rep
 </details>
 
 
-## 1.4. Auth
+## 4. Auth
 
-### 1.4.1. Configure Expo dev-script
+### 4.1. Configure Expo dev-script
 
-#### 1.4.1.1. Use iOS Simulator
+#### 4.1.1. Use iOS Simulator
 
 1. Make sure you have XCode and XCommand Line Tools installed [as shown on expo docs](https://docs.expo.dev/workflow/ios-simulator).
 
@@ -216,7 +216,7 @@ The following are some of the key features of SOPS that are relevant to this rep
    +  "dev": "expo start --ios",
    ```
 
-#### 1.4.1.2. Use Android Emulator
+#### 4.1.2. Use Android Emulator
 
 1. Install Android Studio tools [as shown on expo docs](https://docs.expo.dev/workflow/android-studio-emulator).
 
@@ -228,11 +228,11 @@ The following are some of the key features of SOPS that are relevant to this rep
 
 3. Run `pnpm dev` at the project root folder.
 
-### 1.4.2. Run the apps
+### 4.2. Run the apps
 
 Run `pnpm dev` at the project root folder. This will start Next.js and Expo in development mode.
 
-#### 1.4.2.1. Storybook
+#### 4.2.1. Storybook
 
 Storybook is configured to run on both Expo and Next.js.
 
@@ -246,50 +246,50 @@ cd apps/nextjs
 pnpm storybook
 ```
 
-### 1.4.3. Configuring Better-Auth to work with Expo
+### 4.3. Configuring Better-Auth to work with Expo
 
 In order to get Better-Auth to work with Expo, you must either:
 
-#### 1.4.3.1. Deploy the Auth Proxy (RECOMMENDED)
+#### 4.3.1. Deploy the Auth Proxy (RECOMMENDED)
 
 Better-auth comes with an [auth proxy plugin](https://www.better-auth.com/docs/plugins/oauth-proxy). By deploying the Next.js app, you can get OAuth working in preview deployments and development for Expo apps.
 
 By using the proxy plugin, the Next.js apps will forward any auth requests to the proxy server, which will handle the OAuth flow and then redirect back to the Next.js app. This makes it easy to get OAuth working since you'll have a stable URL that is publicly accessible and doesn't change for every deployment and doesn't rely on what port the app is running on. So if port 3000 is taken and your Next.js app starts at port 3001 instead, your auth should still work without having to reconfigure the OAuth provider.
 
-#### 1.4.3.2. Add your local IP to your OAuth provider
+#### 4.3.2. Add your local IP to your OAuth provider
 
 You can alternatively add your local IP (e.g. `192.168.x.y:$PORT`) to your OAuth provider. This may not be as reliable as your local IP may change when you change networks. Some OAuth providers may also only support a single callback URL for each app making this approach unviable for some providers (e.g. GitHub).
 
-### 1.4.4. When it's time to add a new package
+### 4.4. When it's time to add a new package
 
 To add a new package, simply run `pnpm turbo gen init` in the monorepo root. This will prompt you for a package name as well as if you want to install any dependencies to the new package (of course you can also do this yourself later).
 
 The generator sets up the `package.json`, `tsconfig.json` and a `index.ts`, as well as configures all the necessary configurations for tooling around your package such as formatting, linting and typechecking. When the package is created, you're ready to go build out the package.
 
-## 1.5. FAQ
+## 5. FAQ
 
-### 1.5.1. Does the starter include Solito?
+### 5.1. Does the starter include Solito?
 
 No. Solito will not be included in this repo. It is a great tool if you want to share code between your Next.js and Expo app. However, the main purpose of this repo is not the integration between Next.js and Expo — it's the code splitting of your T3 App into a monorepo. The Expo app is just a bonus example of how you can utilize the monorepo with multiple apps but can just as well be any app such as Vite, Electron, etc.
 
 Integrating Solito into this repo isn't hard, and there are a few [official templates](https://github.com/nandorojo/solito/tree/master/example-monorepos) by the creators of Solito that you can use as a reference.
 
-### 1.5.2. Does this pattern leak backend code to my client applications?
+### 5.2. Does this pattern leak backend code to my client applications?
 
 No, it does not. The `api` package should only be a production dependency in the Next.js application where it's served. The Expo app, and all other apps you may add in the future, should only add the `api` package as a dev dependency. This lets you have full typesafety in your client applications, while keeping your backend code safe.
 
 If you need to share runtime code between the client and server, such as input validation schemas, you can create a separate `shared` package for this and import it on both sides.
 
-## 1.6. Deployment
+## 6. Deployment
 
-### 1.6.1. Next.js
+### 6.1. Next.js
 
-#### 1.6.1.1. Prerequisites
+#### 6.1.1. Prerequisites
 
 > **Note**
 > Please note that the Next.js application with tRPC must be deployed in order for the Expo app to communicate with the server in a production environment.
 
-#### 1.6.1.2. Deploy to Vercel
+#### 6.1.2. Deploy to Vercel
 
 Let's deploy the Next.js application to [Vercel](https://vercel.com). If you've never deployed a Turborepo app there, don't worry, the steps are quite straightforward. You can also read the [official Turborepo guide](https://vercel.com/docs/concepts/monorepos/turborepo) on deploying to Vercel.
 
@@ -299,11 +299,11 @@ Let's deploy the Next.js application to [Vercel](https://vercel.com). If you've 
 
 3. Done! Your app should successfully deploy. Assign your domain and use that instead of `localhost` for the `url` in the Expo app so that your Expo app can communicate with your backend when you are not in development.
 
-### 1.6.2. Auth Proxy
+### 6.2. Auth Proxy
 
 The auth proxy comes as a better-auth plugin. This is required for the Next.js app to be able to authenticate users in preview deployments. The auth proxy is not used for OAuth request in production deployments. The easiest way to get it running is to deploy the Next.js app to vercel.
 
-### 1.6.3. Expo
+### 6.3. Expo
 
 Deploying your Expo application works slightly differently compared to Next.js on the web. Instead of "deploying" your app online, you need to submit production builds of your app to app stores, like [Apple App Store](https://www.apple.com/app-store) and [Google Play](https://play.google.com/store/apps). You can read the full [guide to distributing your app](https://docs.expo.dev/distribution/introduction), including best practices, in the Expo docs.
 
@@ -372,6 +372,15 @@ Deploying your Expo application works slightly differently compared to Next.js o
 
 9. Done! Now that you have created your production build, submitted it to the stores, and installed EAS Update, you are ready for anything!
 
-## 1.7. References
+## 7. Background
 
-The stack originates from [create-t3-app](https://github.com/t3-oss/create-t3-app).
+Initially a fork of [T3 Turbo](https://github.com/t3-oss/create-t3-turbo). It aims to be more batteries-included
+with a focus on production-readiness. At this point it is very diverged - some notable differences include:
+
+- The UI package is native-first and cross-compatible: Upstream uses shadcn, so only works in nextjs. This package uses Nativewind + a port of shadcn adapted for Nativewind.
+- Anything with lock-in potential is removed, such as defaulting to supabase + vercel + neon pg. It's still compatible, though.
+- Avoids using `drizzle push` - this tends to cause migration issues across teams since it directly modifies the db. Instead, uses `generate` + `migrate`.
+- Includes storybook for both expo and nextjs
+- Includes unit testing frameworks: `vitest` on web, `detox` for expo.
+- Pre-configured to use [SOPS](https://github.com/getsops/sops) for managing secrets.
+- Includes docker / docker-compose configuration.

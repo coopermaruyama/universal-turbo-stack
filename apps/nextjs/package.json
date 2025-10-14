@@ -27,6 +27,7 @@
     "@acme/api": "workspace:*",
     "@acme/auth": "workspace:*",
     "@acme/db": "workspace:*",
+    "@acme/env": "workspace:*",
     "@acme/tailwind-config": "workspace:*",
     "@acme/ui": "workspace:*",
     "@acme/validators": "workspace:*",

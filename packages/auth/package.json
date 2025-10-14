@@ -11,21 +11,15 @@
   "license": "MIT",
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules",
-<<<<<<< HEAD
     "format": "biome format .",
     "lint": "biome lint .",
     "generate": "with-env pnpx @better-auth/cli generate --config script/auth-cli.ts --output ../db/src/auth-schema.ts",
     "typecheck": "tsc --noEmit",
     "with-env": "../scripts/with-env.sh"
-=======
-    "format": "prettier --check . --ignore-path ../../.gitignore",
-    "lint": "eslint --flag unstable_native_nodejs_ts_config",
-    "generate": "dotenv -e ../../.env -- pnpx @better-auth/cli generate --config script/auth-cli.ts --output ../db/src/auth-schema.ts",
-    "typecheck": "tsc --noEmit"
->>>>>>> upstream/main
   },
   "dependencies": {
     "@acme/db": "workspace:*",
+    "@acme/env": "workspace:*",
     "@better-auth/expo": "catalog:",
     "@t3-oss/env-nextjs": "^0.13.8",
     "better-auth": "catalog:",

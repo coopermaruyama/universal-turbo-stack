@@ -27,19 +27,15 @@
     "ios": "expo run:ios",
     "storybook:next": "pnpm -F @acme/nextjs storybook",
     "storybook:expo": "pnpm -F @acme/expo storybook",
-    "x": "pnpm -F @acme/scripts x"
+    "x": "pnpm -F @acme/scripts x",
+    "env:check": "pnpm -F @acme/env envcheck",
+    "env:watch": "pnpm -F @acme/env envcheck --watch"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "@acme/scripts": "workspace:*",
     "@biomejs/biome": "^2.2.5",
     "@turbo/gen": "^2.5.8",
-=======
-    "@acme/prettier-config": "workspace:*",
-    "@turbo/gen": "^2.5.8",
-    "dotenv-cli": "^10.0.0",
-    "prettier": "catalog:",
->>>>>>> upstream/main
+    "chokidar": "^4.0.3",
     "turbo": "^2.5.8",
     "typescript": "catalog:"
   },

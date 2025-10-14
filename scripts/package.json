@@ -1,0 +1,26 @@
+{
+  "name": "@acme/scripts",
+  "private": true,
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "env.sh": "bin/env.sh",
+    "deploy.sh": "bin/deploy.sh",
+    "keys.sh": "bin/get-keys.sh",
+    "smoke.sh": "bin/smoke.sh",
+    "pre.sh": "bin/pre.sh",
+    "x": "bin/x"
+  },
+  "scripts": {
+    "x": "./bin/x",
+    "envcheck": "tsx verify-env.ts"
+  },
+  "devDependencies": {
+    "@acme/tsconfig": "workspace:*",
+    "colorette": "^2.0.20",
+    "execa": "^9.6.0",
+    "globby": "^15.0.0",
+    "typescript": "catalog:"
+  }
+}

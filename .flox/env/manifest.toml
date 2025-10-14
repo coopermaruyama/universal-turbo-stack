@@ -34,6 +34,7 @@ zsh.pkg-path = "zsh"
 gum.pkg-path = "gum"
 docker.pkg-path = "docker"
 docker-compose.pkg-path = "docker-compose"
+direnv.pkg-path = "direnv"
 
 
 ## Environment Variables ---------------------------------------------

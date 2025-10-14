@@ -1,14 +1,37 @@
 {
   "version": "2.0.0",
   "tasks": [
-    // {
-    //   "label": "Build Next.js",
-    //   "type": "shell",
-    //   "command": "pnpm build",
-    //   "options": {
-    //     "cwd": "${workspaceFolder}/apps/nextjs"
-    //   },
-    //   "group": "build"
-    // }
+    {
+      "label": "Env Check (watcher)",
+      "type": "shell",
+      "command": "pnpm -F @acme/env envcheck:watch",
+      "problemMatcher": {
+        "owner": "envcheck",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": {
+          "regexp": "^\/?(.*):(\\d+):(\\d+):\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "message": 4
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\[envcheck\\] Starting environment validation watcher",
+          "endsPattern": "^\\[envcheck\\] Ready"
+        }
+      },
+      "isBackground": true,
+      "presentation": {
+        "echo": false,
+        "reveal": "never",
+        "focus": false,
+        "revealProblems": "onProblem",
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": false,
+        "group": "watchers"
+      }
+    }
   ]
 }

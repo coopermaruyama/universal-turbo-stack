@@ -1,0 +1,40 @@
+{
+  "name": "@acme/env",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./nextjs": "./src/nextjs.ts",
+    "./auth": "./src/auth.ts"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc",
+    "format": "biome format . --files-ignore-unknown=true",
+    "format:fix": "biome format . --files-ignore-unknown=true --write",
+    "lint": "biome lint . --files-ignore-unknown=true",
+    "lint:fix": "biome lint . --files-ignore-unknown=true --write --unsafe",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
+    "envcheck": "__IS_ENVCHECK=1 node src/verify-env.ts",
+    "envcheck:watch": "__IS_ENVCHECK=1 node src/verify-env.ts --watch"
+  },
+  "devDependencies": {
+    "@acme/tsconfig": "workspace:*",
+    "@biomejs/biome": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:"
+  },
+  "dependencies": {
+    "colorette": "^2.0.20",
+    "dotenv": "^17.2.3",
+    "execa": "^9.6.0",
+    "globby": "^15.0.0",
+    "jiti": "^2.6.1",
+    "tsx": "^4.20.6",
+    "yaml": "^2.8.1",
+    "zod": "^4.1.12"
+  }
+}

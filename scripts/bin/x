@@ -9,10 +9,6 @@ set -euo pipefail
 # 4. Run `pnpm x <command>` to run the command.
 # To run from another package, make sure it is listed as a dev dependency
 case "${1:-}" in
-  env) shift; exec "$(dirname "$0")/env.sh" "$@" ;;
-  deploy) shift; exec "$(dirname "$0")/deploy.sh" "$@" ;;
-  keys) shift; exec "$(dirname "$0")/keys.sh" "$@" ;;
-  smoke) shift; exec "$(dirname "$0")/smoke.sh" "$@" ;;
   pre) shift; exec "$(dirname "$0")/pre.sh" "$@" ;;
   *) echo "Usage: acme {env|deploy|keys|smoke|pre}"; exit 2 ;;
 esac

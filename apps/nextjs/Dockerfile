@@ -50,7 +50,7 @@ FROM node:${NODE_VERSION}-alpine AS runner
 WORKDIR /app
 
 # Runtime deps
-RUN apk add --no-cache libc6-compat curl bash
+RUN apk add --no-cache libc6-compat curl bash sops age
 
 # Enable pnpm in runtime and set non-root install locations
 RUN corepack enable && corepack prepare pnpm@${PNPM_VERSION} --activate
@@ -61,7 +61,7 @@ ENV PATH="/home/nextjs/.npm-global/bin:$PNPM_HOME:$PATH"
 RUN mkdir -p /home/nextjs/.local/share/pnpm /home/nextjs/.pnpm-store /home/nextjs/.npm-global
 
 # Optional: tools used by start.sh
-RUN npm install -g @dotenvx/dotenvx@latest
+# Using nix/flox or local install for extras; keep minimal
 RUN npm install -g drizzle-kit
 
 # Don't run production as root
@@ -80,8 +80,8 @@ COPY --from=installer --chown=nextjs:nodejs /app/apps/nextjs/public ./apps/nextj
 # Copy database package if needed at runtime (e.g., migrations)
 COPY --from=installer --chown=nextjs:nodejs /app/packages/db ./packages/db
 
-# Optionally include production env files
-COPY --chown=nextjs:nodejs .env.production* ./
+# Optionally include production env files from app workspace
+COPY --from=installer --chown=nextjs:nodejs /app/apps/nextjs/.env.production* ./
 
 # Start script
 COPY --chown=nextjs:nodejs --chmod=0755 apps/nextjs/start.sh ./start.sh

@@ -17,7 +17,6 @@
   "tailwindCSS.experimental.configFile": "./tooling/tailwind/base.css",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.preferences.autoImportFileExcludePatterns": [
-    "zod/dist/types/index.d.ts", // Force auto-imports to v4
     "next/router.d.ts",
     "next/dist/client/router.d.ts"
   ],
@@ -29,5 +28,11 @@
     ".cache": true,
     ".expo": true
   },
-  "sarif-viewer.connectToGithubCodeScanning": "off"
+  "sarif-viewer.connectToGithubCodeScanning": "off",
+  "terminal.integrated.profiles.osx": {
+    "floxShellProfile": {
+      "path": "/bin/zsh"
+    }
+  },
+  "terminal.integrated.defaultProfile.osx": "floxShellProfile"
 }

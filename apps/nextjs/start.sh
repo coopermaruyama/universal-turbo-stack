@@ -33,19 +33,34 @@ fi
 
 # Production mode
 
-if [ -z "$DOTENV_PRIVATE_KEY_PRODUCTION" ]; then
-    echo "Error: DOTENV_PRIVATE_KEY_PRODUCTION is not set."
-    exit 1
+# Load environment variables
+ENV_FILE="/app/.env.production"
+ENV_SOPS_FILE="/app/.env.production.sops"
+
+if [ -f "$ENV_SOPS_FILE" ] && command -v sops >/dev/null 2>&1; then
+    echo "Decrypting env from $ENV_SOPS_FILE"
+    tmp_env="$(mktemp)"
+    trap 'rm -f "$tmp_env"' EXIT
+    sops -d "$ENV_SOPS_FILE" > "$tmp_env"
+    set -a
+    # shellcheck disable=SC1090
+    . "$tmp_env"
+    set +a
+elif [ -f "$ENV_FILE" ]; then
+    echo "Loading env from $ENV_FILE"
+    set -a
+    # shellcheck disable=SC1090
+    . "$ENV_FILE"
+    set +a
 else
-    echo "DOTENV_PRIVATE_KEY_PRODUCTION is set."
+    echo "No production env file found; proceeding with existing environment"
 fi
 
 # Run db migration
 cd /app/packages/db
-dotenvx run -f /app/.env.production  --ignore=MISSING_ENV_FILE -- \
-    npx -p @neondatabase/serverless -p drizzle-orm -p drizzle-kit drizzle-kit migrate
+NODE_ENV=production npx -p @neondatabase/serverless -p drizzle-orm -p drizzle-kit drizzle-kit migrate
 cd /app
 
 # Start the Next.js application
 echo "Starting in production mode..."
-dotenvx run -f .env.production --ignore=MISSING_ENV_FILE -- node /app/server.js -H 0.0.0.0
+node /app/server.js -H 0.0.0.0

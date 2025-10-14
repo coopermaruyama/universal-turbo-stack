@@ -29,14 +29,10 @@ upfind_dir() {
   done
 }
 
-root_dir=$(upfind_dir "pnpm-workspace.yaml" || echo "")
-keys_file="$root_dir/.env.keys"
+root_dir=$(upfind_dir "pnpm-workspace.yaml" || echo "$PWD")
+target_app="nextjs"
+secrets_file="$root_dir/secrets/dev/$target_app.yaml"
 
-if [[ -f "$keys_file" ]]; then
-  set -a
-  export TURBO_TOKEN=$(dotenvx get TURBO_TOKEN -f "$root_dir/.env.development" -f "$keys_file")
-  export TURBO_TEAM=team_KXVaispsHwsXlmn4asRmt1iB
-  set +a
-fi
+sops exec-env "$secrets_file" -- "$@"
 
 

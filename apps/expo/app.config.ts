@@ -50,10 +50,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   experiments: {
     tsconfigPaths: true,
     typedRoutes: true,
-<<<<<<< HEAD
-=======
     reactCanary: true,
->>>>>>> upstream/main
     reactCompiler: true,
   },
   plugins: [

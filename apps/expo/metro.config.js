@@ -2,7 +2,6 @@
 const path = require("node:path");
 const { getDefaultConfig } = require("expo/metro-config");
 const { FileStore } = require("metro-cache");
-<<<<<<< HEAD
 const { withNativeWind } = require("nativewind/metro");
 const withStorybook = require("@storybook/react-native/metro/withStorybook");
 const {
@@ -71,17 +70,3 @@ config.resolver.sourceExts.push("mjs");
 config = wrapWithReanimatedMetroConfig(config);
 
 module.exports = config;
-=======
-const { withNativewind } = require("nativewind/metro");
-
-const config = getDefaultConfig(__dirname);
-
-config.cacheStores = [
-  new FileStore({
-    root: path.join(__dirname, "node_modules", ".cache", "metro"),
-  }),
-];
-
-/** @type {import('expo/metro-config').MetroConfig} */
-module.exports = withNativewind(config);
->>>>>>> upstream/main

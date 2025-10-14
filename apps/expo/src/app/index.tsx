@@ -1,13 +1,6 @@
-<<<<<<< HEAD
 import { Button } from "@acme/ui/button";
 import { Input } from "@acme/ui/input";
 import { Text } from "@acme/ui/text";
-=======
-import { useState } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Link, Stack } from "expo-router";
->>>>>>> upstream/main
 import { LegendList } from "@legendapp/list";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, Stack, useRouter } from "expo-router";
@@ -65,33 +58,18 @@ function CreatePost() {
   );
 
   return (
-<<<<<<< HEAD
     <View className="mb-4 mt-4 flex flex-col gap-4 rounded-lg border border-muted p-4">
       <Text className="mb-2 text-center text-xl font-bold text-foreground">
         Create Post
       </Text>
       <Input value={title} onChangeText={setTitle} placeholder="Title" />
-=======
-    <View className="mt-4 flex gap-2">
-      <TextInput
-        className="border-input bg-background text-foreground items-center rounded-md border px-3 text-lg leading-tight"
-        value={title}
-        onChangeText={setTitle}
-        placeholder="Title"
-      />
->>>>>>> upstream/main
       {error?.data?.zodError?.fieldErrors.title && (
         <Text className="text-destructive mb-2">
           {error.data.zodError.fieldErrors.title}
         </Text>
       )}
-<<<<<<< HEAD
       <Input
         className="items-center rounded-md border border-input bg-background px-3 text-lg leading-[1.25] text-foreground"
-=======
-      <TextInput
-        className="border-input bg-background text-foreground items-center rounded-md border px-3 text-lg leading-tight"
->>>>>>> upstream/main
         value={content}
         onChangeText={setContent}
         placeholder="Content"
@@ -101,13 +79,8 @@ function CreatePost() {
           {error.data.zodError.fieldErrors.content}
         </Text>
       )}
-<<<<<<< HEAD
       <Button
         className="w-full"
-=======
-      <Pressable
-        className="bg-primary flex items-center rounded-sm p-2"
->>>>>>> upstream/main
         onPress={() => {
           mutate({
             title,
@@ -131,7 +104,6 @@ function MobileAuth() {
   const { data: session } = authClient.useSession();
   return (
     <>
-<<<<<<< HEAD
       <Text className="my-2 text-center text-base font-semibold">
         {session?.user
           ? `Signed in as ${session.user.email || "user"}`
@@ -145,24 +117,6 @@ function MobileAuth() {
       >
         <Text>{session ? "Sign Out" : "Sign In"}</Text>
       </Button>
-=======
-      <Text className="text-foreground pb-2 text-center text-xl font-semibold">
-        {session?.user.name ? `Hello, ${session.user.name}` : "Not logged in"}
-      </Text>
-      <Pressable
-        onPress={() =>
-          session
-            ? authClient.signOut()
-            : authClient.signIn.social({
-                provider: "discord",
-                callbackURL: "/",
-              })
-        }
-        className="bg-primary flex items-center rounded-sm p-2"
-      >
-        <Text>{session ? "Sign Out" : "Sign In With Discord"}</Text>
-      </Pressable>
->>>>>>> upstream/main
     </>
   );
 }
@@ -183,15 +137,9 @@ export default function Index() {
     <SafeAreaView className="grow bg-background">
       {/* Changes page title visible on the header */}
       <Stack.Screen options={{ title: "Home Page" }} />
-<<<<<<< HEAD
       <View className="h-full w-full bg-background p-4">
         <Text className="pb-2 text-center text-2xl font-bold text-foreground">
           Universal <Text className="text-xl text-secondary">Turbo</Text>
-=======
-      <View className="bg-background h-full w-full p-4">
-        <Text className="text-foreground pb-2 text-center text-5xl font-bold">
-          Create <Text className="text-primary">T3</Text> Turbo
->>>>>>> upstream/main
         </Text>
 
         <MobileAuth />

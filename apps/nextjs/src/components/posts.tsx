@@ -1,11 +1,7 @@
 "use client";
 
-<<<<<<< HEAD:apps/nextjs/src/components/posts.tsx
 import type { RouterOutputs } from "@acme/api";
 import { CreatePostSchema } from "@acme/db/schema";
-=======
-import { useForm } from "@tanstack/react-form";
->>>>>>> upstream/main:apps/nextjs/src/app/_components/posts.tsx
 import {
   useMutation,
   useQueryClient,
@@ -16,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import { useTRPC } from "@/lib/trpc/react";
 import { cn } from "@/lib/utils";
 import {
-<<<<<<< HEAD:apps/nextjs/src/components/posts.tsx
   Form,
   FormControl,
   FormField,
@@ -25,18 +20,6 @@ import {
   useForm,
 } from "@/ui/form";
 import { Input } from "@/ui/input";
-=======
-  Field,
-  FieldContent,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "@acme/ui/field";
-import { Input } from "@acme/ui/input";
-import { toast } from "@acme/ui/toast";
-
-import { useTRPC } from "~/trpc/react";
->>>>>>> upstream/main:apps/nextjs/src/app/_components/posts.tsx
 
 export function CreatePostForm() {
   const trpc = useTRPC();

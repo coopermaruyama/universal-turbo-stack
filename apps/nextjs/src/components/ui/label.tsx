@@ -1,9 +1,4 @@
 "use client";
-<<<<<<< HEAD:apps/nextjs/src/components/ui/label.tsx
-=======
-
-import { Label as LabelPrimitive } from "radix-ui";
->>>>>>> upstream/main:packages/ui/src/label.tsx
 
 import { Label as LabelPrimitive } from "radix-ui";
 import type * as React from "react";

@@ -55,16 +55,13 @@ on-activate = """
     pnpm install
   else
     pnpm install
-    if [ ! -f .env.keys ]; then
-      pnpm keys || true
-    fi
-    if [ ! -d .git/safe ]; then
-      resp="$(gum choose --header \"Helpers are not enabled. Enable them now? This will update your PATH while you have the dev environment active\" \"yes\" \"no\")"
-      if [ "$resp" = "yes" ]; then
-        mkdir .git/safe
-      fi
-    fi
-    docker compose up -d
+   #  if [ ! -d .git/safe ]; then
+   #    resp="$(gum choose --header \"Helpers are not enabled. Enable them now? This will update your PATH while you have the dev environment active\" \"yes\" \"no\")"
+   #    if [ "$resp" = "yes" ]; then
+   #      mkdir .git/safe
+   #    fi
+   #  fi
+    # docker compose up -d
   fi
 """
 
